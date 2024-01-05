@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <h1>Filmy</h1>
+  <h1>Filmy i seriale</h1>
 </template>
 
 <style scoped>
