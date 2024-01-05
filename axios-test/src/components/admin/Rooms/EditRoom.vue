@@ -38,7 +38,7 @@ const URL = import.meta.env.VITE_BACKEND_URI + "rooms";
 
 const fetchError = ref(null);
 const editedRoom = ref({
-  name: "xD",
+  name: "",
   numberOfSeats: 0,
 });
 

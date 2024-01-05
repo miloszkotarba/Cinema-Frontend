@@ -75,8 +75,8 @@ const router = createRouter({
       component: () => import('../views/admin/PriceList/PricesView.vue')
     },
     {
-      path: '/admin/cennik/edit',
-      name: 'adminCennikEdit',
+      path: '/admin/cennik/edit/:id',
+      name: 'EditTicket',
       component: () => import('../views/admin/PriceList/EditPriceView.vue')
     },
     {
