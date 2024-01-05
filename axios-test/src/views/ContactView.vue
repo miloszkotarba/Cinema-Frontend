@@ -8,6 +8,6 @@ import Top from "@/components/Top.vue";
   <Footer />
 </template>
 
-<style scoped>
+<style>
 
 </style>

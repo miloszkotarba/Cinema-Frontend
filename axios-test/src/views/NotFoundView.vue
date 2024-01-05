@@ -7,16 +7,13 @@
   </div>
 </template>
 
-<style>
-body {
-  background: #161927;
-}
-
+<style scoped>
 .container-center {
   height: 100vh;
   width: 100vw;
   display: grid;
   place-items: center;
+  background: #161927;
 }
 
 .container-center .wrapper {
