@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b9d79ee3-a93c-463a-9c10-bf37d7f029c9" name="Changes" comment="test">
+    <list default="true" id="b9d79ee3-a93c-463a-9c10-bf37d7f029c9" name="Changes" comment="Naprawił mistrz">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/axios-test/src/views/ContactView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/axios-test/src/views/ContactView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/axios-test/src/views/NotFoundView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/axios-test/src/views/NotFoundView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/axios-test/src/components/Top.vue" beforeDir="false" afterPath="$PROJECT_DIR$/axios-test/src/components/Top.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/axios-test/src/components/admin/MainPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/axios-test/src/components/admin/MainPage.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,7 +135,15 @@
       <option name="project" value="LOCAL" />
       <updated>1704458254924</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Naprawił mistrz">
+      <option name="closed" value="true" />
+      <created>1704461746148</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1704461746148</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -145,6 +153,7 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Changes by piotr" />
     <MESSAGE value="test" />
-    <option name="LAST_COMMIT_MESSAGE" value="test" />
+    <MESSAGE value="Naprawił mistrz" />
+    <option name="LAST_COMMIT_MESSAGE" value="Naprawił mistrz" />
   </component>
 </project>
