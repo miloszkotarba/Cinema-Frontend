@@ -1,0 +1,224 @@
+Index: axios-test/src/views/ContactView.vue
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><script setup>\r\nimport Footer from \"@/components/Footer.vue\";\r\nimport Top from \"@/components/Top.vue\";\r\n</script>\r\n\r\n<template>\r\n  <Top />\r\n  <Footer />\r\n</template>\r\n\r\n<style>\r\n\r\n</style>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/axios-test/src/views/ContactView.vue b/axios-test/src/views/ContactView.vue
+--- a/axios-test/src/views/ContactView.vue	(revision 9b42a840696acb0cc8adae22a114792e5866df28)
++++ b/axios-test/src/views/ContactView.vue	(date 1704462066449)
+@@ -1,10 +1,12 @@
+ <script setup>
+ import Footer from "@/components/Footer.vue";
+ import Top from "@/components/Top.vue";
++import Contact from "@/components/Contact/Contact.vue";
+ </script>
+ 
+ <template>
+   <Top />
++  <Contact />
+   <Footer />
+ </template>
+ 
+Index: axios-test/src/router/index.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import { createRouter, createWebHistory } from 'vue-router'\r\nimport HomeView from '../views/HomeView.vue'\r\n\r\nconst router = createRouter({\r\n  history: createWebHistory(import.meta.env.BASE_URL),\r\n  routes: [\r\n    {\r\n      path: '/',\r\n      name: 'home',\r\n      component: HomeView\r\n    },\r\n    {\r\n      path: '/cennik',\r\n      name: 'cennik',\r\n      component: () => import('../views/PriceListView.vue')\r\n    },\r\n    {\r\n      path: '/repertuar',\r\n      name: 'repertuar',\r\n      component: () => import('../views/RepertoireView.vue')\r\n    },\r\n    {\r\n      path: '/admin',\r\n      name: 'admin',\r\n      component: () => import('../views/admin/Dashboard/DashboardView.vue')\r\n    },\r\n    {\r\n      path: '/admin/sale',\r\n      name: 'adminSale',\r\n      component: () => import('../views/admin/Rooms/RoomsView.vue')\r\n    },\r\n    {\r\n      path: '/admin/sale/create',\r\n      name: 'adminSaleCreate',\r\n      component: () => import('../views/admin/Rooms/CreateRoomView.vue')\r\n    },\r\n    {\r\n      path: '/admin/filmy',\r\n      name: 'adminFilmy',\r\n      component: () => import('../views/admin/Movies/MoviesView.vue')\r\n    },\r\n    {\r\n      path: '/:catchAll(.*)',\r\n      component: () => import('../views/NotFoundView.vue'),\r\n    },\r\n  ]\r\n})\r\n\r\nexport default router\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/axios-test/src/router/index.js b/axios-test/src/router/index.js
+--- a/axios-test/src/router/index.js	(revision 9b42a840696acb0cc8adae22a114792e5866df28)
++++ b/axios-test/src/router/index.js	(date 1704462303655)
+@@ -20,6 +20,16 @@
+       component: () => import('../views/RepertoireView.vue')
+     },
+     {
++      path: '/kontakt',
++      name: 'kontakt',
++      component: () => import('../views/ContactView.vue')
++    },
++    {
++      path: '/oferty',
++      name: 'oferty',
++      component: () => import('../views/OffersView.vue')
++    },
++    {
+       path: '/admin',
+       name: 'admin',
+       component: () => import('../views/admin/Dashboard/DashboardView.vue')
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"b9d79ee3-a93c-463a-9c10-bf37d7f029c9\" name=\"Changes\" comment=\"test\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/axios-test/src/views/ContactView.vue\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/axios-test/src/views/ContactView.vue\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/axios-test/src/views/NotFoundView.vue\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/axios-test/src/views/NotFoundView.vue\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"HTML File\" />\r\n        <option value=\"JavaScript File\" />\r\n        <option value=\"Vue Composition API Component\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 3\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2a36TyYUD4r6W3j8jQr7rMMlUjM\" />\r\n  <component name=\"ProjectLevelVcsManager\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,\r\n    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,\r\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;master&quot;,\r\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,\r\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\r\n    &quot;npm.npm dev.executor&quot;: &quot;Run&quot;,\r\n    &quot;ts.external.directory.path&quot;: &quot;/Users/miloszkotarba/Applications/WebStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external&quot;,\r\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\r\n  },\r\n  &quot;keyToStringList&quot;: {\r\n    &quot;vue.recent.templates&quot;: [\r\n      &quot;Vue Composition API Component&quot;\r\n    ]\r\n  }\r\n}</component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"$PROJECT_DIR$/axios-test/src/views/admin/Dashboard\" />\r\n      <recent name=\"$PROJECT_DIR$/axios-test/src/components/admin/Dashboard\" />\r\n      <recent name=\"$PROJECT_DIR$/axios-test/public\" />\r\n      <recent name=\"$PROJECT_DIR$/axios-test/src/assets/img\" />\r\n      <recent name=\"$PROJECT_DIR$/axios-test/src/views/admin/Rooms\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"npm.npm dev\">\r\n    <configuration name=\"Debug Application\" type=\"JavascriptDebugType\" uri=\"http://localhost:5173\">\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"npm dev\" type=\"js.build_tools.npm\">\r\n      <package-json value=\"$PROJECT_DIR$/package.json\" />\r\n      <command value=\"run\" />\r\n      <scripts>\r\n        <script value=\"dev\" />\r\n      </scripts>\r\n      <node-interpreter value=\"project\" />\r\n      <envs />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"b9d79ee3-a93c-463a-9c10-bf37d7f029c9\" name=\"Changes\" comment=\"\" />\r\n      <created>1703534926156</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1703534926156</updated>\r\n      <workItem from=\"1703534927216\" duration=\"4525000\" />\r\n      <workItem from=\"1703589686179\" duration=\"1710000\" />\r\n      <workItem from=\"1703592182001\" duration=\"12474000\" />\r\n      <workItem from=\"1703606075577\" duration=\"8225000\" />\r\n      <workItem from=\"1704456601791\" duration=\"91000\" />\r\n      <workItem from=\"1704456718191\" duration=\"19000\" />\r\n      <workItem from=\"1704456765473\" duration=\"1431000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"test\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1704456788579</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1704456788579</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"test\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1704456812770</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1704456812770</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"Changes by piotr\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1704457056718</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1704457056718</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"test\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1704458254924</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1704458254924</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"5\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <option name=\"ADD_EXTERNAL_FILES_SILENTLY\" value=\"true\" />\r\n    <MESSAGE value=\"Changes by piotr\" />\r\n    <MESSAGE value=\"test\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"test\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 9b42a840696acb0cc8adae22a114792e5866df28)
++++ b/.idea/workspace.xml	(date 1704462303692)
+@@ -5,9 +5,12 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="b9d79ee3-a93c-463a-9c10-bf37d7f029c9" name="Changes" comment="test">
++      <change afterPath="$PROJECT_DIR$/axios-test/src/components/Contact/Contact.vue" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/axios-test/src/components/Offers/Offers.vue" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/axios-test/src/views/OffersView.vue" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/axios-test/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/axios-test/src/router/index.js" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/axios-test/src/views/ContactView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/axios-test/src/views/ContactView.vue" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/axios-test/src/views/NotFoundView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/axios-test/src/views/NotFoundView.vue" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -54,7 +57,7 @@
+     &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,
+     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+     &quot;npm.npm dev.executor&quot;: &quot;Run&quot;,
+-    &quot;ts.external.directory.path&quot;: &quot;/Users/miloszkotarba/Applications/WebStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external&quot;,
++    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2023.2.5\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
+     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+   },
+   &quot;keyToStringList&quot;: {
+@@ -65,11 +68,11 @@
+ }</component>
+   <component name="RecentsManager">
+     <key name="MoveFile.RECENT_KEYS">
++      <recent name="C:\Users\piotr\WebstormProjects\kino-frontend-vue\axios-test\src\components\PriceList" />
+       <recent name="$PROJECT_DIR$/axios-test/src/views/admin/Dashboard" />
+       <recent name="$PROJECT_DIR$/axios-test/src/components/admin/Dashboard" />
+       <recent name="$PROJECT_DIR$/axios-test/public" />
+       <recent name="$PROJECT_DIR$/axios-test/src/assets/img" />
+-      <recent name="$PROJECT_DIR$/axios-test/src/views/admin/Rooms" />
+     </key>
+   </component>
+   <component name="RunManager" selected="npm.npm dev">
+@@ -101,7 +104,7 @@
+       <workItem from="1703606075577" duration="8225000" />
+       <workItem from="1704456601791" duration="91000" />
+       <workItem from="1704456718191" duration="19000" />
+-      <workItem from="1704456765473" duration="1431000" />
++      <workItem from="1704456765473" duration="1234000" />
+     </task>
+     <task id="LOCAL-00001" summary="test">
+       <option name="closed" value="true" />
+@@ -127,24 +130,27 @@
+       <option name="project" value="LOCAL" />
+       <updated>1704457056718</updated>
+     </task>
+-    <task id="LOCAL-00004" summary="test">
+-      <option name="closed" value="true" />
+-      <created>1704458254924</created>
+-      <option name="number" value="00004" />
+-      <option name="presentableId" value="LOCAL-00004" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1704458254924</updated>
+-    </task>
+-    <option name="localTasksCounter" value="5" />
++    <option name="localTasksCounter" value="4" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+     <option name="version" value="3" />
+   </component>
++  <component name="Vcs.Log.Tabs.Properties">
++    <option name="TAB_STATES">
++      <map>
++        <entry key="MAIN">
++          <value>
++            <State />
++          </value>
++        </entry>
++      </map>
++    </option>
++  </component>
+   <component name="VcsManagerConfiguration">
+     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
++    <MESSAGE value="test" />
+     <MESSAGE value="Changes by piotr" />
+-    <MESSAGE value="test" />
+-    <option name="LAST_COMMIT_MESSAGE" value="test" />
++    <option name="LAST_COMMIT_MESSAGE" value="Changes by piotr" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: axios-test/src/components/Contact/Contact.vue
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/axios-test/src/components/Contact/Contact.vue b/axios-test/src/components/Contact/Contact.vue
+new file mode 100644
+--- /dev/null	(date 1704462066445)
++++ b/axios-test/src/components/Contact/Contact.vue	(date 1704462066445)
+@@ -0,0 +1,18 @@
++<script setup>
++
++</script>
++
++<template>
++  <div class="powitanie">
++    skontaktuj sie ze mna zlotko
++  </div>
++
++</template>
++
++<style scoped>
++
++.powitanie{
++  color: red;
++}
++
++</style>
+\ No newline at end of file
+Index: axios-test/src/views/OffersView.vue
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/axios-test/src/views/OffersView.vue b/axios-test/src/views/OffersView.vue
+new file mode 100644
+--- /dev/null	(date 1704462303663)
++++ b/axios-test/src/views/OffersView.vue	(date 1704462303663)
+@@ -0,0 +1,15 @@
++<script setup>
++import Footer from "@/components/Footer.vue";
++import Top from "@/components/Top.vue";
++import Offers from "@/components/Offers/Offers.vue";
++</script>
++
++<template>
++  <Top />
++  <Offers />
++  <Footer />
++</template>
++
++<style>
++
++</style>
+\ No newline at end of file
+Index: axios-test/src/components/Offers/Offers.vue
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/axios-test/src/components/Offers/Offers.vue b/axios-test/src/components/Offers/Offers.vue
+new file mode 100644
+--- /dev/null	(date 1704462303659)
++++ b/axios-test/src/components/Offers/Offers.vue	(date 1704462303659)
+@@ -0,0 +1,13 @@
++<script setup>
++
++</script>
++
++<template>
++  <div>
++    Oferta specjalna - seks z Jankiem
++  </div>
++</template>
++
++<style scoped>
++
++</style>
+\ No newline at end of file
