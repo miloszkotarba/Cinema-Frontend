@@ -45,9 +45,24 @@ const router = createRouter({
       component: () => import('../views/admin/Rooms/CreateRoomView.vue')
     },
     {
+      path: '/admin/sale/edit',
+      name: 'adminSaleEdit',
+      component: () => import('../views/admin/Rooms/EditRoomView.vue')
+    },
+    {
       path: '/admin/filmy',
       name: 'adminFilmy',
       component: () => import('../views/admin/Movies/MoviesView.vue')
+    },
+    {
+      path: '/admin/filmy/create',
+      name: 'adminFilmyCreate',
+      component: () => import('../views/admin/Movies/CreateMovieView.vue')
+    },
+    {
+      path: '/admin/filmy/edit',
+      name: 'adminFilmyEdit',
+      component: () => import('../views/admin/Movies/EditMovieView.vue')
     },
     {
       path: '/admin/cennik',
@@ -55,9 +70,24 @@ const router = createRouter({
       component: () => import('../views/admin/PriceList/PricesView.vue')
     },
     {
+      path: '/admin/cennik/edit',
+      name: 'adminCennikEdit',
+      component: () => import('../views/admin/PriceList/EditPriceView.vue')
+    },
+    {
       path: '/admin/seanse',
       name: 'adminSeanse',
       component: () => import('../views/admin/Screenings/ScreeningsView.vue')
+    },
+    {
+      path: '/admin/seanse/create',
+      name: 'adminSeanseCreate',
+      component: () => import('../views/admin/Screenings/CreateScreeningView.vue')
+    },
+    {
+      path: '/admin/seanse/edit',
+      name: 'adminSeanseEdit',
+      component: () => import('../views/admin/Screenings/EditScreeningView.vue')
     },
     {
       path: '/:catchAll(.*)',
