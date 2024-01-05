@@ -5,8 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b9d79ee3-a93c-463a-9c10-bf37d7f029c9" name="Changes" comment="test">
-      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/axios-test/src/components/Footer.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/axios-test/src/components/PriceList/PriceList.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/axios-test/src/components/Repertoire/Repertoire.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/axios-test/src/components/Top.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/axios-test/src/views/ContactView.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/axios-test/src/views/RepertoireView.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/axios-test/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/axios-test/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/axios-test/src/views/HomeView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/axios-test/src/views/HomeView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/axios-test/src/views/PriceListView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/axios-test/src/views/PriceListView.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +61,7 @@
     "nodejs_interpreter_path": "node",
     "nodejs_package_manager_path": "npm",
     "npm.npm dev.executor": "Run",
-    "ts.external.directory.path": "/Users/miloszkotarba/Applications/WebStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2023.2.5\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -64,11 +72,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\piotr\WebstormProjects\kino-frontend-vue\axios-test\src\components\PriceList" />
       <recent name="$PROJECT_DIR$/axios-test/src/views/admin/Dashboard" />
       <recent name="$PROJECT_DIR$/axios-test/src/components/admin/Dashboard" />
       <recent name="$PROJECT_DIR$/axios-test/public" />
       <recent name="$PROJECT_DIR$/axios-test/src/assets/img" />
-      <recent name="$PROJECT_DIR$/axios-test/src/views/admin/Rooms" />
     </key>
   </component>
   <component name="RunManager" selected="npm.npm dev">
@@ -131,6 +139,17 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />

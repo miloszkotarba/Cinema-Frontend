@@ -15,6 +15,11 @@ const router = createRouter({
       component: () => import('../views/PriceListView.vue')
     },
     {
+      path: '/repertuar',
+      name: 'repertuar',
+      component: () => import('../views/RepertoireView.vue')
+    },
+    {
       path: '/admin',
       name: 'admin',
       component: () => import('../views/admin/Dashboard/DashboardView.vue')

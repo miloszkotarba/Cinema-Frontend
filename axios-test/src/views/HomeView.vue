@@ -26,16 +26,16 @@
         <h1>Screenix</h1>
       </div>
       <ul class="nav">
-        <RouterLink to="#" class="link">
+        <RouterLink to="/repertuar" class="link">
           <li>Repertuar</li>
         </RouterLink>
-        <RouterLink to="#" class="link">
+        <RouterLink to="/oferty" class="link">
           <li>Oferty</li>
         </RouterLink>
         <RouterLink to="/cennik" class="link">
           <li>Cennik</li>
         </RouterLink>
-        <RouterLink to="#" class="link">
+        <RouterLink to="/kontakt" class="link">
           <li>Kontakt</li>
         </RouterLink>
       </ul>
