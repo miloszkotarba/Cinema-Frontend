@@ -65,6 +65,11 @@ const router = createRouter({
       component: () => import('../views/admin/Movies/CreateMovieView.vue')
     },
     {
+      path: '/admin/filmy/edit/:id',
+      name: 'EditMovie',
+      component: () => import('../views/admin/Movies/EditMovieView.vue')
+    },
+    {
       path: '/admin/filmy/edit',
       name: 'adminFilmyEdit',
       component: () => import('../views/admin/Movies/EditMovieView.vue')
