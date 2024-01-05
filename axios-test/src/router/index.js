@@ -45,6 +45,11 @@ const router = createRouter({
       component: () => import('../views/admin/Rooms/CreateRoomView.vue')
     },
     {
+      path: '/admin/sale/edit/:id',
+      name: 'EditRoom',
+      component: () => import('../views/admin/Rooms/EditRoomView.vue')
+    },
+    {
       path: '/admin/sale/edit',
       name: 'adminSaleEdit',
       component: () => import('../views/admin/Rooms/EditRoomView.vue')

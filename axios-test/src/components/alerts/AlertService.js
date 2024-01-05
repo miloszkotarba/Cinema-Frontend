@@ -10,7 +10,7 @@ class AlertService {
 
         setTimeout(() => {
             this.clearAlerts();
-        }, 5000);
+        }, 3500);
     }
 
     clearAlerts() {

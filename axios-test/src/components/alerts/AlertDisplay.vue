@@ -3,7 +3,7 @@
       <div v-for="(alert, index) in alertService.alerts.value" :key="index">
         <div v-if="alert">
           <div class="alert" :class="alert.type">
-            <h3 class="alert-title">Sukces</h3>
+            <h3 class="alert-title">{{ getAlertTitle(alert.type) }}</h3>
             <p class="alert-content">{{ alert.message }}</p>
           </div>
         </div>
@@ -13,6 +13,18 @@
 
 <script setup>
 import alertService from './AlertService.js';
+
+const getAlertTitle = (type) => {
+  switch (type) {
+    case 'success':
+      return 'Sukces';
+    case 'error':
+      return 'Błąd';
+    default:
+      return 'Informacja';
+  }
+}
+
 </script>
 
 <style scoped>

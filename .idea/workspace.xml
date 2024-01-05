@@ -5,10 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b9d79ee3-a93c-463a-9c10-bf37d7f029c9" name="Changes" comment="routing for admin page">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_01_2024__14_25__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_01_2024__14_25__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_01_2024__15_23__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_01_2024__15_23__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_01_2024__15_38__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_01_2024__15_38__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/axios-test/src/components/PriceList/PriceList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/axios-test/src/components/PriceList/PriceList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/axios-test/src/components/admin/Rooms/CreateRoom.vue" beforeDir="false" afterPath="$PROJECT_DIR$/axios-test/src/components/admin/Rooms/CreateRoom.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/axios-test/src/components/admin/Rooms/EditRoom.vue" beforeDir="false" afterPath="$PROJECT_DIR$/axios-test/src/components/admin/Rooms/EditRoom.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/axios-test/src/components/admin/Rooms/GetAllRooms.vue" beforeDir="false" afterPath="$PROJECT_DIR$/axios-test/src/components/admin/Rooms/GetAllRooms.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/axios-test/src/components/alerts/AlertDisplay.vue" beforeDir="false" afterPath="$PROJECT_DIR$/axios-test/src/components/alerts/AlertDisplay.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/axios-test/src/components/alerts/AlertService.js" beforeDir="false" afterPath="$PROJECT_DIR$/axios-test/src/components/alerts/AlertService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/axios-test/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/axios-test/src/router/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +43,6 @@
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="false" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">{
@@ -56,7 +59,7 @@
     &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;npm.npm dev.executor&quot;: &quot;Run&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2023.2.5\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/miloszkotarba/Applications/WebStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -153,27 +156,22 @@
       <option name="project" value="LOCAL" />
       <updated>1704463850954</updated>
     </task>
-    <task id="LOCAL-00007" summary="routing for admin page">
-      <option name="closed" value="true" />
-      <created>1704464503251</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1704464503251</updated>
-    </task>
-    <task id="LOCAL-00008" summary="routing for admin page">
-      <option name="closed" value="true" />
-      <created>1704464511304</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1704464511304</updated>
-    </task>
-    <option name="localTasksCounter" value="9" />
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
@@ -182,5 +180,16 @@
     <MESSAGE value="routing" />
     <MESSAGE value="routing for admin page" />
     <option name="LAST_COMMIT_MESSAGE" value="routing for admin page" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/axios-test/src/components/Footer.vue</url>
+          <line>31</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

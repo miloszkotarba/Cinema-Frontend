@@ -1,19 +1,23 @@
 <template>
   <AlertDisplay/>
   <div>
-    <form @submit.prevent="addRoom">
-      <label for="name">Room Name:</label>
-      <input type="text" id="name" v-model="newRoom.name" required/>
+    <div class="admin-container">
+      <div class="indent">
+        <header>Dodawanie sali kinowej</header>
+        <form @submit.prevent="addRoom">
+          <div class="field">
+            <label for="name">nazwa sali</label>
+            <input type="text" id="name" v-model="newRoom.name" required/>
+          </div>
 
-      <label for="numberOfSeats">Number of Seats:</label>
-      <input type="number" id="numberOfSeats" v-model="newRoom.numberOfSeats" required/>
+          <div class="field">
+            <label for="numberOfSeats">liczba miejsc</label>
+            <input type="number" id="numberOfSeats" v-model="newRoom.numberOfSeats" required/>
+          </div>
 
-      <button type="submit">Add Room</button>
-    </form>
-
-    <div v-for="room in rooms" :key="room._id">
-      <h2>{{ room.name }}</h2>
-      <span>Number of Seats: {{ room.numberOfSeats }}</span>
+          <button type="submit" class="submit-btn">Dodaj</button>
+        </form>
+      </div>
     </div>
   </div>
 </template>
@@ -40,6 +44,10 @@ const addRoom = async () => {
       return alertService.addAlert("Niepoprawna liczba siedzeń", "error")
     }
 
+    if (newRoom.value.numberOfSeats > 200) {
+      return alertService.addAlert("Sala nie może przekraczać 200 miejsc", "error")
+    }
+
     const response = await axios.post(URL, newRoom.value);
 
     newRoom.value = { name: '', numberOfSeats: 0 };
@@ -52,33 +60,46 @@ const addRoom = async () => {
 </script>
 
 <style scoped>
-form {
-  margin-bottom: 20px;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  background-color: #f9f9f9;
-  margin-top: 30px;
+.admin-container {
+  width: clamp(200px, 100%, 600px);
 }
 
-label {
-  display: block;
-  margin-bottom: 8px;
+.admin-container header {
+  font-size: 23px;
+  text-transform: uppercase;
+  margin-bottom: 3rem;
 }
 
-input {
+.admin-container .indent {
+  margin-left: 3rem;
+}
+
+.admin-container form .field {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-bottom: 1.3rem;
+}
+
+.admin-container form .field input {
+  max-width: 350px;
   width: 100%;
-  padding: 8px;
-  margin-bottom: 12px;
-  box-sizing: border-box;
+  padding: 8px 15px;
+  border-radius: 5px;
+  border: 1px solid black;
+  font-size: 1.05rem;
 }
 
-button {
-  padding: 10px;
-  background-color: #4caf50;
-  color: white;
+.admin-container .submit-btn {
+  float: right;
+  background: #686868;
+  color: #fff;
   border: none;
+  padding: 10px 20px;
   border-radius: 5px;
+  text-transform: uppercase;
   cursor: pointer;
 }
+
 </style>
