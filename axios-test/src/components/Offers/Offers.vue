@@ -3,9 +3,11 @@
 </script>
 
 <template>
-  <div>
-    Oferta specjalna - seks z Jankiem
-  </div>
+  <main>
+    <div>
+      Oferta specjalna - seks z Jankiem
+    </div>
+  </main>
 </template>
 
 <style scoped>

@@ -3,15 +3,16 @@
 </script>
 
 <template>
-  <div class="powitanie">
-    skontaktuj sie ze mna zlotko
-  </div>
-
+  <main>
+    <div class="powitanie">
+      skontaktuj sie ze mna zlotko
+    </div>
+  </main>
 </template>
 
 <style scoped>
 
-.powitanie{
+.powitanie {
   color: red;
 }
 
