@@ -20,6 +20,16 @@ const router = createRouter({
       component: () => import('../views/RepertoireView.vue')
     },
     {
+      path: '/kontakt',
+      name: 'kontakt',
+      component: () => import('../views/ContactView.vue')
+    },
+    {
+      path: '/oferty',
+      name: 'oferty',
+      component: () => import('../views/OffersView.vue')
+    },
+    {
       path: '/admin',
       name: 'admin',
       component: () => import('../views/admin/Dashboard/DashboardView.vue')

@@ -1,12 +1,12 @@
 <script setup>
 import Footer from "@/components/Footer.vue";
 import Top from "@/components/Top.vue";
-import Contact from "@/components/Contact/Contact.vue";
+import Offers from "@/components/Offers/Offers.vue";
 </script>
 
 <template>
   <Top />
-  <Contact />
+  <Offers />
   <Footer />
 </template>
 
