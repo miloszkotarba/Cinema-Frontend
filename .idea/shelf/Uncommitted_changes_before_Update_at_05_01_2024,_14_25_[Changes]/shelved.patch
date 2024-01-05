@@ -1,0 +1,74 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"b9d79ee3-a93c-463a-9c10-bf37d7f029c9\" name=\"Changes\" comment=\"test\">\n      <change beforePath=\"$PROJECT_DIR$/axios-test/src/components/admin/MainPage.vue\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/axios-test/src/components/admin/MainPage.vue\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"HTML File\" />\n        <option value=\"JavaScript File\" />\n        <option value=\"Vue Composition API Component\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"MarkdownSettingsMigration\">\n    <option name=\"stateVersion\" value=\"1\" />\n  </component>\n  <component name=\"ProjectColorInfo\">{\n  &quot;associatedIndex&quot;: 3\n}</component>\n  <component name=\"ProjectId\" id=\"2a36TyYUD4r6W3j8jQr7rMMlUjM\" />\n  <component name=\"ProjectLevelVcsManager\">\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\n  </component>\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\"><![CDATA[{\n  \"keyToString\": {\n    \"ASKED_ADD_EXTERNAL_FILES\": \"true\",\n    \"DefaultHtmlFileTemplate\": \"HTML File\",\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\n    \"git-widget-placeholder\": \"master\",\n    \"node.js.detected.package.eslint\": \"true\",\n    \"node.js.detected.package.tslint\": \"true\",\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\n    \"nodejs_interpreter_path\": \"node\",\n    \"nodejs_package_manager_path\": \"npm\",\n    \"npm.npm dev.executor\": \"Run\",\n    \"ts.external.directory.path\": \"/Users/miloszkotarba/Applications/WebStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external\",\n    \"vue.rearranger.settings.migration\": \"true\"\n  },\n  \"keyToStringList\": {\n    \"vue.recent.templates\": [\n      \"Vue Composition API Component\"\n    ]\n  }\n}]]></component>\n  <component name=\"RecentsManager\">\n    <key name=\"MoveFile.RECENT_KEYS\">\n      <recent name=\"$PROJECT_DIR$/axios-test/src/views/admin/Dashboard\" />\n      <recent name=\"$PROJECT_DIR$/axios-test/src/components/admin/Dashboard\" />\n      <recent name=\"$PROJECT_DIR$/axios-test/public\" />\n      <recent name=\"$PROJECT_DIR$/axios-test/src/assets/img\" />\n      <recent name=\"$PROJECT_DIR$/axios-test/src/views/admin/Rooms\" />\n    </key>\n  </component>\n  <component name=\"RunManager\" selected=\"npm.npm dev\">\n    <configuration name=\"Debug Application\" type=\"JavascriptDebugType\" uri=\"http://localhost:5173\">\n      <method v=\"2\" />\n    </configuration>\n    <configuration name=\"npm dev\" type=\"js.build_tools.npm\">\n      <package-json value=\"$PROJECT_DIR$/package.json\" />\n      <command value=\"run\" />\n      <scripts>\n        <script value=\"dev\" />\n      </scripts>\n      <node-interpreter value=\"project\" />\n      <envs />\n      <method v=\"2\" />\n    </configuration>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"b9d79ee3-a93c-463a-9c10-bf37d7f029c9\" name=\"Changes\" comment=\"\" />\n      <created>1703534926156</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1703534926156</updated>\n      <workItem from=\"1703534927216\" duration=\"4525000\" />\n      <workItem from=\"1703589686179\" duration=\"1710000\" />\n      <workItem from=\"1703592182001\" duration=\"12474000\" />\n      <workItem from=\"1703606075577\" duration=\"8225000\" />\n      <workItem from=\"1704456601791\" duration=\"91000\" />\n      <workItem from=\"1704456718191\" duration=\"19000\" />\n      <workItem from=\"1704456765473\" duration=\"1431000\" />\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"test\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1704456788579</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1704456788579</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"test\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1704456812770</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1704456812770</updated>\n    </task>\n    <task id=\"LOCAL-00003\" summary=\"Changes by piotr\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1704457056718</created>\n      <option name=\"number\" value=\"00003\" />\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1704457056718</updated>\n    </task>\n    <task id=\"LOCAL-00004\" summary=\"test\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1704458254924</created>\n      <option name=\"number\" value=\"00004\" />\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1704458254924</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"5\" />\n    <servers />\n  </component>\n  <component name=\"TypeScriptGeneratedFilesManager\">\n    <option name=\"version\" value=\"3\" />\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <option name=\"ADD_EXTERNAL_FILES_SILENTLY\" value=\"true\" />\n    <MESSAGE value=\"Changes by piotr\" />\n    <MESSAGE value=\"test\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"test\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision ab3cc8042e7cfb930cd715731a9f43b88796614d)
++++ b/.idea/workspace.xml	(date 1704461058477)
+@@ -5,7 +5,7 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="b9d79ee3-a93c-463a-9c10-bf37d7f029c9" name="Changes" comment="test">
+-      <change beforePath="$PROJECT_DIR$/axios-test/src/components/admin/MainPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/axios-test/src/components/admin/MainPage.vue" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -24,6 +24,20 @@
+   <component name="Git.Settings">
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+   </component>
++  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
++  "lastFilter": {
++    "state": "OPEN",
++    "assignee": "miloszkotarba"
++  }
++}]]></component>
++  <component name="GithubPullRequestsUISettings">
++    <option name="selectedUrlAndAccountId">
++      <UrlAndAccount>
++        <option name="accountId" value="6c0561c8-4bb9-4dbb-8f45-6e79326b3ec0" />
++        <option name="url" value="https://github.com/miloszkotarba/kino-frontend-vue.git" />
++      </UrlAndAccount>
++    </option>
++  </component>
+   <component name="MarkdownSettingsMigration">
+     <option name="stateVersion" value="1" />
+   </component>
+@@ -99,7 +113,7 @@
+       <workItem from="1703606075577" duration="8225000" />
+       <workItem from="1704456601791" duration="91000" />
+       <workItem from="1704456718191" duration="19000" />
+-      <workItem from="1704456765473" duration="1431000" />
++      <workItem from="1704456765473" duration="1861000" />
+     </task>
+     <task id="LOCAL-00001" summary="test">
+       <option name="closed" value="true" />
+@@ -133,7 +147,23 @@
+       <option name="project" value="LOCAL" />
+       <updated>1704458254924</updated>
+     </task>
+-    <option name="localTasksCounter" value="5" />
++    <task id="LOCAL-00005" summary="test">
++      <option name="closed" value="true" />
++      <created>1704458290624</created>
++      <option name="number" value="00005" />
++      <option name="presentableId" value="LOCAL-00005" />
++      <option name="project" value="LOCAL" />
++      <updated>1704458290624</updated>
++    </task>
++    <task id="LOCAL-00006" summary="test">
++      <option name="closed" value="true" />
++      <created>1704458429167</created>
++      <option name="number" value="00006" />
++      <option name="presentableId" value="LOCAL-00006" />
++      <option name="project" value="LOCAL" />
++      <updated>1704458429167</updated>
++    </task>
++    <option name="localTasksCounter" value="7" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
