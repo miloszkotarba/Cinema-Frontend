@@ -19,7 +19,7 @@ const toggleSidebar = () => {
         <img src="../../assets/img/logo.png" alt="Logo">
       </div>
 
-      <span class="logo_name">Screenix</span>
+      <span class="logo_name">Kino Screenix</span>
     </div>
 
     <div class="menu-items">
