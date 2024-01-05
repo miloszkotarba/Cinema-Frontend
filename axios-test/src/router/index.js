@@ -50,6 +50,16 @@ const router = createRouter({
       component: () => import('../views/admin/Movies/MoviesView.vue')
     },
     {
+      path: '/admin/cennik',
+      name: 'adminCennik',
+      component: () => import('../views/admin/PriceList/PricesView.vue')
+    },
+    {
+      path: '/admin/seanse',
+      name: 'adminSeanse',
+      component: () => import('../views/admin/Screenings/ScreeningsView.vue')
+    },
+    {
       path: '/:catchAll(.*)',
       component: () => import('../views/NotFoundView.vue'),
     },

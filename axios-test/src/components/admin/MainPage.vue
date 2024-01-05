@@ -52,19 +52,23 @@ const toggleSidebar = () => {
           </li>
         </RouterLink>
 
+        <RouterLink to="/admin/cennik">
+          <li>
+            <a href="#">
+              <i class="uil uil-usd-circle"></i>
+              <span class="link-name">Cennik</span>
+            </a>
+          </li>
+        </RouterLink>
 
-        <li>
-          <a href="#">
-            <i class="uil uil-usd-circle"></i>
-            <span class="link-name">Cennik</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <i class="uil uil-ticket"></i>
-            <span class="link-name">Seanse</span>
-          </a>
-        </li>
+        <RouterLink to="/admin/seanse">
+          <li>
+            <a href="#">
+              <i class="uil uil-ticket"></i>
+              <span class="link-name">Seanse</span>
+            </a>
+          </li>
+        </RouterLink>
       </ul>
     </div>
   </nav>
