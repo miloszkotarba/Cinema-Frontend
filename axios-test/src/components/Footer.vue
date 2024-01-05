@@ -30,9 +30,7 @@
 
 <style>
 main {
-  min-height: calc(100vh - 221.3px);
-  width: clamp(300px, 100%, 1400px);
-  margin-inline: auto;
+  min-height: calc(100vh - 220px);
 }
 
 footer {

@@ -30,10 +30,10 @@
       </div>
       <div class="links">
         <ul>
-          <li>Repertuar</li>
-          <li>Oferty</li>
-          <li>Cennik</li>
-          <li>Kontakt</li>
+          <li><a href="/repertuar">Repertuar</a></li>
+          <li><a href="/oferty">Oferty</a></li>
+          <li><a href="/cennik">Cennik</a></li>
+          <li><a href="/kontakt">Kontakt</a></li>
         </ul>
       </div>
     </div>
@@ -96,11 +96,17 @@ nav .links ul {
   gap: 1.5rem;
 }
 
+nav .links ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
 @media screen and (max-width: 600px) {
   nav {
     max-height: 800px;
     padding-bottom: 1.3rem;
   }
+
   nav .nav-wrapper {
     flex-direction: column;
   }
