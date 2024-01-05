@@ -19,14 +19,35 @@
         <div v-for="movie in movies" :key="movie._id" class="movie">
           <div class="left">
             <span class="name">{{ movie.title }}</span>
-            <span class="genres">gatunek: {{ movie.genres }}</span>
-            <span class="director">reżyser: {{ movie.director }}</span>
-            <span class="releaseDate">Data wydania: {{ movie.release.year }}</span>
-            <span class="releaseCountry">Kraj wydania: {{ movie.release.country }}</span>
-            <span class="duration">czas trwania: {{ movie.duration }}</span>
-            <span class="ageRestriction">ograniczenie wiekowe: {{ movie.ageRestriction }}</span>
-            <span class="cast">aktorzy: {{ movie.cast }}</span>
-            <span class="description">opis: {{ movie.description }}</span>
+            <span class="genres" v-if="movie.genres && movie.genres.length > 0" id="movieGenres">
+      <span>Gatunek: </span>
+      <span v-for="(genre, index) in movie.genres" :key="index" class="light">
+        {{ genre }}<span v-if="index !== movie.genres.length - 1">, </span>
+      </span>
+    </span>
+
+            <span class="director" v-if="movie.director">Reżyser: <span class="light">{{ movie.director }}</span></span>
+            <span class="releaseDate" v-if="movie.release && movie.release.year">Data wydania: <span
+                class="light">{{ movie.release.year }}</span></span>
+            <span class="releaseCountry"
+                  v-if="movie.release && movie.release.country">Kraj wydania: <span
+                class="light">{{ movie.release.country }}</span></span>
+            <span class="duration" v-if="movie.duration">Czas trwania: <span class="light">{{
+                movie.duration
+              }} min</span></span>
+
+            <span class="ageRestriction">
+  Ograniczenia wiekowe: <span class="light">{{ movie.ageRestriction ? movie.ageRestriction : `-` }}</span>
+</span>
+
+            <span class="cast" v-if="movie.cast && movie.cast.length > 0" id="movieCast">
+      <span>Aktorzy: </span>
+      <span v-for="(actor, index) in movie.cast" :key="index" class="light">{{ actor }}<span
+          v-if="index !== movie.cast.length - 1">, </span>
+      </span>
+    </span>
+
+            <span class="description" v-if="movie.description">Opis: <span class="light">{{ movie.description }}</span></span>
           </div>
           <div class="right">
             <RouterLink :to="{ name: 'EditMovie', params: { id: movie._id }}" class="btn btn-edit"
@@ -36,6 +57,7 @@
             <button @click="deleteMovie(movie._id)" class="btn btn-delete">Usuń</button>
           </div>
         </div>
+
       </div>
     </div>
   </div>
@@ -71,7 +93,7 @@ const deleteMovie = async (movieID) => {
   try {
     await axios.delete(URL + `/${movieID}`);
     await fetchMovieData();
-    alertService.addAlert("Usunięto salę kinową.", "success", "/admin/sale")
+    alertService.addAlert("Usunięto film.", "success", "/admin/filmy")
   } catch (error) {
     handleErrors(error, fetchError);
   }
@@ -81,6 +103,11 @@ onMounted(fetchMovieData);
 </script>
 
 <style scoped>
+.light {
+  font-weight: 200;
+  margin-left: 2px;
+}
+
 .admin-container header {
   display: flex;
   align-items: center;
@@ -89,7 +116,7 @@ onMounted(fetchMovieData);
 
 .admin-container header h1 {
   font-size: 35px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .admin-container header .icon img {
@@ -109,19 +136,19 @@ onMounted(fetchMovieData);
 .admin-container .movie {
   position: relative;
   display: flex;
+  flex-direction: column;
+  gap: 1rem;
   width: clamp(200px, 100%, 800px);
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
 }
 
 .admin-container .movie:after {
   position: absolute;
   content: "";
   left: 0;
-  bottom: -25px;
+  bottom: -35px;
   width: 100%;
-  height: 1px;
+  height: 1.7px;
   background: #ccc;
   border-radius: 7px;
 }
@@ -129,7 +156,19 @@ onMounted(fetchMovieData);
 .admin-container .movie .left {
   display: flex;
   flex-direction: column;
-  font-size: 16px;
+  font-size: 1.05rem;
+  line-height: 1.9rem;
+}
+
+.admin-container .movie .left .description {
+  margin-top: 0.5rem;
+  text-align: justify;
+}
+
+.admin-container .movie .left .name {
+  font-weight: 500;
+  font-size: 1.3rem;
+  margin-bottom: 10px;
 }
 
 .admin-container .movie .right .btn {

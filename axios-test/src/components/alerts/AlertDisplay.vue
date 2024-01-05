@@ -33,7 +33,7 @@ const getAlertTitle = (type) => {
   padding: 16px;
   margin: 8px;
   max-width: 90%;
-  position: absolute;
+  position: fixed;
   top: 10px;
   right: 8px;
   z-index: 1000;
