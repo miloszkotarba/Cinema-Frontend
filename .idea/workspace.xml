@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b9d79ee3-a93c-463a-9c10-bf37d7f029c9" name="Changes" comment="test">
-      <change beforePath="$PROJECT_DIR$/axios-test/src/components/admin/MainPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/axios-test/src/components/admin/MainPage.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,7 +100,7 @@
       <workItem from="1703606075577" duration="8225000" />
       <workItem from="1704456601791" duration="91000" />
       <workItem from="1704456718191" duration="19000" />
-      <workItem from="1704456765473" duration="1431000" />
+      <workItem from="1704456765473" duration="1234000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />
@@ -125,15 +126,7 @@
       <option name="project" value="LOCAL" />
       <updated>1704457056718</updated>
     </task>
-    <task id="LOCAL-00004" summary="test">
-      <option name="closed" value="true" />
-      <created>1704458254924</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1704458254924</updated>
-    </task>
-    <option name="localTasksCounter" value="5" />
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -141,8 +134,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Changes by piotr" />
     <MESSAGE value="test" />
-    <option name="LAST_COMMIT_MESSAGE" value="test" />
+    <MESSAGE value="Changes by piotr" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changes by piotr" />
   </component>
 </project>
