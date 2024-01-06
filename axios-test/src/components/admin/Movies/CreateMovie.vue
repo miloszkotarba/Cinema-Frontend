@@ -1,10 +1,10 @@
 <template>
-  <AlertDisplay/>
+  <AlertDisplay />
   <div>
     <div class="admin-container">
       <div class="indent">
         <header>Dodawanie filmu</header>
-        <form @submit.prevent="addMovie">
+        <form @submit.prevent="addMovie" enctype="multipart/form-data">
           <div class="field">
             <label for="title">tytuł filmu</label>
             <input type="text" id="title" v-model="newMovie.title" required/>
@@ -15,7 +15,7 @@
           </div>
           <div class="field">
             <label for="relaseYear">rok wydania</label>
-            <input type="text" id="relaseYear" v-model="newMovie.release.year" required/>
+            <input type="number" id="relaseYear" v-model="newMovie.release.year" required/>
           </div>
           <div class="field">
             <label for="relaseCountry">kraj wydania</label>
@@ -23,11 +23,11 @@
           </div>
           <div class="field">
             <label for="duration">czas trwania (w min)</label>
-            <input type="text" id="duration" v-model="newMovie.duration" required/>
+            <input type="number" id="duration" v-model="newMovie.duration" required/>
           </div>
           <div class="field">
             <label for="ageRestriction">ograniczenie wiekowe</label>
-            <input type="text" id="ageRestriction" v-model="newMovie.ageRestriction" required/>
+            <input type="number" id="ageRestriction" v-model="newMovie.ageRestriction" required/>
           </div>
           <div class="field">
             <label for="cast">aktorzy</label>
@@ -40,6 +40,10 @@
           <div class="field">
             <label for="description">opis</label>
             <textarea class="description" id="description" v-model="newMovie.description" required></textarea>
+          </div>
+          <div class="field">
+            <label for="poster">plakat (zdjęcie)</label>
+            <input type="file" id="poster" @change="handlePosterChange" />
           </div>
 
           <button type="submit" class="submit-btn">Dodaj</button>
@@ -72,11 +76,38 @@ const newMovie = ref({
   cast: [],
   genres: [],
   description: '',
+  poster: null, // Nowe pole dla pliku obrazu
 });
+
+const handlePosterChange = (event) => {
+  const file = event.target.files[0];
+  console.log('Wybrany plik:', file);
+  newMovie.value.poster = file;
+};
 
 const addMovie = async () => {
   try {
-    const response = await axios.post(URL, newMovie.value);
+    // Utwórz obiekt FormData do przesłania plików
+    const formData = new FormData();
+    // Dodaj wszystkie pola formularza
+    formData.append('title', newMovie.value.title);
+    formData.append('director', newMovie.value.director);
+    formData.append('release[year]', newMovie.value.release.year);
+    formData.append('release[country]', newMovie.value.release.country);
+    formData.append('duration', newMovie.value.duration);
+    formData.append('ageRestriction', newMovie.value.ageRestriction);
+    formData.append('cast', JSON.stringify(newMovie.value.cast));
+    formData.append('genres', JSON.stringify(newMovie.value.genres));
+    formData.append('description', newMovie.value.description);
+    // Dodaj plik obrazu
+    formData.append('poster', newMovie.value.poster);
+
+    // Prześlij dane do API
+    const response = await axios.post(URL, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
 
     newMovie.value = {
       title: '',
@@ -90,11 +121,13 @@ const addMovie = async () => {
       cast: [],
       genres: [],
       description: '',
+      poster: null,
     };
 
-    alertService.addAlert("Dodano nowy film.", "success", "/admin/filmy")
+    alertService.addAlert("Dodano nowy film.", "success", "/admin/filmy");
   } catch (error) {
     handleErrors(error, fetchError);
+    console.log("Sprawdź chmod upload")
   }
 };
 </script>
