@@ -127,6 +127,7 @@ const addMovie = async () => {
     alertService.addAlert("Dodano nowy film.", "success", "/admin/filmy");
   } catch (error) {
     handleErrors(error, fetchError);
+    alertService.addAlert(error.response.data.error, "error")
     console.log("Sprawdź chmod upload")
   }
 };
