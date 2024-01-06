@@ -31,7 +31,6 @@
       <div class="links">
         <ul>
           <li><a href="/repertuar">Repertuar</a></li>
-          <li><a href="/oferty">Oferty</a></li>
           <li><a href="/cennik">Cennik</a></li>
           <li><a href="/kontakt">Kontakt</a></li>
         </ul>

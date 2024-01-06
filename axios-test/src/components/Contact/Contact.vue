@@ -79,7 +79,10 @@ main .title h1 {
  .description{
    display: flex;
    justify-content: space-between;
+ }
 
+ .description .text{
+   margin-bottom: 30px;
  }
 
  .description img{
@@ -99,10 +102,19 @@ main .title h1 {
    filter: invert(9%) sepia(82%) saturate(3259%) hue-rotate(260deg) brightness(119%) contrast(100%);
 
  }
-
 hr {
   border: 0.5px solid #686868;
   margin: 30px 0;
+}
+
+@media only screen and (max-width: 1050px) {
+  .description{
+    display: block;
+    padding: 10px 5px;
+  }
+  .description img{
+    margin: auto;
+  }
 }
 
 

@@ -25,11 +25,6 @@ const router = createRouter({
       component: () => import('../views/ContactView.vue')
     },
     {
-      path: '/oferty',
-      name: 'oferty',
-      component: () => import('../views/OffersView.vue')
-    },
-    {
       path: '/admin',
       name: 'admin',
       component: () => import('../views/admin/Dashboard/DashboardView.vue')
