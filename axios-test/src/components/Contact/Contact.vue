@@ -19,9 +19,21 @@
           <br><br>
           W kinie funkcjonuje także Screenix Café, w której można napić się aromatycznej kawy w wielu smakach oraz bar kinowy, który oferuje Widzom świeży popcorn, napoje oraz duży wybór słodyczy.
         </div>
-        <div class="img">
-
-        </div>
+        <img src="../../assets/img/cinema_art.jpg" alt="cinemaArt">
+      </div>
+      <hr>
+      <span class="text">dane kontaktowe:</span>
+      <div class="contact">
+        <img src="../../assets/img/location.svg" alt="locationIcon">
+        adres: ul. Drewnowska 58 (CH Manufaktura Łódź)
+      </div>
+      <div class="contact">
+        <img src="../../assets/img/phone.svg" alt="phoneIcon">
+        telefon: 873643827
+      </div>
+      <div class="contact">
+        <img src="../../assets/img/mail.svg" alt="mailIcon">
+        e-mail: screenixcinema@gmail.com
       </div>
     </div>
   </main>
@@ -59,12 +71,38 @@ main .title h1 {
    margin-left: 10px;
  }
  .text{
-   font-size: 16px;
+   font-size: 18px;
+   max-width: 750px;
+   text-align: justify;
+ }
+
+ .description{
+   display: flex;
+   justify-content: space-between;
+
+ }
+
+ .description img{
+   width: 450px;
+   margin-left: 20px;
+ }
+ .contact{
+   display: flex;
+   align-items: center;
+   margin-top: 10px;
+   margin-bottom: 8px;
+   font-size: 18px;
+ }
+ .contact img{
+   margin-right: 5px;
+   width: 25px;
+   filter: invert(9%) sepia(82%) saturate(3259%) hue-rotate(260deg) brightness(119%) contrast(100%);
+
  }
 
 hr {
   border: 0.5px solid #686868;
-  margin: 10px 0;
+  margin: 30px 0;
 }
 
 
