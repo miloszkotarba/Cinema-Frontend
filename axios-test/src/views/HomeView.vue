@@ -44,7 +44,7 @@
       <div class="left">
         <h1>Kino Screenix</h1>
         <div class="brand">Gdzie Każdy Kadr Jest Doskonały</div>
-        <button>kup bilet</button>
+        <a href="/repertuar"><button>kup bilet </button></a>
       </div>
       <div class="right">
         <img src="../assets/img/19198445-removebg.png" alt="Cinema Background"/>
