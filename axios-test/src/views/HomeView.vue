@@ -29,9 +29,6 @@
         <RouterLink to="/repertuar" class="link">
           <li>Repertuar</li>
         </RouterLink>
-        <RouterLink to="/oferty" class="link">
-          <li>Oferty</li>
-        </RouterLink>
         <RouterLink to="/cennik" class="link">
           <li>Cennik</li>
         </RouterLink>
