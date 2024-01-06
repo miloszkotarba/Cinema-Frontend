@@ -168,6 +168,3 @@ onMounted(fetchScreeningData);
   color: crimson;
 }
 </style>
-
-<!-- @TODO komunikat gdy sal jest zero i wygląd -->
-<!-- @TODO slider ładowania -->
