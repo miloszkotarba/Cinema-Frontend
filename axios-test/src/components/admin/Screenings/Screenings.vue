@@ -19,7 +19,7 @@
         <div v-for="screening in screenings" :key="screening._id" class="screening">
           <div class="left">
             <span class="name">Film: <span class="light">{{ screening.movie.title }}</span></span>
-            <span class="name">Data: <span class="light">{{ screening.date }}</span></span>
+            <span class="name">Data rozpoczęcia: <span class="light">{{ screening.date }}</span></span>
             <span class="name">Sala: <span class="light">{{ screening.room.name }}</span></span>
             <span class="name">Czas reklam: <span class="light">{{ screening.advertisementsDuration}} min</span></span>
             <span class="name">Rezerwacje: <span class="light">{{ screening.reservation}}</span> </span>
