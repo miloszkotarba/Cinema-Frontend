@@ -100,6 +100,11 @@ const router = createRouter({
       component: () => import('../views/admin/Screenings/EditScreeningView.vue')
     },
     {
+      path: '/admin/seanse/edit/:id',
+      name: 'EditScreening',
+      component: () => import('../views/admin/Screenings/EditScreeningView.vue')
+    },
+    {
       path: '/:catchAll(.*)',
       component: () => import('../views/NotFoundView.vue'),
     },

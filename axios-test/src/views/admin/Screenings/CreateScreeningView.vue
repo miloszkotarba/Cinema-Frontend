@@ -1,5 +1,5 @@
 <script setup>
-import CreateScreening from "@/components/admin/Screenings/CreateScreening";
+import CreateScreening from "@/components/admin/Screenings/CreateScreening.vue";
 import MainPage from "@/components/admin/MainPage.vue";
 </script>
 
