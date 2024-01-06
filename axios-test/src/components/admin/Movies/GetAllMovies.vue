@@ -17,58 +17,67 @@
       <div v-if="isLoading">Loading...</div>
       <div v-else>
         <div v-for="movie in movies" :key="movie._id" class="movie">
-          <div class="left">
-            <span class="name">{{ movie.title }}</span>
-            <span class="genres" v-if="movie.genres && movie.genres.length > 0" id="movieGenres">
-      <span>Gatunek: </span>
-      <span v-for="(genre, index) in movie.genres" :key="index" class="light">
-        {{ genre }}<span v-if="index !== movie.genres.length - 1">, </span>
-      </span>
-    </span>
+          <div class="helper">
+            <div class="left">
+              <span class="name">{{ movie.title }}</span>
+              <span class="genres" v-if="movie.genres && movie.genres.length > 0" id="movieGenres">
+                <span>Gatunek: </span>
+                <span v-for="(genre, index) in movie.genres" :key="index" class="light">
+                  {{ genre }}<span v-if="index !== movie.genres.length - 1">, </span>
+                </span>
+              </span>
 
-            <span class="director" v-if="movie.director">Reżyser: <span class="light">{{ movie.director }}</span></span>
-            <span class="releaseDate" v-if="movie.release && movie.release.year">Data wydania: <span
-                class="light">{{ movie.release.year }}</span></span>
-            <span class="releaseCountry"
-                  v-if="movie.release && movie.release.country">Kraj wydania: <span
-                class="light">{{ movie.release.country }}</span></span>
-            <span class="duration" v-if="movie.duration">Czas trwania: <span class="light">{{
-                movie.duration
-              }} min</span></span>
+              <span class="director" v-if="movie.director">Reżyser: <span class="light">{{
+                  movie.director
+                }}</span></span>
+              <span class="releaseDate" v-if="movie.release && movie.release.year">Data wydania: <span
+                  class="light">{{ movie.release.year }}</span></span>
+              <span class="releaseCountry" v-if="movie.release && movie.release.country">Kraj wydania: <span
+                  class="light">{{ movie.release.country }}</span></span>
+              <span class="duration" v-if="movie.duration">Czas trwania: <span class="light">{{
+                  movie.duration
+                }} min</span></span>
 
-            <span class="ageRestriction">
-  Ograniczenia wiekowe: <span class="light">{{ movie.ageRestriction ? movie.ageRestriction : `-` }}</span>
-</span>
+              <span class="ageRestriction">
+                Ograniczenia wiekowe: <span class="light">{{ movie.ageRestriction ? movie.ageRestriction : `-` }}</span>
+              </span>
 
-            <span class="cast" v-if="movie.cast && movie.cast.length > 0" id="movieCast">
-      <span>Aktorzy: </span>
-      <span v-for="(actor, index) in movie.cast" :key="index" class="light">{{ actor }}<span
-          v-if="index !== movie.cast.length - 1">, </span>
-      </span>
-    </span>
+              <span class="cast" v-if="movie.cast && movie.cast.length > 0" id="movieCast">
+                <span>Aktorzy: </span>
+                <span v-for="(actor, index) in movie.cast" :key="index" class="light">{{ actor }}<span
+                    v-if="index !== movie.cast.length - 1">, </span>
+                </span>
+              </span>
 
-            <span class="description" v-if="movie.description">Opis: <span class="light">{{ movie.description }}</span></span>
-          </div>
-          <div class="right">
-            <RouterLink :to="{ name: 'EditMovie', params: { id: movie._id }}" class="btn btn-edit"
-                        style="text-decoration: none; color: black">
-              Edytuj
-            </RouterLink>
-            <button @click="deleteMovie(movie._id)" class="btn btn-delete">Usuń</button>
+              <span class="description" v-if="movie.description">Opis: <span class="light">{{
+                  movie.description
+                }}</span></span>
+
+              <div class="photo" style="margin: 1rem 0">
+                <img :src="movie.posterUrl" alt="Movie poster" style="max-width: 200px">
+              </div>
+            </div>
+            <div class="right">
+              <RouterLink :to="{ name: 'EditMovie', params: { id: movie._id }}" class="btn btn-edit"
+                          style="text-decoration: none; color: black">
+                Edytuj
+              </RouterLink>
+              <button @click="deleteMovie(movie._id)" class="btn btn-delete">Usuń</button>
+            </div>
           </div>
         </div>
-
       </div>
     </div>
   </div>
 </template>
+
 
 <script setup>
 import axios from 'axios';
 import { onMounted, ref } from "vue";
 
 import AlertDisplay from "@/components/alerts/AlertDisplay.vue";
-import { createCustomError, handleErrors } from '../../../../errors/ErrorHandler.js';
+import { handleErrors } from '../../../../errors/ErrorHandler.js';
 import alertService from "@/components/alerts/AlertService.js";
 
 const fetchError = ref(null);
@@ -97,6 +106,10 @@ const deleteMovie = async (movieID) => {
   } catch (error) {
     handleErrors(error, fetchError);
   }
+}
+
+const getMovieImage = (movieID) => {
+  return `${import.meta.env.BASE_URL}posters/${movieID}.jpeg`
 }
 
 onMounted(fetchMovieData);

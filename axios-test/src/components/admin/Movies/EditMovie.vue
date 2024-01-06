@@ -14,7 +14,7 @@
         </div>
         <div class="field">
           <label for="relaseYear">rok wydania</label>
-          <input type="text" id="relaseYear" v-model="editedMovie.release.year" required/>
+          <input type="number" id="relaseYear" v-model="editedMovie.release.year" required/>
         </div>
         <div class="field">
           <label for="relaseCountry">kraj wydania</label>
@@ -22,11 +22,11 @@
         </div>
         <div class="field">
           <label for="duration">czas trwania (w min)</label>
-          <input type="text" id="duration" v-model="editedMovie.duration" required/>
+          <input type="number" id="duration" v-model="editedMovie.duration" required/>
         </div>
         <div class="field">
           <label for="ageRestriction">ograniczenie wiekowe</label>
-          <input type="text" id="ageRestriction" v-model="editedMovie.ageRestriction" required/>
+          <input type="number" id="ageRestriction" v-model="editedMovie.ageRestriction" required/>
         </div>
         <div class="field">
           <label for="cast">aktorzy</label>
