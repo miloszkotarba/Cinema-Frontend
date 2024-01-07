@@ -77,7 +77,7 @@ onMounted(fetchMovieData);
           </div>
         </div>
         <div class="right">
-          <img src="https://res.cloudinary.com/db8j2d9nv/image/upload/v1704561137/tkoh7qvqzfxs6hmk9rlr.jpg" alt="moviePoster">
+          <img :src="movie.posterUrl" alt="moviePoster">
         </div>
       </div>
     </div>

@@ -5,8 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b9d79ee3-a93c-463a-9c10-bf37d7f029c9" name="Changes" comment="wow">
-      <change afterPath="$PROJECT_DIR$/axios-test/src/assets/img/calendar.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/axios-test/src/assets/img/clock.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/axios-test/src/components/Repertoire/MovieDetails.vue" beforeDir="false" afterPath="$PROJECT_DIR$/axios-test/src/components/Repertoire/MovieDetails.vue" afterDir="false" />
     </list>
@@ -112,7 +110,7 @@
       <workItem from="1704552108714" duration="517000" />
       <workItem from="1704553551470" duration="2021000" />
       <workItem from="1704556112767" duration="1699000" />
-      <workItem from="1704627219115" duration="10224000" />
+      <workItem from="1704627219115" duration="10437000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />
@@ -186,7 +184,15 @@
       <option name="project" value="LOCAL" />
       <updated>1704631409181</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="wow">
+      <option name="closed" value="true" />
+      <created>1704637620448</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1704637620448</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
