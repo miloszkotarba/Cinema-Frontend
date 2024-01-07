@@ -1,8 +1,38 @@
+<script setup>
+import axios from 'axios';
+import { onMounted, ref } from "vue";
+
+import AlertDisplay from "@/components/alerts/AlertDisplay.vue";
+import { createCustomError, handleErrors } from '../../../../errors/ErrorHandler.js';
+import alertService from "@/components/alerts/AlertService.js";
+import {addMinutes, format} from "date-fns";
+
+const fetchError = ref(null);
+
+const URL = import.meta.env.VITE_BACKEND_URI + "screenings";
+
+const screenings = ref([]);
+const isLoading = ref(true);
+
+const fetchScreeningData = async () => {
+  try {
+    const response = await axios.get(URL);
+    screenings.value = response.data.screenings;
+  } catch (error) {
+    handleErrors(error, fetchError);
+  } finally {
+    isLoading.value = false;
+  }
+};
+
+onMounted(fetchScreeningData);
+</script>
+
 <template>
   <div class="overview">
     <div class="title" style="margin-top: 0">
       <i class="uil uil-tachometer-fast-alt"></i>
-      <span class="text">Dashboard</span>
+      <span class="text">Social Media</span>
     </div>
 
     <div class="boxes">
@@ -27,60 +57,46 @@
   <div class="activity">
     <div class="title">
       <i class="uil uil-clock-three"></i>
-      <span class="text">Recent Activity</span>
+      <span class="text">Zbliżające sie seanse</span>
+    </div>
+    <div v-if="fetchError">{{ fetchError }}</div>
+    <div v-if="isLoading">Loading...</div>
+    <div v-else>
+      <div class="screenings">
+        <div class="screening"><b>Tytuł</b></div>
+        <div class="screening"><b>Data rozpoczęcia</b></div>
+        <div class="screening"><b>Data zakończenia</b></div>
+        <div class="screening"><b>Nazwa sali</b></div>
+      </div>
+      <div v-for="screening in screenings" :key="screening._id">
+        <div class="screenings">
+          <div class="screening">{{ screening.movie.title }}</div>
+          <div class="screening">{{ format(screening.date,'yyyy-MM-dd HH:mm') }}</div>
+          <div class="screening">{{format(addMinutes(addMinutes(screening.date,screening.advertisementsDuration),screening.movie.duration),'yyyy-MM-dd HH:mm')}}</div>
+          <div class="screening">{{ screening.room.name }}</div>
+        </div>
+      </div>
     </div>
 
-    <div class="activity-data">
-      <div class="data names">
-        <span class="data-title">Name</span>
-        <span class="data-list">Prem Shahi</span>
-        <span class="data-list">Deepa Chand</span>
-        <span class="data-list">Manisha Chand</span>
-        <span class="data-list">Pratima Shahi</span>
-        <span class="data-list">Man Shahi</span>
-        <span class="data-list">Ganesh Chand</span>
-        <span class="data-list">Bikash Chand</span>
-      </div>
-      <div class="data email">
-        <span class="data-title">Email</span>
-        <span class="data-list">premshahi@gmail.com</span>
-        <span class="data-list">deepachand@gmail.com</span>
-        <span class="data-list">prakashhai@gmail.com</span>
-        <span class="data-list">manishachand@gmail.com</span>
-        <span class="data-list">pratimashhai@gmail.com</span>
-        <span class="data-list">manshahi@gmail.com</span>
-        <span class="data-list">ganeshchand@gmail.com</span>
-      </div>
-      <div class="data joined">
-        <span class="data-title">Joined</span>
-        <span class="data-list">2022-02-12</span>
-        <span class="data-list">2022-02-12</span>
-        <span class="data-list">2022-02-13</span>
-        <span class="data-list">2022-02-13</span>
-        <span class="data-list">2022-02-14</span>
-        <span class="data-list">2022-02-14</span>
-        <span class="data-list">2022-02-15</span>
-      </div>
-      <div class="data type">
-        <span class="data-title">Type</span>
-        <span class="data-list">New</span>
-        <span class="data-list">Member</span>
-        <span class="data-list">Member</span>
-        <span class="data-list">New</span>
-        <span class="data-list">Member</span>
-        <span class="data-list">New</span>
-        <span class="data-list">Member</span>
-      </div>
-      <div class="data status">
-        <span class="data-title">Status</span>
-        <span class="data-list">Liked</span>
-        <span class="data-list">Liked</span>
-        <span class="data-list">Liked</span>
-        <span class="data-list">Liked</span>
-        <span class="data-list">Liked</span>
-        <span class="data-list">Liked</span>
-        <span class="data-list">Liked</span>
-      </div>
-    </div>
+
   </div>
 </template>
+
+<style scoped>
+
+  .screenings{
+    display: flex;
+    gap: 20px;
+    font-weight: 300;
+  }
+  .screening {
+    flex: 25%;
+    padding: 15px 15px;
+    font-size: 18px;
+  }
+
+
+
+
+
+</style>
