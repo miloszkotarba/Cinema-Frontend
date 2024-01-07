@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b9d79ee3-a93c-463a-9c10-bf37d7f029c9" name="Changes" comment="deleting offers">
-      <change afterPath="$PROJECT_DIR$/axios-test/src/components/Repertoire/MovieDetails.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/axios-test/src/views/MovieDetailsView.vue" afterDir="false" />
+    <list default="true" id="b9d79ee3-a93c-463a-9c10-bf37d7f029c9" name="Changes" comment="wow">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/axios-test/src/components/Repertoire/Repertoire.vue" beforeDir="false" afterPath="$PROJECT_DIR$/axios-test/src/components/Repertoire/Repertoire.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/axios-test/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/axios-test/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/axios-test/src/components/Repertoire/MovieDetails.vue" beforeDir="false" afterPath="$PROJECT_DIR$/axios-test/src/components/Repertoire/MovieDetails.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,7 +110,7 @@
       <workItem from="1704552108714" duration="517000" />
       <workItem from="1704553551470" duration="2021000" />
       <workItem from="1704556112767" duration="1699000" />
-      <workItem from="1704627219115" duration="1323000" />
+      <workItem from="1704627219115" duration="4040000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />
@@ -171,7 +168,15 @@
       <option name="project" value="LOCAL" />
       <updated>1704482823124</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="wow">
+      <option name="closed" value="true" />
+      <created>1704628627679</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1704628627679</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -195,7 +200,8 @@
     <MESSAGE value="routing" />
     <MESSAGE value="routing for admin page" />
     <MESSAGE value="Styling" />
-    <option name="LAST_COMMIT_MESSAGE" value="Styling" />
+    <MESSAGE value="wow" />
+    <option name="LAST_COMMIT_MESSAGE" value="wow" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
