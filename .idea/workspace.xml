@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b9d79ee3-a93c-463a-9c10-bf37d7f029c9" name="Changes" comment="wow">
+      <change afterPath="$PROJECT_DIR$/axios-test/src/components/EmptyTop.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/axios-test/src/components/Repertoire/MovieDetails.vue" beforeDir="false" afterPath="$PROJECT_DIR$/axios-test/src/components/Repertoire/MovieDetails.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/axios-test/src/components/Repertoire/Repertoire.vue" beforeDir="false" afterPath="$PROJECT_DIR$/axios-test/src/components/Repertoire/Repertoire.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/axios-test/src/components/Reservation/TicketQuantity.vue" beforeDir="false" afterPath="$PROJECT_DIR$/axios-test/src/components/Reservation/TicketQuantity.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/axios-test/src/views/Reservation/TicketQuantityView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/axios-test/src/views/Reservation/TicketQuantityView.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +59,7 @@
     "nodejs_interpreter_path": "node",
     "nodejs_package_manager_path": "npm",
     "npm.npm dev.executor": "Run",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2023.2.5\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
+    "ts.external.directory.path": "/Users/miloszkotarba/Applications/WebStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -67,11 +70,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/axios-test/src/components" />
       <recent name="C:\Users\piotr\WebstormProjects\kino-frontend-vue\axios-test\src\assets\img" />
       <recent name="$PROJECT_DIR$/axios-test/public" />
       <recent name="$PROJECT_DIR$/axios-test/src/views/admin/Dashboard" />
       <recent name="$PROJECT_DIR$/axios-test/src/components/admin/Dashboard" />
-      <recent name="$PROJECT_DIR$/axios-test/src/assets/img" />
     </key>
   </component>
   <component name="RunManager" selected="npm.npm dev">

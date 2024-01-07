@@ -13,6 +13,7 @@ const URL_SCREENINGS = import.meta.env.VITE_BACKEND_URI + "screenings";
 
 const movies = ref([]);
 const currentDate = ref(new Date());
+const loading = ref(true)
 
 const getFormattedDate = () => {
   const currentDate = new Date();
@@ -25,36 +26,42 @@ const getFormattedDate = () => {
 
 const selectedDay = ref(getFormattedDate());
 const fetchSpecificMovieData = async (day) => {
+  loading.value = true; // Pokaż animację ładowania
   selectedDay.value = day; // Update selectedDay when a day is clicked
   movies.value = []; // Clear existing movie data
 
-  try {
-    const response = await axios.get(URL);
-    const moviesToFind = response.data.movies;
+  setTimeout(async () => {
+    try {
+      const response = await axios.get(URL);
+      const moviesToFind = response.data.movies;
 
-    for (const movie of moviesToFind) {
-      const { _id: movieID } = movie;
+      for (const movie of moviesToFind) {
+        const { _id: movieID } = movie;
 
-      try {
-        const reservationResponse = await axios.get(
-            URL_SCREENINGS + `?movie=${movieID}&date=${day}`
-        );
+        try {
+          const reservationResponse = await axios.get(
+              URL_SCREENINGS + `?movie=${movieID}&date=${day}`
+          );
 
-        if (reservationResponse.data.total > 0) {
-          const screenings = reservationResponse.data.screenings;
-          movies.value.push({
-            ...movie,
-            screenings: [...screenings],
-          })
+          if (reservationResponse.data.total > 0) {
+            const screenings = reservationResponse.data.screenings;
+            movies.value.push({
+              ...movie,
+              screenings: [...screenings],
+            });
+          }
+        } catch (error) {
+          console.error(`Błąd podczas pobierania rezerwacji dla filmu ${movie.title}:`, error);
         }
-      } catch (error) {
-        console.error(`Błąd podczas pobierania rezerwacji dla filmu ${movie.title}:`, error);
       }
+    } catch (error) {
+      handleErrors(error, fetchError);
+    } finally {
+      loading.value = false;
     }
-  } catch (error) {
-    handleErrors(error, fetchError);
-  }
-}
+  }, 500); // 1000 milisekund (1 sekunda opóźnienia)
+};
+
 
 /**/
 /*Day links*/
@@ -136,25 +143,37 @@ onMounted(() => {
       <div class="movie-wrapper">
         <div style="padding: 0.2rem"></div>
         <div class="container">
-          <div v-for="movie in movies" :key="movie._id" class="movie-box">
-            <div class="left">
-              <img :src="movie.posterUrl" alt="Poster image"/>
-            </div>
-            <div class="right">
-              <RouterLink class="title" :to="{ name: 'repertuarId', params: { id: movie._id }}">{{
-                  movie.title
-                }}
-              </RouterLink>
-              <div class="movie-details">
+          <div v-if="loading" class="load">
+            <div class="one"></div>
+            <div class="two"></div>
+            <div class="three"></div>
+          </div>
+          <div v-else>
+            <div v-for="movie in movies" :key="movie._id" class="movie-box">
+              <div class="left">
+                <img :src="movie.posterUrl" alt="Poster image"/>
+              </div>
+              <div class="right">
+                <RouterLink class="title" :to="{ name: 'repertuarId', params: { id: movie._id }}">{{
+                    movie.title
+                  }}
+                </RouterLink>
+                <div class="movie-details">
                 <span class="type">{{
                     movie.genres && movie.genres.length > 0 ? movie.genres[0].replace(/"/g, '') : 'Brak gatunku'
                   }}</span>
-                <div class="dimension">2D</div>
-                <span class="duration">czas trwania: {{ movie.duration }} min</span>
-              </div>
-              <div class="booking">
-                <div v-for="screening in movie.screenings" :key="screening.date" class="box">
-                  <span>{{ formatScreeningDate(screening.date) }}</span>
+                  <div class="dimension">2D</div>
+                  <span class="duration">czas trwania: {{ movie.duration }} min</span>
+                </div>
+                <div class="booking">
+                  <div v-for="screening in movie.screenings" :key="screening.date" class="box">
+                  <span>
+                    <RouterLink style="color: white; text-decoration: none"
+                                :to="{ name: 'TicketQuantity', params: { id: screening._id }}">
+                    {{ formatScreeningDate(screening.date) }}
+                  </RouterLink>
+                  </span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -290,6 +309,42 @@ main .title {
   padding: 5px 20px;
   color: #fff;
   font-weight: 200;
+}
+
+/* LOADING */
+.load {
+  display: flex;
+  justify-content: center;
+  margin: 200px auto;
+}
+
+.load div {
+  width: 20px;
+  height: 20px;
+  background-color: rgb(9, 145, 183);
+  border-radius: 50%;
+  margin: 0 5px;
+  animation-name: up-and-down;
+  animation-duration: 0.8s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+.load .two {
+  animation-delay: 0.3s;
+}
+
+.load .three {
+  animation-delay: 0.6s;
+}
+
+@keyframes up-and-down {
+
+  to {
+    opacity: 0.2;
+    transform: translateY(-20px);
+
+  }
 }
 
 @media screen and (max-width: 600px) {

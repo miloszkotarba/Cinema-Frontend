@@ -1,10 +1,10 @@
 <script setup>
-import Top from "@/components/Top.vue";
 import TicketQuantity from "@/components/Reservation/TicketQuantity.vue";
+import EmptyTop from "@/components/EmptyTop.vue";
 </script>
 
 <template>
-  <Top />
+  <EmptyTop />
   <TicketQuantity />
 
 </template>
