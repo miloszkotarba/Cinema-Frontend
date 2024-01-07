@@ -12,45 +12,18 @@ const URL = import.meta.env.VITE_BACKEND_URI + "movies";
 const URL_SCREENINGS = import.meta.env.VITE_BACKEND_URI + "screenings";
 
 const movies = ref([]);
-const isLoading = ref(true);
+const currentDate = ref(new Date());
 
-const fetchMovieData = async () => {
-  try {
-    const response = await axios.get(URL)
-    const moviesToFind = response.data.movies
+const getFormattedDate = () => {
+  const currentDate = new Date();
+  const day = String(currentDate.getDate()).padStart(2, '0');
+  const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+  const year = String(currentDate.getFullYear());
 
-    for (const movie of moviesToFind) {
-      const { _id: movieID } = movie
+  return `${day}-${month}-${year}`;
+};
 
-      try {
-        const reservationResponse = await axios.get(
-            URL_SCREENINGS + `?movie=${movieID}&date=06-01-2024`
-        )
-
-        if (reservationResponse.data.total > 0) {
-          movies.value.push(movie)
-        }
-      } catch (error) {
-        console.error(`Błąd podczas pobierania rezerwacji dla filmu ${movie.title}:`, error)
-      }
-    }
-  } catch (error) {
-    handleErrors(error, fetchError)
-  } finally {
-    isLoading.value = false
-  }
-}
-
-const getFormattedDate = (char) => {
-  const today = new Date();
-  const day = today.getDate().toString().padStart(2, '0');
-  const month = (today.getMonth() + 1).toString().padStart(2, '0');
-  const year = today.getFullYear();
-
-  return `${day}${char}${month}${char}${year}`;
-}
-
-const selectedDay = ref("2023-01-06");
+const selectedDay = ref(getFormattedDate());
 const fetchSpecificMovieData = async (day) => {
   selectedDay.value = day; // Update selectedDay when a day is clicked
   movies.value = []; // Clear existing movie data
@@ -68,7 +41,11 @@ const fetchSpecificMovieData = async (day) => {
         );
 
         if (reservationResponse.data.total > 0) {
-          movies.value.push(movie);
+          const screenings = reservationResponse.data.screenings;
+          movies.value.push({
+            ...movie,
+            screenings: [...screenings],
+          })
         }
       } catch (error) {
         console.error(`Błąd podczas pobierania rezerwacji dla filmu ${movie.title}:`, error);
@@ -77,13 +54,6 @@ const fetchSpecificMovieData = async (day) => {
   } catch (error) {
     handleErrors(error, fetchError);
   }
-};
-
-function getPolishDayName() {
-  const daysOfWeek = ['NIEDZIELA', 'PONIEDZIAŁEK', 'WTOREK', 'ŚRODA', 'CZWARTEK', 'PIĄTEK', 'SOBOTA'];
-  const today = new Date();
-  const dayIndex = today.getDay();
-  return daysOfWeek[dayIndex];
 }
 
 /**/
@@ -101,7 +71,7 @@ const generateDays = () => {
 
   const dayNames = ['ND', 'PN', 'WT', 'ŚR', 'CZ', 'PT', 'SO'];
 
-  for (let i = 0; i < 7; i++) {
+  for (let i = 0; i < 9; i++) {
     const date = new Date(currentYear, currentMonth, currentDay + i);
     const formattedDate = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;
     const dayName = dayNames[date.getDay()];
@@ -110,18 +80,33 @@ const generateDays = () => {
   }
 };
 
-const isToday = (date) => {
-  const today = new Date();
-  return (
-      today.getDate() === date.getDate() &&
-      today.getMonth() === date.getMonth() &&
-      today.getFullYear() === date.getFullYear()
-  );
+import { format } from 'date-fns';
+import locale from 'date-fns/locale/pl';
+
+const getDataDetails = () => {
+  const formattedDate = format(currentDate.value, "EEEE dd/MM/yyyy", { locale });
+  return formattedDate.toLocaleUpperCase();
+}
+
+const setDataDetails = (dateString) => {
+  const [day, month, year] = dateString.split('-').map(Number);
+
+  if (!isNaN(day) && !isNaN(month) && !isNaN(year)) {
+    currentDate.value = new Date(year, month - 1, day);
+  } else {
+    console.error('Invalid date format.');
+  }
+}
+
+const formatScreeningDate = (dateString) => {
+  const date = new Date(dateString);
+  return format(date, 'HH:mm');
 };
 
-generateDays();
-
-onMounted(fetchMovieData);
+onMounted(() => {
+  generateDays();
+  fetchSpecificMovieData(new Date());
+});
 
 </script>
 
@@ -135,17 +120,15 @@ onMounted(fetchMovieData);
           <div class="days">
             <span v-for="day in days" :key="day.id" :id="day.id"
                   :class="{ 'now': selectedDay === day.id }"
-                  @click="fetchSpecificMovieData(day.id)"
-            >{{
-                day.name
-              }}</span>
+                  @click="fetchSpecificMovieData(day.id); setDataDetails(day.id)"
+            >{{ day.name }}</span>
           </div>
           <div class="icon">
             <img src="https://vps.miloszkotarba.pl/~vue/tst2/assets/calendar.png" alt="Calendar Icon"/>
           </div>
         </div>
         <div class="date">
-          <span>{{ getPolishDayName() }} {{ getFormattedDate("/") }}</span>
+          <span>{{ getDataDetails() }}</span>
         </div>
       </div>
     </div>
@@ -158,8 +141,10 @@ onMounted(fetchMovieData);
               <img :src="movie.posterUrl" alt="Poster image"/>
             </div>
             <div class="right">
-
-              <RouterLink class="title" :to="{ name: 'repertuarId', params: { id: movie._id }}">{{ movie.title }}</RouterLink>
+              <RouterLink class="title" :to="{ name: 'repertuarId', params: { id: movie._id }}">{{
+                  movie.title
+                }}
+              </RouterLink>
               <div class="movie-details">
                 <span class="type">{{
                     movie.genres && movie.genres.length > 0 ? movie.genres[0].replace(/"/g, '') : 'Brak gatunku'
@@ -168,10 +153,9 @@ onMounted(fetchMovieData);
                 <span class="duration">czas trwania: {{ movie.duration }} min</span>
               </div>
               <div class="booking">
-                <div class="box">
-                  <span>12:15</span>
+                <div v-for="screening in movie.screenings" :key="screening.date" class="box">
+                  <span>{{ formatScreeningDate(screening.date) }}</span>
                 </div>
-                <div class="box">19:10</div>
               </div>
             </div>
           </div>
@@ -223,6 +207,7 @@ main .title {
   width: 85%;
   display: flex;
   justify-content: space-around;
+  flex: 1;
 }
 
 .booking-box-top .calendar .days span {
@@ -231,10 +216,12 @@ main .title {
 
 .booking-box-top .calendar .days .now {
   color: #4d1b8f;
+  font-weight: 600;
 }
 
 .booking-box-top .calendar .icon img {
   width: 30px;
+  display: none;
 }
 
 .booking-box-top .date {

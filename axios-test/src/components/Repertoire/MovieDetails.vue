@@ -55,21 +55,21 @@ onMounted(fetchMovieData);
           <div class="title">
             <h1>{{ movie.title }}</h1>
           </div>
-            <span>{{ movie.genres }}</span>
-          <div class="iconSection">
+          <span class="light-text" style="font-size: 1.1rem">{{ movie.genres.join(', ') }}</span>
+          <div class="iconSection light-text">
               <div class="clock">
                 <img src="../../assets/img/clock.svg" alt="clockIcon">
-                <span>czas trwania: <br>{{ movie.duration }} min</span>
+                <span style="margin-left: 0.4rem">czas trwania: <br>{{ movie.duration }} min</span>
               </div>
               <div class="calendar">
                 <img src="../../assets/img/calendar.svg" alt="calendarIcon">
-                <span>rok premiery (Polska):<br> {{ movie.release.year }}</span>
+                <span style="margin-left: 0.4rem">rok premiery (Polska):<br> {{ movie.release.year }}</span>
               </div>
           </div>
-          <div class="description">
+          <div class="description light-text">
             od lat: {{movie.ageRestriction}} / Produkcja: {{movie.release.country}}<br>
             Reżyseria: {{movie.director}}<br>
-            Obsada: {{movie.cast}}<br>
+            Obsada: {{movie.cast.join(",")}}<br>
           </div>
           <div class="description">
             <b>Opis filmu:</b><br>
@@ -91,6 +91,10 @@ onMounted(fetchMovieData);
     margin-inline: auto;
   }
 
+  .light-text {
+    font-weight: 300;
+  }
+
   main .title h1 {
     font-weight: 600;
     font-size: 2.3rem;
@@ -107,9 +111,15 @@ onMounted(fetchMovieData);
 
   }
 
-  .content .right img{
+  .right {
+    display: flex;
+    justify-content: flex-start;
+    margin: 1.3rem 0;
+  }
+
+  .right img {
     max-width: 350px;
-    padding-left: 5px;
+    max-height: 100%;
   }
 
   .iconSection{
