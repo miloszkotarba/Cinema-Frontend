@@ -19,10 +19,11 @@
         <div v-for="screening in screenings" :key="screening._id" class="screening">
           <div class="left">
             <span class="name">Film: <span class="light">{{ screening.movie.title }}</span></span>
-            <span class="name">Data rozpoczęcia: <span class="light">{{ screening.date }}</span></span>
+            <span class="name">Data rozpoczęcia: <span class="light">{{ format(screening.date,'yyyy-MM-dd HH:mm') }}</span></span>
+            <span class="name">Data zakończenia: <span class="light">{{format(addMinutes(addMinutes(screening.date,screening.advertisementsDuration),screening.movie.duration),'yyyy-MM-dd HH:mm')}}</span></span>
             <span class="name">Sala: <span class="light">{{ screening.room.name }}</span></span>
             <span class="name">Czas reklam: <span class="light">{{ screening.advertisementsDuration}} min</span></span>
-            <span class="name">Rezerwacje: <span class="light">{{ screening.reservation}}</span> </span>
+            <span class="name">Rezerwacje:<br><span class="light">{{ screening.reservation}} <br></span> </span>
           </div>
           <div class="right">
             <RouterLink :to="{ name: 'EditScreening', params: { id: screening._id }}" class="btn btn-edit"
@@ -44,6 +45,7 @@ import { onMounted, ref } from "vue";
 import AlertDisplay from "@/components/alerts/AlertDisplay.vue";
 import { createCustomError, handleErrors } from '../../../../errors/ErrorHandler.js';
 import alertService from "@/components/alerts/AlertService.js";
+import {addMinutes, format, getHours, getMinutes, getTime, getYear} from "date-fns";
 
 const fetchError = ref(null);
 
