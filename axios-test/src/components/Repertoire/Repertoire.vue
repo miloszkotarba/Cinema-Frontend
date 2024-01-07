@@ -158,7 +158,8 @@ onMounted(fetchMovieData);
               <img :src="movie.posterUrl" alt="Poster image"/>
             </div>
             <div class="right">
-              <div class="title">{{ movie.title }}</div>
+
+              <RouterLink class="title" :to="{ name: 'repertuarId', params: { id: movie._id }}">{{ movie.title }}</RouterLink>
               <div class="movie-details">
                 <span class="type">{{
                     movie.genres && movie.genres.length > 0 ? movie.genres[0].replace(/"/g, '') : 'Brak gatunku'
@@ -283,6 +284,8 @@ main .title {
   text-transform: uppercase;
   font-size: 1.5rem;
   font-weight: 400;
+  text-decoration: none;
+  color: black;
 }
 
 .movie-box .right .movie-details {
