@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b9d79ee3-a93c-463a-9c10-bf37d7f029c9" name="Changes" comment="Repertuar zmiany">
+    <list default="true" id="b9d79ee3-a93c-463a-9c10-bf37d7f029c9" name="Changes" comment="wow">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/axios-test/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/axios-test/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/axios-test/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/axios-test/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/axios-test/src/components/Repertoire/MovieDetails.vue" beforeDir="false" afterPath="$PROJECT_DIR$/axios-test/src/components/Repertoire/MovieDetails.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/axios-test/src/components/Repertoire/Repertoire.vue" beforeDir="false" afterPath="$PROJECT_DIR$/axios-test/src/components/Repertoire/Repertoire.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +56,7 @@
     "nodejs_interpreter_path": "node",
     "nodejs_package_manager_path": "npm",
     "npm.npm dev.executor": "Run",
-    "ts.external.directory.path": "/Users/miloszkotarba/Applications/WebStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2023.2.5\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -70,11 +67,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\piotr\WebstormProjects\kino-frontend-vue\axios-test\src\assets\img" />
       <recent name="$PROJECT_DIR$/axios-test/public" />
       <recent name="$PROJECT_DIR$/axios-test/src/views/admin/Dashboard" />
       <recent name="$PROJECT_DIR$/axios-test/src/components/admin/Dashboard" />
       <recent name="$PROJECT_DIR$/axios-test/src/assets/img" />
-      <recent name="$PROJECT_DIR$/axios-test/src/views/admin/Rooms" />
     </key>
   </component>
   <component name="RunManager" selected="npm.npm dev">
@@ -113,7 +110,7 @@
       <workItem from="1704552108714" duration="517000" />
       <workItem from="1704553551470" duration="2021000" />
       <workItem from="1704556112767" duration="1699000" />
-      <workItem from="1704627219115" duration="4040000" />
+      <workItem from="1704627219115" duration="10437000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />
@@ -179,7 +176,23 @@
       <option name="project" value="LOCAL" />
       <updated>1704628627679</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="wow">
+      <option name="closed" value="true" />
+      <created>1704631409181</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1704631409181</updated>
+    </task>
+    <task id="LOCAL-00010" summary="wow">
+      <option name="closed" value="true" />
+      <created>1704637620448</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1704637620448</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -204,8 +217,7 @@
     <MESSAGE value="routing for admin page" />
     <MESSAGE value="Styling" />
     <MESSAGE value="wow" />
-    <MESSAGE value="Repertuar zmiany" />
-    <option name="LAST_COMMIT_MESSAGE" value="Repertuar zmiany" />
+    <option name="LAST_COMMIT_MESSAGE" value="wow" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
