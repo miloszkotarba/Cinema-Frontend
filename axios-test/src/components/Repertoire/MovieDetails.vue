@@ -71,7 +71,7 @@ onMounted(fetchMovieData);
             Reżyseria: {{movie.director}}<br>
             Obsada: {{movie.cast.join(",")}}<br>
           </div>
-          <div class="description">
+          <div class="description light-text">
             <b>Opis filmu:</b><br>
             {{ movie.description }}
           </div>
