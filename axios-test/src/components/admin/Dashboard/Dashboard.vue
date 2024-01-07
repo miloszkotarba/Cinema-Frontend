@@ -57,7 +57,7 @@ onMounted(fetchScreeningData);
   <div class="activity">
     <div class="title">
       <i class="uil uil-clock-three"></i>
-      <span class="text">Zbliżające sie seanse</span>
+      <span class="text">Seanse DZISIAJ</span>
     </div>
     <div v-if="fetchError">{{ fetchError }}</div>
     <div v-if="isLoading">Loading...</div>
