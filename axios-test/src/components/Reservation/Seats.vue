@@ -1,12 +1,13 @@
 <script setup>
 import AlertDisplay from "@/components/alerts/AlertDisplay.vue";
-import { inject, onMounted, ref } from 'vue';
+import { computed, inject, onMounted, ref } from 'vue';
 import axios from 'axios';
 
 import { handleErrors } from "../../..//errors/ErrorHandler.js";
 import { useRouter } from "vue-router";
 import { format, parseISO } from 'date-fns';
 import { pl } from 'date-fns/locale';
+import alertService from "@/components/alerts/AlertService.js";
 
 const steps = ref([
   { number: 1, description: 'WYBIERZ BILETY', active: false, done: true },
@@ -36,7 +37,7 @@ const dataFromStore = ref(null)
 const totalSeats = ref(7);
 const seatsPerRow = ref(10);
 
-const getData = () => {
+const getData = async () => {
   try {
     dataFromStore.value = store.getters.getFormData;
     if (dataFromStore.value?.screeningData?.room?.numberOfSeats) {
@@ -47,12 +48,11 @@ const getData = () => {
       Router.push({ path: '/repertuar' });
     }
 
-    getAllReservedSeats()
+    await getAllReservedSeats()
   } catch (error) {
     handleErrors(error, fetchError)
   } finally {
     loading.value = false
-    console.log(reservedSeats)
   }
 }
 
@@ -79,6 +79,33 @@ const getAllReservedSeats = async () => {
     handleErrors(error, fetchError);
   }
 };
+
+const selectedSeats = ref([]);
+const selectedTicketsQuantity = ref(0);
+const definedTicketQuantity = ref(0)
+
+const toggleSeatSelection = (seatNumber) => {
+  definedTicketQuantity.value = dataFromStore.value?.normalny + dataFromStore.value?.ulgowy
+  if (reservedSeats.value.includes(seatNumber)) {
+    return
+  }
+
+  if (selectedSeats.value.includes(seatNumber)) {
+    selectedSeats.value = selectedSeats.value.filter(seat => seat !== seatNumber);
+  } else if (selectedTicketsQuantity.value < definedTicketQuantity.value) {
+    selectedSeats.value = [...selectedSeats.value, seatNumber];
+  }
+
+  selectedTicketsQuantity.value = selectedSeats.value.length;
+  console.log(selectedSeats.value);
+};
+
+const handleButtonClick = () => {
+  definedTicketQuantity.value = dataFromStore.value?.normalny + dataFromStore.value?.ulgowy
+  if (selectedTicketsQuantity.value !== definedTicketQuantity.value) {
+    alertService.addAlert(`Zaznaczono za mało miejsc. Wybrano ${selectedTicketsQuantity.value}/${definedTicketQuantity.value}.`, "error")
+  }
+}
 
 onMounted(() => getData());
 </script>
@@ -127,14 +154,19 @@ onMounted(() => getData());
                 <div v-for="rowIndex in Math.ceil(totalSeats / seatsPerRow)" :key="rowIndex" class="row">
                   <div class="seat-row-number">{{ rowIndex }}</div>
                   <div v-for="seatIndex in Math.min(seatsPerRow, totalSeats - (rowIndex - 1) * seatsPerRow)"
-                       :key="seatIndex + (rowIndex - 1) * seatsPerRow" class="seat-container">
-                    <div class="seat-number" :class="{ 'booked': seatIndex + (rowIndex - 1) * seatsPerRow === 10}"
-                         @click="handleButtonClick(seatIndex + (rowIndex - 1) * seatsPerRow, rowIndex)">
+                       :key="seatIndex + (rowIndex - 1) * seatsPerRow" class="seat-container"
+                       :class="{ 'booked': reservedSeats.includes(seatIndex + (rowIndex - 1) * seatsPerRow), 'selected': selectedSeats.includes(seatIndex + (rowIndex - 1) * seatsPerRow) }"
+                       @click="toggleSeatSelection(seatIndex + (rowIndex - 1) * seatsPerRow)">
+                    <div class="seat-number">
                       {{ seatIndex + (rowIndex - 1) * seatsPerRow }}
                     </div>
-                    <img v-if="seatIndex + (rowIndex - 1) * seatsPerRow === 10" src="../../assets/img/seat_booked.png"
-                         alt="Seat img">
-                    <img v-else src="../../assets/img/seat.svg" alt="Seat img">
+                    <img
+                        v-if="reservedSeats.includes(seatIndex + (rowIndex - 1) * seatsPerRow) || !selectedSeats.includes(seatIndex + (rowIndex - 1) * seatsPerRow)"
+                        src="../../assets/img/seat.svg"
+                        alt="Seat img"/>
+                    <img v-else
+                         src="../../assets/img/seat_booked.png"
+                         alt="Seat img"/>
                   </div>
                   <div class="seat-row-number">{{ rowIndex }}</div>
                 </div>
@@ -148,7 +180,11 @@ onMounted(() => getData());
   </main>
 </template>
 
-<style scoped>
+<style>
+.alert {
+  top: 100px !important;
+}
+
 main {
   background: #f8f8f8;
   min-height: calc(100vh - 80px);
@@ -246,14 +282,15 @@ main .title {
   left: 50%;
   transform: translate(-50%, -40%);
   z-index: 100;
-}
-
-.seats-box .seat-number:not(.booked) {
-  display: none;
-}
-
-.seat-container .booked {
   color: #fff;
+}
+
+.seats-box .seat-container:not(.selected) .seat-number {
+  display: none
+}
+
+.seat-container.booked {
+  opacity: 0.2;
 }
 
 .seats-box .row .seat-row-number {

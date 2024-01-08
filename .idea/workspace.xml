@@ -5,18 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b9d79ee3-a93c-463a-9c10-bf37d7f029c9" name="Changes" comment="wow">
-      <change afterPath="$PROJECT_DIR$/axios-test/src/assets/img/seat.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/axios-test/src/assets/img/seat_booked.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/axios-test/src/components/Reservation/Seats.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/axios-test/src/views/Reservation/SeatsView.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/axios-test/public/posters/65986f374344238909314c6e.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/axios-test/src/components/ProgressBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/axios-test/src/components/ProgressBar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/axios-test/src/components/Reservation/TicketQuantity.vue" beforeDir="false" afterPath="$PROJECT_DIR$/axios-test/src/components/Reservation/TicketQuantity.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/axios-test/src/components/admin/Screenings/CreateScreening.vue" beforeDir="false" afterPath="$PROJECT_DIR$/axios-test/src/components/admin/Screenings/CreateScreening.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/axios-test/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/axios-test/src/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/axios-test/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/axios-test/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/axios-test/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/axios-test/src/store/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/axios-test/src/components/Reservation/Seats.vue" beforeDir="false" afterPath="$PROJECT_DIR$/axios-test/src/components/Reservation/Seats.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/axios-test/src/components/Top.vue" beforeDir="false" afterPath="$PROJECT_DIR$/axios-test/src/components/Top.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/axios-test/src/components/alerts/AlertDisplay.vue" beforeDir="false" afterPath="$PROJECT_DIR$/axios-test/src/components/alerts/AlertDisplay.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -224,7 +216,15 @@
       <option name="project" value="LOCAL" />
       <updated>1704718968181</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="wow">
+      <option name="closed" value="true" />
+      <created>1704736997661</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1704736997661</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

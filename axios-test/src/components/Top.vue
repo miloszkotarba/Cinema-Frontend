@@ -55,7 +55,7 @@ html {
 nav {
   position: sticky;
   top: 0;
-  z-index: 1000;
+  z-index: 100;
   background: #4d1b8f;
   display: flex;
   max-height: 80px;

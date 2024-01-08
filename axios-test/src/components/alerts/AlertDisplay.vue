@@ -27,16 +27,16 @@ const getAlertTitle = (type) => {
 
 </script>
 
-<style scoped>
+<style>
 .alert {
   width: 512px;
   padding: 16px;
   margin: 8px;
   max-width: 90%;
-  position: fixed;
+  position: absolute;
   top: 10px;
   right: 8px;
-  z-index: 1000;
+  z-index: 10000;
   border-radius: 5px;
   animation: slideInRight 0.5s ease-out;
 }
