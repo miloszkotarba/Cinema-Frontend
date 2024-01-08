@@ -8,10 +8,16 @@ export default createStore({
         setFormData(state, formData) {
             state.formData = formData;
         },
+        resetState(state) {
+            state.formData = null;
+        },
     },
     actions: {
         updateFormData({ commit }, formData) {
             commit('setFormData', formData);
+        },
+        reset({ commit }) {
+            commit('resetState');
         },
     },
     getters: {

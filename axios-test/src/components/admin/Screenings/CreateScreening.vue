@@ -1,5 +1,5 @@
 <template>
-  <AlertDisplay />
+  <AlertDisplay/>
   <div>
     <div class="admin-container">
       <div class="indent">
@@ -94,19 +94,15 @@ const rooms = ref([]);
 const addScreening = async () => {
   try {
     if (newScreening.value.advertisementsDuration < 0) {
-      return alertService.addAlert("Niepoprawna długość reklam", "error");
+      return alertService.addAlert("Nieprawidłowa długość reklam", "error");
     }
 
-    // Pobierz identyfikatory filmu i sali z wybranych wartości
     const selectedMovieId = newScreening.value.movie;
     const selectedRoomId = newScreening.value.room;
 
-    // Zmodyfikuj obiekt newScreening przed wysłaniem go
     newScreening.value.movie = { _id: selectedMovieId };
     newScreening.value.room = { _id: selectedRoomId };
 
-    // Sprawdź, jak obiekt wygląda po modyfikacjach
-    console.log("Dane przed wysłaniem:", newScreening.value);
     const response = await axios.post(URL, newScreening.value);
 
     newScreening.value = {
@@ -118,9 +114,7 @@ const addScreening = async () => {
 
     alertService.addAlert("Dodano seans.", "success", "/admin/seanse");
   } catch (error) {
-    if (error.code == "ERR_BAD_REQUEST") {
-      console.log("hej");
-    }
+    alertService.addAlert(error.response.data.error, "error")
     handleErrors(error, fetchError);
   }
 };

@@ -7,6 +7,9 @@
 </script>
 
 <style>
+body {
+  background: #f8f8f8;
+}
 #steps {
   width: 625px;
   margin-inline: auto;

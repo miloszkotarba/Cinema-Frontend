@@ -1,11 +1,11 @@
 <script setup>
 import AlertDisplay from "@/components/alerts/AlertDisplay.vue";
 import ProgressBar from "@/components/ProgressBar.vue";
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, inject } from 'vue';
 import axios from 'axios';
 
 import { createCustomError, handleErrors } from "../../..//errors/ErrorHandler.js";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 
 const URL = import.meta.env.VITE_BACKEND_URI + "screenings";
 
@@ -20,6 +20,7 @@ const steps = ref([
 const fetchError = ref(null);
 
 const router = useRoute();
+const Router = useRouter();
 const screeningID = router.params.id;
 const loading = ref(true);
 
@@ -27,13 +28,17 @@ const screening = ref(null)
 
 import { format, parseISO } from 'date-fns';
 import { pl } from 'date-fns/locale';
-import { useStore } from "vuex";
 
 function formatDate(inputDate) {
   const parsedDate = parseISO(inputDate);
   const formattedDate = format(parsedDate, "EEEE MM/dd/yyyy, HH:mm", { locale: pl });
   return formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
 }
+
+const ulgowyQuantity = ref('');
+const normalnyQuantity = ref('');
+
+const store = inject('store');
 
 const fetchScreeningData = async () => {
   try {
@@ -43,25 +48,24 @@ const fetchScreeningData = async () => {
     handleErrors(error, fetchError);
   } finally {
     loading.value = false
+    store.dispatch('reset');
   }
 };
 
-const ulgowyQuantity = ref('');
-const normalnyQuantity = ref('');
 const handleButtonClick = () => {
   const ulgowy = ulgowyQuantity.value;
   const normalny = normalnyQuantity.value;
+  const screeningData = screening ? screening.value : null;
 
   const formData = {
     ulgowy,
     normalny,
-  }
+    screeningData
+  };
 
-  const store = useStore();
-  store.dispatch('updateFormData', formData)
+  store.dispatch('updateFormData', formData);
 
-  const formDataFromStore = store.getters.getFormData;
-  console.log('Dane z Vuex:', formDataFromStore);
+  Router.push({ path: '/repertuar/miejsca' });
 };
 
 onMounted(fetchScreeningData)
@@ -102,31 +106,36 @@ onMounted(fetchScreeningData)
             <div class="three"></div>
           </div>
           <div v-else style="padding-top: 2.5rem">
-            <h1>Wybierz bilety</h1>
-            <div class="table-ticket">
-              <div class="row">
-                <div class="ticket-type">Rodzaj biletu</div>
-                <div class="ticket-price">Cena</div>
-                <div class="ticket-quantity">Ilość</div>
+            <form @submit.prevent="handleButtonClick()">
+              <h1>Wybierz bilety</h1>
+              <div class="table-ticket">
+                <div class="row">
+                  <div class="ticket-type">Rodzaj biletu</div>
+                  <div class="ticket-price">Cena</div>
+                  <div class="ticket-quantity">Ilość</div>
+                </div>
+                <div class="row">
+                  <div class="ticket-type">bilet ulgowy</div>
+                  <div class="ticket-price">20zł</div>
+                  <div class="ticket-quantity"><input v-model="ulgowyQuantity" type="number" required></div>
+                </div>
+                <div class="row">
+                  <div class="ticket-type">bilet normalny</div>
+                  <div class="ticket-price">10zł</div>
+                  <div class="ticket-quantity"><input v-model="normalnyQuantity" type="number" required></div>
+                </div>
               </div>
-              <div class="row">
-                <div class="ticket-type">bilet ulgowy</div>
-                <div class="ticket-price">20zł</div>
-                <div class="ticket-quantity"><input v-model="ulgowyQuantity" type="text"></div>
-              </div>
-              <div class="row">
-                <div class="ticket-type">bilet normalny</div>
-                <div class="ticket-price">10zł</div>
-                <div class="ticket-quantity"><input v-model="normalnyQuantity" type="text"></div>
-              </div>
-            </div>
-            <button class="btn-action" @click="handleButtonClick">WYBIERZ MIEJSCA ></button>
+              <button class="btn-action" type="submit">WYBIERZ MIEJSCA ></button>
+            </form>
           </div>
         </div>
       </div>
     </div>
   </main>
 </template>
+
+<!-- @TODO form validation -->
+<!-- @TODO ticket availability -->
 
 <style scoped>
 main {
