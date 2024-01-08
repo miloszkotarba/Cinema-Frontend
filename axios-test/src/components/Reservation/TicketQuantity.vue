@@ -27,6 +27,7 @@ const screening = ref(null)
 
 import { format, parseISO } from 'date-fns';
 import { pl } from 'date-fns/locale';
+import { useStore } from "vuex";
 
 function formatDate(inputDate) {
   const parsedDate = parseISO(inputDate);
@@ -43,6 +44,24 @@ const fetchScreeningData = async () => {
   } finally {
     loading.value = false
   }
+};
+
+const ulgowyQuantity = ref('');
+const normalnyQuantity = ref('');
+const handleButtonClick = () => {
+  const ulgowy = ulgowyQuantity.value;
+  const normalny = normalnyQuantity.value;
+
+  const formData = {
+    ulgowy,
+    normalny,
+  }
+
+  const store = useStore();
+  store.dispatch('updateFormData', formData)
+
+  const formDataFromStore = store.getters.getFormData;
+  console.log('Dane z Vuex:', formDataFromStore);
 };
 
 onMounted(fetchScreeningData)
@@ -64,7 +83,7 @@ onMounted(fetchScreeningData)
             <span style="display: block; font-weight: 300; font-size: 1.5rem">{{
                 screening && formatDate(screening.date)
               }}</span>
-            <span class="title">{{ screening && screening.movie ? screening.movie.title : '' }}/2D/DUB</span>
+            <span class="title">{{ screening && screening.movie ? screening.movie.title : '' }}/2D</span>
           </div>
           <div class="right">
             <span style="font-size: 2rem; font-weight: 500">Sala: {{
@@ -82,7 +101,7 @@ onMounted(fetchScreeningData)
             <div class="two"></div>
             <div class="three"></div>
           </div>
-          <div v-else style="padding-top: 1.5rem">
+          <div v-else style="padding-top: 2.5rem">
             <h1>Wybierz bilety</h1>
             <div class="table-ticket">
               <div class="row">
@@ -93,14 +112,15 @@ onMounted(fetchScreeningData)
               <div class="row">
                 <div class="ticket-type">bilet ulgowy</div>
                 <div class="ticket-price">20zł</div>
-                <div class="ticket-quantity"><input type="text"></div>
+                <div class="ticket-quantity"><input v-model="ulgowyQuantity" type="text"></div>
               </div>
               <div class="row">
                 <div class="ticket-type">bilet normalny</div>
                 <div class="ticket-price">10zł</div>
-                <div class="ticket-quantity"><input type="text"></div>
+                <div class="ticket-quantity"><input v-model="normalnyQuantity" type="text"></div>
               </div>
             </div>
+            <button class="btn-action" @click="handleButtonClick">WYBIERZ MIEJSCA ></button>
           </div>
         </div>
       </div>
@@ -134,15 +154,15 @@ main .title {
 }
 
 .table-ticket {
-  border: 1px solid black;
-  margin-top: 1.5rem;
+  border: 1px solid #555;
+  margin-top: 2rem;
 }
 
 .table-ticket .row {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #555;
   padding: 10px 5%;
   padding-right: 7%;
 }
@@ -175,6 +195,25 @@ main .title {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+}
+
+.btn-action {
+  background: #62369c;
+  width: 300px;
+  padding: 14px 0;
+  text-align: center;
+  color: #fff;
+  border-radius: 8px;
+  border: none;
+  font-size: 1.6rem;
+  margin-top: 2rem;
+  float: right;
+  transition: all ease .2s;
+}
+
+.btn-action:hover {
+  background: #4d1b8f;
+  cursor: pointer;
 }
 
 /* LOADING */

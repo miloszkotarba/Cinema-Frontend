@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b9d79ee3-a93c-463a-9c10-bf37d7f029c9" name="Changes" comment="screening end date">
+    <list default="true" id="b9d79ee3-a93c-463a-9c10-bf37d7f029c9" name="Changes" comment="wow">
+      <change afterPath="$PROJECT_DIR$/axios-test/src/components/ProgressBar.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/axios-test/src/components/admin/Dashboard/Dashboard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/axios-test/src/components/admin/Dashboard/Dashboard.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/axios-test/src/components/Repertoire/Repertoire.vue" beforeDir="false" afterPath="$PROJECT_DIR$/axios-test/src/components/Repertoire/Repertoire.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/axios-test/src/components/Reservation/TicketQuantity.vue" beforeDir="false" afterPath="$PROJECT_DIR$/axios-test/src/components/Reservation/TicketQuantity.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +58,7 @@
     &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;npm.npm dev.executor&quot;: &quot;Run&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2023.2.5\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/miloszkotarba/Applications/WebStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -67,11 +69,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/axios-test/src/components" />
       <recent name="C:\Users\piotr\WebstormProjects\kino-frontend-vue\axios-test\src\assets\img" />
       <recent name="$PROJECT_DIR$/axios-test/public" />
       <recent name="$PROJECT_DIR$/axios-test/src/views/admin/Dashboard" />
       <recent name="$PROJECT_DIR$/axios-test/src/components/admin/Dashboard" />
-      <recent name="$PROJECT_DIR$/axios-test/src/assets/img" />
     </key>
   </component>
   <component name="RunManager" selected="npm.npm dev">
@@ -192,23 +194,7 @@
       <option name="project" value="LOCAL" />
       <updated>1704637620448</updated>
     </task>
-    <task id="LOCAL-00011" summary="routing">
-      <option name="closed" value="true" />
-      <created>1704644718000</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1704644718000</updated>
-    </task>
-    <task id="LOCAL-00012" summary="screening end date">
-      <option name="closed" value="true" />
-      <created>1704649862941</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1704649862941</updated>
-    </task>
-    <option name="localTasksCounter" value="13" />
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -229,12 +215,11 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Changes by piotr" />
     <MESSAGE value="test" />
+    <MESSAGE value="routing" />
     <MESSAGE value="routing for admin page" />
     <MESSAGE value="Styling" />
     <MESSAGE value="wow" />
-    <MESSAGE value="routing" />
-    <MESSAGE value="screening end date" />
-    <option name="LAST_COMMIT_MESSAGE" value="screening end date" />
+    <option name="LAST_COMMIT_MESSAGE" value="wow" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
