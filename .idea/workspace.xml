@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b9d79ee3-a93c-463a-9c10-bf37d7f029c9" name="Changes" comment="admin panel - dashboard">
+    <list default="true" id="b9d79ee3-a93c-463a-9c10-bf37d7f029c9" name="Changes" comment="screening end date">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/axios-test/src/components/admin/Screenings/CreateScreening.vue" beforeDir="false" afterPath="$PROJECT_DIR$/axios-test/src/components/admin/Screenings/CreateScreening.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/axios-test/src/components/admin/Dashboard/Dashboard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/axios-test/src/components/admin/Dashboard/Dashboard.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,7 +111,6 @@
       <workItem from="1704553551470" duration="2021000" />
       <workItem from="1704556112767" duration="1699000" />
       <workItem from="1704627219115" duration="10437000" />
-      <workItem from="1704718602444" duration="50000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />
@@ -209,23 +208,7 @@
       <option name="project" value="LOCAL" />
       <updated>1704649862941</updated>
     </task>
-    <task id="LOCAL-00013" summary="admin panel - dashboard">
-      <option name="closed" value="true" />
-      <created>1704652782255</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1704652782255</updated>
-    </task>
-    <task id="LOCAL-00014" summary="admin panel - dashboard">
-      <option name="closed" value="true" />
-      <created>1704652973247</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1704652973247</updated>
-    </task>
-    <option name="localTasksCounter" value="15" />
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -251,8 +234,7 @@
     <MESSAGE value="wow" />
     <MESSAGE value="routing" />
     <MESSAGE value="screening end date" />
-    <MESSAGE value="admin panel - dashboard" />
-    <option name="LAST_COMMIT_MESSAGE" value="admin panel - dashboard" />
+    <option name="LAST_COMMIT_MESSAGE" value="screening end date" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

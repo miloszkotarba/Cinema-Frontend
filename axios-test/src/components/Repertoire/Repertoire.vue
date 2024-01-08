@@ -193,6 +193,7 @@ main .wrapper {
   padding-inline: 1rem;
   width: clamp(300px, 100%, 1370px);
   margin-inline: auto;
+  padding-bottom: 2rem;
 }
 
 main .title {
