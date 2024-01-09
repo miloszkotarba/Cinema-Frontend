@@ -241,6 +241,7 @@ main .title {
   float: right;
   transition: all ease .2s;
   margin-bottom: 2rem;
+  font-weight: 300;
 }
 
 .btn-action:hover {
