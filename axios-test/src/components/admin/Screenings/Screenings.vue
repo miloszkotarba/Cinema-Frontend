@@ -36,17 +36,17 @@
                 <div class="reservationsDetails" v-if="screening.reservations && screening.reservations.length">
                   <div class="singleReservation" v-for="(reservation, index) in screening.reservations" :key="reservation.id">
                     miejsca ->
-                    <span v-for="(seat, seatIndex) in reservation.seats" :key="seat.id">{{ seat.seatNumber }}
+                    <span v-for="(seat, seatIndex) in reservation.seats" :key="seat.id"><b>{{ seat.seatNumber }}</b>
                       <span v-if="seatIndex !== reservation.seats.length - 1">, </span>
                     </span>
                     <br>
                     <span>bilety -> </span>
-                    <span>normalne: {{ countNormalTickets(reservation.seats) }} / </span>
-                    <span>ulgowe: {{ countDiscountedTickets(reservation.seats) }}</span>
+                    <span>normalne: <b>{{ countNormalTickets(reservation.seats) }}</b> / </span>
+                    <span>ulgowe: <b>{{countDiscountedTickets(reservation.seats) }}</b></span>
                     <br>
                     Klient ->
-                    <span>{{ reservation.client.firstName }} {{ reservation.client.lastName }}</span> <br>
-                    <span style="margin-left: 70px">{{ reservation.client.email }} </span>
+                    <span> <b>{{ reservation.client.firstName }} {{ reservation.client.lastName }}</b></span> <br>
+                    <span style="margin-left: 70px"><b>{{ reservation.client.email }}</b> </span>
                   </div>
                 </div>
                 <div v-else>
@@ -138,6 +138,9 @@ onMounted(fetchScreeningData);
   align-items: center;
   gap: 1rem;
 }
+b {
+  font-weight: 400;
+}
 
 .admin-container header h1 {
   font-size: 35px;
@@ -163,7 +166,6 @@ onMounted(fetchScreeningData);
   display: flex;
   width: clamp(200px, 100%, 600px);
   justify-content: space-between;
-  align-items: center;
   margin-bottom: 3rem;
 }
 
@@ -197,7 +199,7 @@ onMounted(fetchScreeningData);
   border: medium solid #e7e7e7;
   border-radius: 10px;
   padding: 15px 25px;
-  margin-bottom: 25px;
+  margin-bottom: 35px;
   box-shadow: 2px 3px 10px #f1f1f1;
 }
 
