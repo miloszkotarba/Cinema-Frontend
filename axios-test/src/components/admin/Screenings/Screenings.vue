@@ -35,18 +35,18 @@
               <div v-if="showReservations === screening._id">
                 <div class="reservationsDetails" v-if="screening.reservations && screening.reservations.length">
                   <div class="singleReservation" v-for="(reservation, index) in screening.reservations" :key="reservation.id">
-                    miejsca ->
-                    <span v-for="(seat, seatIndex) in reservation.seats" :key="seat.id"><b>{{ seat.seatNumber }}</b>
+                    miejsca <b>-> </b>
+                    <span v-for="(seat, seatIndex) in reservation.seats" :key="seat.id">{{ seat.seatNumber }}
                       <span v-if="seatIndex !== reservation.seats.length - 1">, </span>
                     </span>
                     <br>
-                    <span>bilety -> </span>
-                    <span>normalne: <b>{{ countNormalTickets(reservation.seats) }}</b> / </span>
-                    <span>ulgowe: <b>{{countDiscountedTickets(reservation.seats) }}</b></span>
+                    <span>bilety <b>-> </b></span>
+                    <span>normalne: {{ countNormalTickets(reservation.seats) }} / </span>
+                    <span>ulgowe: {{countDiscountedTickets(reservation.seats) }}</span>
                     <br>
-                    Klient ->
-                    <span> <b>{{ reservation.client.firstName }} {{ reservation.client.lastName }}</b></span> <br>
-                    <span style="margin-left: 70px"><b>{{ reservation.client.email }}</b> </span>
+                    Klient <b>-> </b>
+                    <span> {{ reservation.client.firstName }} {{ reservation.client.lastName }}</span> <br>
+                    <span style="margin-left: 70px">{{ reservation.client.email }} </span>
                   </div>
                 </div>
                 <div v-else>
@@ -139,7 +139,7 @@ onMounted(fetchScreeningData);
   gap: 1rem;
 }
 b {
-  font-weight: 400;
+  font-weight: 500;
 }
 
 .admin-container header h1 {
