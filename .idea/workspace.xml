@@ -5,14 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b9d79ee3-a93c-463a-9c10-bf37d7f029c9" name="Changes" comment="wow">
-      <change afterPath="$PROJECT_DIR$/axios-test/src/components/Reservation/UserPersonalData.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/axios-test/src/views/Reservation/UserPersonalData.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/axios-test/src/components/Reservation/Payment.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/axios-test/src/components/Reservation/Summary.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/axios-test/src/views/Reservation/PaymentView.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/axios-test/src/views/Reservation/SummaryView.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/axios-test/src/components/Reservation/Seats.vue" beforeDir="false" afterPath="$PROJECT_DIR$/axios-test/src/components/Reservation/Seats.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/axios-test/src/components/Reservation/TicketQuantity.vue" beforeDir="false" afterPath="$PROJECT_DIR$/axios-test/src/components/Reservation/TicketQuantity.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/axios-test/src/components/admin/Dashboard/Dashboard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/axios-test/src/components/admin/Dashboard/Dashboard.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/axios-test/src/components/Reservation/UserPersonalData.vue" beforeDir="false" afterPath="$PROJECT_DIR$/axios-test/src/components/Reservation/UserPersonalData.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/axios-test/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/axios-test/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/axios-test/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/axios-test/src/store/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/axios-test/src/views/Reservation/UserPersonalData.vue" beforeDir="false" afterPath="$PROJECT_DIR$/axios-test/src/views/Reservation/UserPersonalDataView.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,32 +61,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;21.5.0&quot;,
-    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;20.10.6&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;npm.npm dev.executor&quot;: &quot;Run&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/miloszkotarba/Applications/WebStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "javascript.nodejs.core.library.configured.version": "20.10.0",
+    "javascript.nodejs.core.library.typings.version": "20.10.7",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_interpreter_path": "node",
+    "nodejs_package_manager_path": "npm",
+    "npm.npm dev.executor": "Run",
+    "ts.external.directory.path": "/Users/miloszkotarba/Applications/WebStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;vue.recent.templates&quot;: [
-      &quot;Vue Composition API Component&quot;
+  "keyToStringList": {
+    "vue.recent.templates": [
+      "Vue Composition API Component"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/axios-test/src/assets/img" />
@@ -132,6 +133,7 @@
       <workItem from="1704553551470" duration="2021000" />
       <workItem from="1704556112767" duration="1699000" />
       <workItem from="1704627219115" duration="10437000" />
+      <workItem from="1704808340744" duration="10674000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />
@@ -221,7 +223,23 @@
       <option name="project" value="LOCAL" />
       <updated>1704718968181</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="wow">
+      <option name="closed" value="true" />
+      <created>1704802377654</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1704802377654</updated>
+    </task>
+    <task id="LOCAL-00013" summary="wow">
+      <option name="closed" value="true" />
+      <created>1704808093761</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1704808093761</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -247,16 +265,5 @@
     <MESSAGE value="Styling" />
     <MESSAGE value="wow" />
     <option name="LAST_COMMIT_MESSAGE" value="wow" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/axios-test/src/components/Footer.vue</url>
-          <line>31</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

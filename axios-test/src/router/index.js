@@ -37,7 +37,17 @@ const router = createRouter({
     {
       path: '/repertuar/dane',
       name: 'UserPersonalData',
-      component: () => import('../views/Reservation/UserPersonalData.vue')
+      component: () => import('../views/Reservation/UserPersonalDataView.vue')
+    },
+    {
+      path: '/repertuar/platnosc',
+      name: 'Payment',
+      component: () => import('../views/Reservation/PaymentView.vue')
+    },
+    {
+      path: '/repertuar/podsumowanie',
+      name: 'Summary',
+      component: () => import('../views/Reservation/SummaryView.vue')
     },
     {
       path: '/kontakt',

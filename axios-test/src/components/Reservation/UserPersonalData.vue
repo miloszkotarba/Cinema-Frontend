@@ -23,6 +23,7 @@ const loading = ref(true);
 
 import { format, parseISO } from 'date-fns';
 import { pl } from 'date-fns/locale';
+import alertService from "@/components/alerts/AlertService.js";
 
 function formatDate(inputDate) {
   const parsedDate = parseISO(inputDate);
@@ -36,13 +37,23 @@ const personalData = ref({
   firstName: '',
   lastName: '',
   email: '',
+  repeatedEmail: '',
 })
 
 const handleButtonClick = () => {
   const personalDataToStore = { ...personalData.value };
+
+  if (personalDataToStore.email !== personalDataToStore.repeatedEmail) {
+    alertService.addAlert("Adresy e-mail się różnią.", "error")
+    return
+  }
+
   store.dispatch('updatePersonalData', personalDataToStore);
 
-  console.log('Personal Data from Store:', store.getters.getPersonalData);
+  Router.push({ path: '/repertuar/platnosc' })
+  /*
+    console.log('Personal Data from Store:', store.getters.getPersonalData);
+  */
 };
 
 const dataFromStore = ref(null)
@@ -113,14 +124,15 @@ onMounted(getData)
                       <span class="left"><i class="las la-user"></i></span>
                       <span class="right">imię</span>
                     </label>
-                    <input v-model="personalData.firstName" type="text">
+                    <input v-model="personalData.firstName" type="text" >
+<!--                    @TODO add required to all inputs -->
                   </div>
                   <div class="field">
                     <label for="nazwisko">
                       <span class="left"><i class="las la-user"></i></span>
                       <span class="right">nazwisko</span>
                     </label>
-                    <input v-model="personalData.lastName" type="text">
+                    <input v-model="personalData.lastName" type="text" >
                   </div>
                 </div>
                 <div class="fields-group">
@@ -129,14 +141,14 @@ onMounted(getData)
                       <span class="left"><i class="las la-envelope"></i></span>
                       <span class="right">e-mail</span>
                     </label>
-                    <input v-model="personalData.email" type="email">
+                    <input v-model="personalData.email" type="email" >
                   </div>
                   <div class="field">
                     <label for="email">
                       <span class="left"><i class="las la-envelope"></i></span>
                       <span class="right">powtórz e-mail</span>
                     </label>
-                    <input type="email">
+                    <input v-model="personalData.repeatedEmail" type="email" >
                   </div>
                 </div>
               </div>
