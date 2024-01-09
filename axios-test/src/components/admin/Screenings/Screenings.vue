@@ -30,7 +30,7 @@
             <span class="name">Czas reklam: <span class="light">{{ screening.advertisementsDuration }} min</span></span>
             <div class="reservation">
               <div class="showReservations name" @mouseover="changeCursor" @click="toggleReservationsVisibility(screening._id)">
-                Pokaż rezerwacje
+                {{ showReservations === screening._id ? 'Ukryj rezerwacje' : 'Pokaż rezerwacje' }}
               </div>
               <div v-if="showReservations === screening._id">
                 <div class="reservationsDetails" v-if="screening.reservations && screening.reservations.length">
@@ -44,8 +44,9 @@
                     <span>normalne: {{ countNormalTickets(reservation.seats) }} / </span>
                     <span>ulgowe: {{ countDiscountedTickets(reservation.seats) }}</span>
                     <br>
+                    Klient ->
                     <span>{{ reservation.client.firstName }} {{ reservation.client.lastName }}</span> <br>
-                    <span>{{ reservation.client.email }} </span>
+                    <span style="margin-left: 70px">{{ reservation.client.email }} </span>
                   </div>
                 </div>
                 <div v-else>
@@ -191,12 +192,12 @@ onMounted(fetchScreeningData);
 }
 
 .singleReservation{
-  background-color: #f8f8f8;
+  background-color: #f2f2f2;
   width: 350px;
-  border: medium solid #efefef;
+  border: medium solid #e7e7e7;
   border-radius: 10px;
-  padding: 8px 10px;
-  margin-bottom: 10px;
+  padding: 15px 25px;
+  margin-bottom: 25px;
   box-shadow: 2px 3px 10px #f1f1f1;
 }
 
