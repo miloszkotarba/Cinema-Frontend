@@ -32,21 +32,18 @@ function formatDate(inputDate) {
 
 const store = inject('store');
 
-/*const handleButtonClick = () => {
-  const ulgowy = ulgowyQuantity.value;
-  const normalny = normalnyQuantity.value;
-  const screeningData = screening ? screening.value : null;
+const personalData = ref({
+  firstName: '',
+  lastName: '',
+  email: '',
+})
 
-  const formData = {
-    ulgowy,
-    normalny,
-    screeningData
-  };
+const handleButtonClick = () => {
+  const personalDataToStore = { ...personalData.value };
+  store.dispatch('updatePersonalData', personalDataToStore);
 
-  store.dispatch('updateFormData', formData);
-
-  Router.push({ path: '/repertuar/miejsca' });
-};*/
+  console.log('Personal Data from Store:', store.getters.getPersonalData);
+};
 
 const dataFromStore = ref(null)
 const getData = async () => {
@@ -68,6 +65,8 @@ onMounted(getData)
 <template>
   <main>
     <AlertDisplay/>
+    <link rel="stylesheet"
+          href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
     <div class="booking-box-top">
       <div class="container">
         <div id="steps">
@@ -110,25 +109,38 @@ onMounted(getData)
               <div class="table-personal-data">
                 <div class="fields-group">
                   <div class="field">
-                    <label for="imie">imię</label>
-                    <input type="text">
+                    <label for="imie">
+                      <span class="left"><i class="las la-user"></i></span>
+                      <span class="right">imię</span>
+                    </label>
+                    <input v-model="personalData.firstName" type="text">
                   </div>
                   <div class="field">
-                    <label for="nazwisko">nazwisko</label>
-                    <input type="text">
+                    <label for="nazwisko">
+                      <span class="left"><i class="las la-user"></i></span>
+                      <span class="right">nazwisko</span>
+                    </label>
+                    <input v-model="personalData.lastName" type="text">
                   </div>
                 </div>
                 <div class="fields-group">
                   <div class="field">
-                    <label for="e-mail">email</label>
-                    <input type="email">
+                    <label for="email">
+                      <span class="left"><i class="las la-envelope"></i></span>
+                      <span class="right">e-mail</span>
+                    </label>
+                    <input v-model="personalData.email" type="email">
                   </div>
                   <div class="field">
-                    <label for="e-mail again">powtórz e-mail</label>
+                    <label for="email">
+                      <span class="left"><i class="las la-envelope"></i></span>
+                      <span class="right">powtórz e-mail</span>
+                    </label>
+                    <input type="email">
                   </div>
                 </div>
               </div>
-              <button class="btn-action" type="submit">WYBIERZ MIEJSCA ></button>
+              <button class="btn-action" type="submit">PRZEJDŹ DO PŁATNOŚCI ></button>
             </form>
           </div>
         </div>
@@ -165,6 +177,46 @@ main .title {
   margin-top: 2rem;
 }
 
+.table-personal-data .fields-group {
+  display: flex;
+  justify-content: space-around;
+  max-width: 1300px;
+  width: 100%;
+  margin-inline: auto;
+  flex-wrap: wrap;
+}
+
+.table-personal-data .fields-group .field {
+  display: flex;
+  width: 520px;
+  height: 45px;
+  margin-bottom: 4rem;
+  margin-right: 1rem;
+}
+
+.table-personal-data .fields-group .field label {
+  background: #4d1b8f;
+  color: #fff;
+  padding: 0.7rem 2rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.table-personal-data .fields-group .field label i {
+  font-size: 1.8rem;
+}
+
+.table-personal-data .fields-group .field input {
+  border-radius: 0 !important;
+  border: 1px solid black;
+  flex: 1;
+  font-size: 1.2rem;
+  padding: 0 0.8rem;
+  font-weight: 300;
+}
+
 .booking-box-top {
   background: #fff;
   padding-top: 1.2rem;
@@ -180,7 +232,8 @@ main .title {
 
 .btn-action {
   background: #62369c;
-  width: 300px;
+  width: 360px;
+  font-weight: 300;
   padding: 14px 0;
   text-align: center;
   color: #fff;

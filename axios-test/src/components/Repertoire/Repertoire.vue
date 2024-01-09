@@ -59,7 +59,7 @@ const fetchSpecificMovieData = async (day) => {
     } finally {
       loading.value = false;
     }
-  }, 500); // 1000 milisekund (1 sekunda opóźnienia)
+  }, 500);
 };
 
 
