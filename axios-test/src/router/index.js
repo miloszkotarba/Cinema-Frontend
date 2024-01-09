@@ -25,14 +25,19 @@ const router = createRouter({
       component: () => import('../views/Reservation/TicketQuantityView.vue')
     },
     {
+      path: '/repertuar/:id',
+      name: 'repertuarId',
+      component: () => import('../views/MovieDetailsView.vue')
+    },
+    {
       path: '/repertuar/miejsca',
       name: 'Seats',
       component: () => import('../views/Reservation/SeatsView.vue')
     },
     {
-      path: '/repertuar/:id',
-      name: 'repertuarId',
-      component: () => import('../views/MovieDetailsView.vue')
+      path: '/repertuar/dane',
+      name: 'UserPersonalData',
+      component: () => import('../views/Reservation/UserPersonalData.vue')
     },
     {
       path: '/kontakt',

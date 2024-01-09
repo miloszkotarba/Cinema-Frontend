@@ -3,6 +3,7 @@ import { createStore } from 'vuex';
 export default createStore({
     state: {
         formData: null,
+        selectedSeats: [],
     },
     mutations: {
         setFormData(state, formData) {
@@ -10,6 +11,9 @@ export default createStore({
         },
         resetState(state) {
             state.formData = null;
+        },
+        setSelectedSeats(state, seats) {
+            state.selectedSeats = seats;
         },
     },
     actions: {
@@ -19,8 +23,12 @@ export default createStore({
         reset({ commit }) {
             commit('resetState');
         },
+        updateSelectedSeats({ commit }, seats) {
+            commit('setSelectedSeats', seats);
+        },
     },
     getters: {
         getFormData: (state) => state.formData,
+        getSelectedSeats: (state) => state.selectedSeats,
     },
 });

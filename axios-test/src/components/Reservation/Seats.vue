@@ -45,7 +45,8 @@ const getData = async () => {
     }
 
     if (!dataFromStore.value) {
-      Router.push({ path: '/repertuar' });
+      await Router.push({ path: '/repertuar' });
+      return
     }
 
     await getAllReservedSeats()
@@ -97,14 +98,19 @@ const toggleSeatSelection = (seatNumber) => {
   }
 
   selectedTicketsQuantity.value = selectedSeats.value.length;
-  console.log(selectedSeats.value);
 };
 
+const test = ref(null)
 const handleButtonClick = () => {
   definedTicketQuantity.value = dataFromStore.value?.normalny + dataFromStore.value?.ulgowy
   if (selectedTicketsQuantity.value !== definedTicketQuantity.value) {
     alertService.addAlert(`Zaznaczono za mało miejsc. Wybrano ${selectedTicketsQuantity.value}/${definedTicketQuantity.value}.`, "error")
+    return
   }
+
+  store.dispatch('updateSelectedSeats', selectedSeats.value);
+
+  Router.push({ path: '/repertuar/dane' });
 }
 
 onMounted(() => getData());

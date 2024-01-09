@@ -7,11 +7,9 @@ import axios from 'axios';
 import { createCustomError, handleErrors } from "../../..//errors/ErrorHandler.js";
 import { useRoute, useRouter } from "vue-router";
 
-const URL = import.meta.env.VITE_BACKEND_URI + "screenings";
-
 const steps = ref([
-  { number: 1, description: 'WYBIERZ BILETY', active: true, done: false },
-  { number: 2, description: 'WYBIERZ MIEJSCA', active: true, done: false },
+  { number: 1, description: 'WYBIERZ BILETY', active: false, done: true },
+  { number: 2, description: 'WYBIERZ MIEJSCA', active: false, done: true },
   { number: 3, description: 'DANE OSOBOWE', active: true, done: false },
   { number: 3, description: 'PŁATNOŚĆ', active: true, done: false },
   { number: 4, description: 'PODSUMOWANIE', active: true, done: false },
@@ -21,11 +19,7 @@ const fetchError = ref(null);
 
 const router = useRoute();
 const Router = useRouter();
-const screeningID = router.params.id;
-
 const loading = ref(true);
-
-const screening = ref(null)
 
 import { format, parseISO } from 'date-fns';
 import { pl } from 'date-fns/locale';
@@ -36,29 +30,9 @@ function formatDate(inputDate) {
   return formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
 }
 
-const ulgowyQuantity = ref('');
-const normalnyQuantity = ref('');
-
 const store = inject('store');
 
-const fetchScreeningData = async () => {
-  try {
-    if(!screeningID) {
-      await Router.push({ path: '/repertuar' });
-      return
-    }
-
-    const response = await axios.get(URL + `/${screeningID}`);
-    screening.value = response.data;
-  } catch (error) {
-    handleErrors(error, fetchError);
-  } finally {
-    loading.value = false
-    store.dispatch('reset');
-  }
-};
-
-const handleButtonClick = () => {
+/*const handleButtonClick = () => {
   const ulgowy = ulgowyQuantity.value;
   const normalny = normalnyQuantity.value;
   const screeningData = screening ? screening.value : null;
@@ -72,9 +46,23 @@ const handleButtonClick = () => {
   store.dispatch('updateFormData', formData);
 
   Router.push({ path: '/repertuar/miejsca' });
-};
+};*/
 
-onMounted(fetchScreeningData)
+const dataFromStore = ref(null)
+const getData = async () => {
+  try {
+    dataFromStore.value = store.getters.getFormData;
+    if (!dataFromStore.value) {
+      await Router.push({ path: '/repertuar' });
+    }
+  } catch (error) {
+    handleErrors(error, fetchError)
+  } finally {
+    loading.value = false
+  }
+}
+
+onMounted(getData)
 </script>
 
 <template>
@@ -90,21 +78,26 @@ onMounted(fetchScreeningData)
         </div>
         <div class="info-wrapper">
           <div class="left">
-            <span style="display: block; font-weight: 300; font-size: 1.5rem">{{
-                screening && formatDate(screening.date)
+            <span
+                style="display: block; font-weight: 300; font-size: 1.5rem">{{
+                dataFromStore && dataFromStore.screeningData ? formatDate(dataFromStore.screeningData.date) : ''
               }}</span>
-            <span class="title">{{ screening && screening.movie ? screening.movie.title : '' }}/2D</span>
+            <span class="title">{{
+                dataFromStore && dataFromStore.screeningData && dataFromStore.screeningData.movie
+                    ? dataFromStore.screeningData.movie.title : ''
+              }}/2D</span>
           </div>
           <div class="right">
             <span style="font-size: 2rem; font-weight: 500">Sala: {{
-                screening && screening.room ? screening.room.name : ''
+                dataFromStore && dataFromStore.screeningData && dataFromStore.screeningData.room
+                    ? dataFromStore.screeningData.room.name : ''
               }}</span>
           </div>
         </div>
       </div>
     </div>
     <div class="wrapper">
-      <div class="ticket-wrapper">
+      <div class="personal-data-wrapper">
         <div class="container">
           <div v-if="loading" class="load">
             <div class="one"></div>
@@ -114,21 +107,25 @@ onMounted(fetchScreeningData)
           <div v-else style="padding-top: 2.5rem">
             <form @submit.prevent="handleButtonClick()">
               <h1>Wybierz bilety</h1>
-              <div class="table-ticket">
-                <div class="row">
-                  <div class="ticket-type">Rodzaj biletu</div>
-                  <div class="ticket-price">Cena</div>
-                  <div class="ticket-quantity">Ilość</div>
+              <div class="table-personal-data">
+                <div class="fields-group">
+                  <div class="field">
+                    <label for="imie">imię</label>
+                    <input type="text">
+                  </div>
+                  <div class="field">
+                    <label for="nazwisko">nazwisko</label>
+                    <input type="text">
+                  </div>
                 </div>
-                <div class="row">
-                  <div class="ticket-type">bilet ulgowy</div>
-                  <div class="ticket-price">20zł</div>
-                  <div class="ticket-quantity"><input v-model="ulgowyQuantity" type="number" required></div>
-                </div>
-                <div class="row">
-                  <div class="ticket-type">bilet normalny</div>
-                  <div class="ticket-price">10zł</div>
-                  <div class="ticket-quantity"><input v-model="normalnyQuantity" type="number" required></div>
+                <div class="fields-group">
+                  <div class="field">
+                    <label for="e-mail">email</label>
+                    <input type="email">
+                  </div>
+                  <div class="field">
+                    <label for="e-mail again">powtórz e-mail</label>
+                  </div>
                 </div>
               </div>
               <button class="btn-action" type="submit">WYBIERZ MIEJSCA ></button>
@@ -139,10 +136,6 @@ onMounted(fetchScreeningData)
     </div>
   </main>
 </template>
-
-<!-- @TODO form validation -->
-<!-- @TODO ticket availability -->
-
 <style scoped>
 main {
   background: #f8f8f8;
@@ -168,35 +161,8 @@ main .title {
   padding-inline: 1rem;
 }
 
-.table-ticket {
-  border: 1px solid #555;
+.table-personal-data {
   margin-top: 2rem;
-}
-
-.table-ticket .row {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  border-bottom: 1px solid #555;
-  padding: 10px 5%;
-  padding-right: 7%;
-}
-
-.table-ticket .row .ticket-quantity input {
-  padding: 5px;
-  width: clamp(30px, 100%, 70px);
-  font-size: 1.5rem;
-  text-align: center;
-}
-
-.table-ticket .row:last-child {
-  border-bottom: none;
-}
-
-.table-ticket .row div {
-  padding: 10px;
-  width: calc(100% / 3);
-  text-align: center;
 }
 
 .booking-box-top {

@@ -5,7 +5,7 @@ import { onMounted, ref } from "vue";
 import AlertDisplay from "@/components/alerts/AlertDisplay.vue";
 import { createCustomError, handleErrors } from '../../../../errors/ErrorHandler.js';
 import alertService from "@/components/alerts/AlertService.js";
-import {addMinutes, format, getDay} from "date-fns";
+import {addMinutes, format} from "date-fns";
 
 const fetchError = ref(null);
 
@@ -14,13 +14,9 @@ const URL = import.meta.env.VITE_BACKEND_URI + "screenings";
 const screenings = ref([]);
 const isLoading = ref(true);
 
-const fetchScreeningDataForToday = async () => {
+const fetchScreeningData = async () => {
   try {
-    // Uzyskaj dzisiejszą datę w formacie 'DD-MM-YYYY'
-    const today = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' }).split('/').join('-');
-
-    // Dodaj parametr date do URL zapytania
-    const response = await axios.get(`${URL}?date=${today}`);
+    const response = await axios.get(URL);
     screenings.value = response.data.screenings;
   } catch (error) {
     handleErrors(error, fetchError);
@@ -29,7 +25,7 @@ const fetchScreeningDataForToday = async () => {
   }
 };
 
-onMounted(fetchScreeningDataForToday);
+onMounted(fetchScreeningData);
 </script>
 
 <template>
