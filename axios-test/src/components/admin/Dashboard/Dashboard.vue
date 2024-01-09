@@ -14,9 +14,13 @@ const URL = import.meta.env.VITE_BACKEND_URI + "screenings";
 const screenings = ref([]);
 const isLoading = ref(true);
 
-const fetchScreeningData = async () => {
+const fetchScreeningDataForToday = async () => {
   try {
-    const response = await axios.get(URL);
+    // Uzyskaj dzisiejszą datę w formacie 'DD-MM-YYYY'
+    const today = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' }).split('/').join('-');
+
+    // Dodaj parametr date do URL zapytania
+    const response = await axios.get(`${URL}?date=${today}`);
     screenings.value = response.data.screenings;
   } catch (error) {
     handleErrors(error, fetchError);
@@ -25,7 +29,7 @@ const fetchScreeningData = async () => {
   }
 };
 
-onMounted(fetchScreeningData);
+onMounted(fetchScreeningDataForToday);
 </script>
 
 <template>
