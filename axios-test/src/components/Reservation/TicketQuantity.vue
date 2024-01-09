@@ -224,6 +224,7 @@ main .title {
   margin-top: 2rem;
   float: right;
   transition: all ease .2s;
+  font-weight: 300;
 }
 
 .btn-action:hover {
