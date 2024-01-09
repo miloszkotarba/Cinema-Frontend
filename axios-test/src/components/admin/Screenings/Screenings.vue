@@ -19,18 +19,40 @@
         <div v-for="screening in screenings" :key="screening._id" class="screening">
           <div class="left">
             <span class="name">Film: <span class="light">{{ screening.movie.title }}</span></span>
-            <span class="name">Data rozpoczęcia: <span class="light">{{ format(screening.date,'yyyy-MM-dd HH:mm') }}</span></span>
-            <span class="name">Data zakończenia: <span class="light">{{format(addMinutes(addMinutes(screening.date,screening.advertisementsDuration),screening.movie.duration),'yyyy-MM-dd HH:mm')}}</span></span>
+            <span class="name">Data rozpoczęcia: <span class="light">{{
+                format(screening.date, 'yyyy-MM-dd HH:mm')
+              }}</span></span>
+            <span class="name">Data zakończenia: <span
+                class="light">{{
+                format(addMinutes(addMinutes(screening.date, screening.advertisementsDuration), screening.movie.duration), 'yyyy-MM-dd HH:mm')
+              }}</span></span>
             <span class="name">Sala: <span class="light">{{ screening.room.name }}</span></span>
-            <span class="name">Czas reklam: <span class="light">{{ screening.advertisementsDuration}} min</span></span>
-            <span class="name">Rezerwacje:<br><span class="light">{{ screening.reservation}} <br></span> </span>
-          </div>
-          <div class="right">
-            <RouterLink :to="{ name: 'EditScreening', params: { id: screening._id }}" class="btn btn-edit"
-                        style="text-decoration: none; color: black">
-              Edytuj
-            </RouterLink>
-            <button @click="deleteScreening(screening._id)" class="btn btn-delete">Usuń</button>
+            <span class="name">Czas reklam: <span class="light">{{ screening.advertisementsDuration }} min</span></span>
+            <div class="reservation">
+              <div class="showReservations name" @click="toggleReservationsVisibility(screening._id)">
+                Pokaż rezerwacje
+              </div>
+              <div v-if="showReservations === screening._id">
+                <div class="Reservations" v-if="screening.reservations && screening.reservations.length">
+                  <div v-for="(reservation, index) in screening.reservations" :key="reservation.id">
+                    miejsca:
+                    <span v-for="(seat, seatIndex) in reservation.seats" :key="seat.id">{{ seat.seatNumber }}
+                      <span v-if="seatIndex !== reservation.seats.length - 1">, </span>
+                    </span>
+                    <br>
+                    <span>normalne: {{ countNormalTickets(reservation.seats) }} / </span>
+                    <span>ulgowe: {{ countDiscountedTickets(reservation.seats) }}</span>
+                    <br>
+                    <span>{{ reservation.client.firstName }} {{ reservation.client.lastName }}</span> <br>
+                    <span>{{ reservation.client.email }} </span>
+                    <br>
+                  </div>
+                </div>
+                <div v-else>
+                  Brak rezerwacji.
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -40,10 +62,10 @@
 
 <script setup>
 import axios from 'axios';
-import { onMounted, ref } from "vue";
+import {onMounted, ref} from "vue";
 
 import AlertDisplay from "@/components/alerts/AlertDisplay.vue";
-import { createCustomError, handleErrors } from '../../../../errors/ErrorHandler.js';
+import {createCustomError, handleErrors} from '../../../../errors/ErrorHandler.js';
 import alertService from "@/components/alerts/AlertService.js";
 import {addMinutes, format, getHours, getMinutes, getTime, getYear} from "date-fns";
 
@@ -53,6 +75,12 @@ const URL = import.meta.env.VITE_BACKEND_URI + "screenings";
 
 const screenings = ref([]);
 const isLoading = ref(true);
+
+const showReservations = ref(null);
+
+const toggleReservationsVisibility = (screeningId) => {
+  showReservations.value = showReservations.value === screeningId ? null : screeningId;
+};
 
 const fetchScreeningData = async () => {
   try {
@@ -74,6 +102,18 @@ const deleteScreening = async (screeningID) => {
     handleErrors(error, fetchError);
   }
 }
+const countNormalTickets = (seats) => countTickets(seats, 'normalny');
+const countDiscountedTickets = (seats) => countTickets(seats, 'ulgowy');
+
+const countTickets = (seats, ticketType) => {
+  let count = 0;
+  for (const seat of seats) {
+    if (seat.typeOfSeat === ticketType) {
+      count++;
+    }
+  }
+  return count;
+};
 
 onMounted(fetchScreeningData);
 </script>
@@ -84,6 +124,7 @@ onMounted(fetchScreeningData);
   font-weight: 200;
   margin-left: 2px;
 }
+
 .admin-container header {
   display: flex;
   align-items: center;
