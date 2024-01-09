@@ -29,30 +29,37 @@
             <span class="name">Sala: <span class="light">{{ screening.room.name }}</span></span>
             <span class="name">Czas reklam: <span class="light">{{ screening.advertisementsDuration }} min</span></span>
             <div class="reservation">
-              <div class="showReservations name" @click="toggleReservationsVisibility(screening._id)">
+              <div class="showReservations name" @mouseover="changeCursor" @click="toggleReservationsVisibility(screening._id)">
                 Pokaż rezerwacje
               </div>
               <div v-if="showReservations === screening._id">
-                <div class="Reservations" v-if="screening.reservations && screening.reservations.length">
-                  <div v-for="(reservation, index) in screening.reservations" :key="reservation.id">
-                    miejsca:
+                <div class="reservationsDetails" v-if="screening.reservations && screening.reservations.length">
+                  <div class="singleReservation" v-for="(reservation, index) in screening.reservations" :key="reservation.id">
+                    miejsca ->
                     <span v-for="(seat, seatIndex) in reservation.seats" :key="seat.id">{{ seat.seatNumber }}
                       <span v-if="seatIndex !== reservation.seats.length - 1">, </span>
                     </span>
                     <br>
+                    <span>bilety -> </span>
                     <span>normalne: {{ countNormalTickets(reservation.seats) }} / </span>
                     <span>ulgowe: {{ countDiscountedTickets(reservation.seats) }}</span>
                     <br>
                     <span>{{ reservation.client.firstName }} {{ reservation.client.lastName }}</span> <br>
                     <span>{{ reservation.client.email }} </span>
-                    <br>
                   </div>
                 </div>
                 <div v-else>
-                  Brak rezerwacji.
+                  BRAK REZERWACJI
                 </div>
               </div>
             </div>
+          </div>
+          <div class="right">
+            <RouterLink :to="{ name: 'EditScreening', params: { id: screening._id }}" class="btn btn-edit"
+                        style="text-decoration: none; color: black">
+              Edytuj
+            </RouterLink>
+            <button @click="deleteScreening(screening._id)" class="btn btn-delete">Usuń</button>
           </div>
         </div>
       </div>
@@ -169,6 +176,29 @@ onMounted(fetchScreeningData);
   background: #ccc;
   border-radius: 7px;
 }
+.showReservations{
+  text-decoration: underline;
+  margin-top: 10px;
+  margin-bottom: 18px;
+  cursor: pointer;
+}
+
+.showReservations:hover {
+  cursor: pointer;
+}
+.reservationsDetails{
+  font-weight: 300;
+}
+
+.singleReservation{
+  background-color: #f8f8f8;
+  width: 350px;
+  border: medium solid #efefef;
+  border-radius: 10px;
+  padding: 8px 10px;
+  margin-bottom: 10px;
+  box-shadow: 2px 3px 10px #f1f1f1;
+}
 
 .admin-container .screening .left {
   display: flex;
@@ -211,3 +241,4 @@ onMounted(fetchScreeningData);
   color: crimson;
 }
 </style>
+
