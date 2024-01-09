@@ -4,19 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b9d79ee3-a93c-463a-9c10-bf37d7f029c9" name="Changes" comment="wow">
-      <change afterPath="$PROJECT_DIR$/axios-test/src/assets/img/seat.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/axios-test/src/assets/img/seat_booked.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/axios-test/src/components/Reservation/Seats.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/axios-test/src/views/Reservation/SeatsView.vue" afterDir="false" />
+    <list default="true" id="b9d79ee3-a93c-463a-9c10-bf37d7f029c9" name="Changes" comment="changing icon">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/axios-test/public/posters/65986f374344238909314c6e.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/axios-test/src/components/ProgressBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/axios-test/src/components/ProgressBar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/axios-test/src/components/Reservation/TicketQuantity.vue" beforeDir="false" afterPath="$PROJECT_DIR$/axios-test/src/components/Reservation/TicketQuantity.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/axios-test/src/components/admin/Screenings/CreateScreening.vue" beforeDir="false" afterPath="$PROJECT_DIR$/axios-test/src/components/admin/Screenings/CreateScreening.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/axios-test/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/axios-test/src/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/axios-test/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/axios-test/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/axios-test/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/axios-test/src/store/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/axios-test/src/components/admin/Dashboard/Dashboard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/axios-test/src/components/admin/Dashboard/Dashboard.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,20 +24,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;miloszkotarba&quot;
-  }
-}</component>
-  <component name="GithubPullRequestsUISettings">
-    <option name="selectedUrlAndAccountId">
-      <UrlAndAccount>
-        <option name="accountId" value="6c0561c8-4bb9-4dbb-8f45-6e79326b3ec0" />
-        <option name="url" value="https://github.com/miloszkotarba/kino-frontend-vue.git" />
-      </UrlAndAccount>
-    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -80,7 +56,7 @@
     &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;npm.npm dev.executor&quot;: &quot;Run&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/miloszkotarba/Applications/WebStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2023.2.5\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -91,11 +67,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/axios-test/src/assets/img" />
       <recent name="$PROJECT_DIR$/axios-test/src/components" />
       <recent name="C:\Users\piotr\WebstormProjects\kino-frontend-vue\axios-test\src\assets\img" />
       <recent name="$PROJECT_DIR$/axios-test/public" />
       <recent name="$PROJECT_DIR$/axios-test/src/views/admin/Dashboard" />
+      <recent name="$PROJECT_DIR$/axios-test/src/components/admin/Dashboard" />
     </key>
   </component>
   <component name="RunManager" selected="npm.npm dev">
@@ -135,6 +111,7 @@
       <workItem from="1704553551470" duration="2021000" />
       <workItem from="1704556112767" duration="1699000" />
       <workItem from="1704627219115" duration="10437000" />
+      <workItem from="1704793752984" duration="1945000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />
@@ -216,15 +193,7 @@
       <option name="project" value="LOCAL" />
       <updated>1704637620448</updated>
     </task>
-    <task id="LOCAL-00011" summary="wow">
-      <option name="closed" value="true" />
-      <created>1704718968181</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1704718968181</updated>
-    </task>
-    <option name="localTasksCounter" value="12" />
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
