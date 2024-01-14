@@ -4,50 +4,52 @@
     <div class="admin-container">
       <div class="indent">
         <header>Edycja seansu</header>
-        <form @submit.prevent="updateScreening">
-          <div class="field">
-            <label for="datetime">data seansu</label>
-            <input
-                type="datetime-local"
-                v-model="newScreening.date"
-                :min="getCurrentDateTime()"
-                required
-            />
-          </div>
+        <div v-if="isLoading">Loading...</div>
+        <div v-else>
+          <form @submit.prevent="updateScreening">
+            <div class="field">
+              <label for="datetime">data seansu</label>
+              <input
+                  type="datetime-local"
+                  v-model="editedScreening.date"
+                  :min="getCurrentDateTime()"
+                  required
+              />
+            </div>
 
-          <div class="field">
-            <label for="movie">Wybierz film</label>
-            <select v-model="newScreening.movie">
-              <option
-                  v-for="movie in movies"
-                  :key="movie._id"
-                  :value="movie._id"
-              >
-                {{ movie.title }}
-              </option>
-            </select>
-          </div>
+            <div class="field">
+              <label for="movie">Wybierz film</label>
+              <select v-model="editedScreening.movie._id">
+                <option
+                    v-for="movie in movies"
+                    :key="movie._id"
+                    :value="movie._id">
+                  {{ movie.title }}
+                </option>
+              </select>
+            </div>
 
-          <div class="field">
-            <label for="room">Wybierz salę</label>
-            <select v-model="newScreening.room">
-              <option v-for="room in rooms" :key="room._id" :value="room._id">
-                {{ room.name }}
-              </option>
-            </select>
-          </div>
+            <div class="field">
+              <label for="room">Wybierz salę</label>
+              <select v-model="editedScreening.room._id">
+                <option v-for="room in rooms" :key="room._id" :value="room._id">
+                  {{ room.name }}
+                </option>
+              </select>
+            </div>
 
-          <div class="field">
-            <label for="advertisementsDuration">długość reklam (min)</label>
-            <input
-                type="number"
-                v-model="newScreening.advertisementsDuration"
-                required
-            />
-          </div>
+            <div class="field">
+              <label for="advertisementsDuration">długość reklam (min)</label>
+              <input
+                  type="number"
+                  v-model="editedScreening.advertisementsDuration"
+                  required
+              />
+            </div>
 
-          <button type="submit" class="submit-btn">Zapisz zmiany</button>
-        </form>
+            <button type="submit" class="submit-btn">Zapisz zmiany</button>
+          </form>
+        </div>
       </div>
     </div>
   </div>
@@ -55,7 +57,7 @@
 
 <script setup>
 import axios from "axios";
-import { onMounted, ref } from "vue";
+import {onMounted, ref} from "vue";
 
 import {
   createCustomError,
@@ -63,12 +65,16 @@ import {
 } from "../../../../errors/ErrorHandler.js";
 import alertService from "@/components/alerts/AlertService.js";
 import AlertDisplay from "@/components/alerts/AlertDisplay.vue";
+import {useRoute} from "vue-router";
 
 const URL = import.meta.env.VITE_BACKEND_URI + "screenings";
 const URL_MOVIES = import.meta.env.VITE_BACKEND_URI + "movies";
 const URL_ROOMS = import.meta.env.VITE_BACKEND_URI + "rooms";
 
-/*const getCurrentDateTime = () => {
+const router = useRoute();
+const screeningID = router.params.id;
+
+const getCurrentDateTime = () => {
   const now = new Date();
   const year = now.getFullYear();
   const month = String(now.getMonth() + 1).padStart(2, "0");
@@ -77,9 +83,10 @@ const URL_ROOMS = import.meta.env.VITE_BACKEND_URI + "rooms";
   const minute = String(now.getMinutes()).padStart(2, "0");
 
   return `${year}-${month}-${day}T${hour}:${minute}`;
-};*/
+};
 
 const fetchError = ref(null);
+const isLoading = ref(true)
 
 const editedScreening = ref({
   date: getCurrentDateTime(),
@@ -91,28 +98,33 @@ const editedScreening = ref({
 const movies = ref([]);
 const rooms = ref([]);
 
-const addScreening = async () => {
+
+const fetchScreeningData = async () => {
   try {
-    if (newScreening.value.advertisementsDuration < 0) {
+    const response = await axios.get(`${URL}/${screeningID}`);
+    editedScreening.value = response.data;
+  } catch (error) {
+    handleErrors(error, fetchError);
+  } finally {
+    isLoading.value = false;
+  }
+}
+
+const updateScreening = async () => {
+  try {
+    if (editedScreening.value.advertisementsDuration < 0) {
       return alertService.addAlert("Nieprawidłowa długość reklam", "error");
     }
 
-    const selectedMovieId = newScreening.value.movie;
-    const selectedRoomId = newScreening.value.room;
+    const selectedMovieId = editedScreening.value.movie;
+    const selectedRoomId = editedScreening.value.room;
 
-    newScreening.value.movie = { _id: selectedMovieId };
-    newScreening.value.room = { _id: selectedRoomId };
+    editedScreening.value.movie = {_id: selectedMovieId};
+    editedScreening.value.room = {_id: selectedRoomId};
 
-    const response = await axios.post(URL, newScreening.value);
+    await axios.patch(`${URL}/${screeningID}`, editedScreening.value);
 
-    newScreening.value = {
-      date: getCurrentDateTime(),
-      advertisementsDuration: "",
-      movie: null,
-      room: null,
-    };
-
-    alertService.addAlert("Dodano seans.", "success", "/admin/seanse");
+    alertService.addAlert("Edytowano seans.", "success", "/admin/seanse");
   } catch (error) {
     alertService.addAlert(error.response.data.error, "error")
     handleErrors(error, fetchError);
@@ -140,6 +152,7 @@ const getAllRooms = async () => {
 const getAllRoomsAndMovies = async () => {
   await getAllRooms();
   await getAllMovies();
+  await fetchScreeningData();
 };
 
 onMounted(getAllRoomsAndMovies);
