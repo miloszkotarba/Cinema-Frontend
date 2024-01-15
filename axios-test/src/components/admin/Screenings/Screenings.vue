@@ -29,20 +29,22 @@
             <span class="name">Sala: <span class="light">{{ screening.room.name }}</span></span>
             <span class="name">Czas reklam: <span class="light">{{ screening.advertisementsDuration }} min</span></span>
             <div class="reservation">
-              <div class="showReservations name" @mouseover="changeCursor" @click="toggleReservationsVisibility(screening._id)">
+              <div class="showReservations name" @mouseover="changeCursor"
+                   @click="toggleReservationsVisibility(screening._id)">
                 {{ showReservations === screening._id ? 'Ukryj rezerwacje' : 'Pokaż rezerwacje' }}
               </div>
               <div v-if="showReservations === screening._id">
                 <div class="reservationsDetails" v-if="screening.reservations && screening.reservations.length">
-                  <div class="singleReservation" v-for="(reservation, index) in screening.reservations" :key="reservation.id">
-                    miejsca <b>-> </b>
+                  <div class="singleReservation" v-for="(reservation, index) in screening.reservations"
+                       :key="reservation.id">
+                    Miejsca <b>-> </b>
                     <span v-for="(seat, seatIndex) in reservation.seats" :key="seat.id">{{ seat.seatNumber }}
                       <span v-if="seatIndex !== reservation.seats.length - 1">, </span>
                     </span>
                     <br>
-                    <span>bilety <b>-> </b></span>
+                    <span>Bilety <b>-> </b></span>
                     <span>normalne: {{ countNormalTickets(reservation.seats) }} / </span>
-                    <span>ulgowe: {{countDiscountedTickets(reservation.seats) }}</span>
+                    <span>ulgowe: {{ countDiscountedTickets(reservation.seats) }}</span>
                     <br>
                     Klient <b>-> </b>
                     <span> {{ reservation.client.firstName }} {{ reservation.client.lastName }}</span> <br>
@@ -70,12 +72,12 @@
 
 <script setup>
 import axios from 'axios';
-import {onMounted, ref} from "vue";
+import { onMounted, ref } from "vue";
 
 import AlertDisplay from "@/components/alerts/AlertDisplay.vue";
-import {createCustomError, handleErrors} from '../../../../errors/ErrorHandler.js';
+import { createCustomError, handleErrors } from '../../../../errors/ErrorHandler.js';
 import alertService from "@/components/alerts/AlertService.js";
-import {addMinutes, format, getHours, getMinutes, getTime, getYear} from "date-fns";
+import { addMinutes, format, getHours, getMinutes, getTime, getYear } from "date-fns";
 
 const fetchError = ref(null);
 
@@ -138,6 +140,7 @@ onMounted(fetchScreeningData);
   align-items: center;
   gap: 1rem;
 }
+
 b {
   font-weight: 500;
 }
@@ -179,7 +182,8 @@ b {
   background: #ccc;
   border-radius: 7px;
 }
-.showReservations{
+
+.showReservations {
   text-decoration: underline;
   margin-top: 10px;
   margin-bottom: 18px;
@@ -189,18 +193,19 @@ b {
 .showReservations:hover {
   cursor: pointer;
 }
-.reservationsDetails{
+
+.reservationsDetails {
   font-weight: 300;
 }
 
-.singleReservation{
-  background-color: #f2f2f2;
-  width: 350px;
-  border: medium solid #e7e7e7;
+.singleReservation {
+  background-color: #f8f8f8;
+  max-width: 500px;
   border-radius: 10px;
-  padding: 15px 25px;
+  border: 1px solid #ddd;
+  padding: 20px 35px;
   margin-bottom: 35px;
-  box-shadow: 2px 3px 10px #f1f1f1;
+  box-shadow: 0 0 3px 0.5px #ddd;
 }
 
 .admin-container .screening .left {

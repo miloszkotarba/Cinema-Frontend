@@ -36,8 +36,8 @@ function formatDate(inputDate) {
   return formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
 }
 
-const ulgowyQuantity = ref(0);
-const normalnyQuantity = ref(0);
+const ulgowyQuantity = ref(null);
+const normalnyQuantity = ref(null);
 
 const store = inject('store');
 

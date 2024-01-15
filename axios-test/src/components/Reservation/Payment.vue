@@ -34,22 +34,6 @@ function formatDate(inputDate) {
 
 const store = inject('store');
 
-/*const handleButtonClick = () => {
-  const personalDataToStore = { ...personalData.value };
-
-  if (personalDataToStore.email !== personalDataToStore.repeatedEmail) {
-    alertService.addAlert("Adresy e-mail się różnią.", "error")
-    return
-  }
-
-  store.dispatch('updatePersonalData', personalDataToStore);
-
-  Router.push({ path: '/repertuar/platnosc' })
-  /!*
-    console.log('Personal Data from Store:', store.getters.getPersonalData);
-  *!/
-};*/
-
 const dataFromStore = ref(null)
 const getData = async () => {
   try {
@@ -186,13 +170,80 @@ const CardReset = () => {
 }
 
 const validate = ref(false)
-const handleButtonClick = () => {
+const screeningID = ref(null)
+const handleButtonClick = async () => {
   if (validate.value === false) {
     alertService.addAlert("Uzupełnij wszystkie dane", "error")
     return
   }
+  /*Router.push({ path: '/repertuar/podsumowanie' })*/
 
-  Router.push({ path: '/repertuar/podsumowanie' })
+  const allData = getAllDataFromStore();
+  const seatsJSON = createSeatsJSON(allData.formData, allData.selectedSeats);
+
+  const clientObject = {
+    lastName: allData.personalData.lastName,
+    firstName: allData.personalData.firstName,
+    email: allData.personalData.email
+  };
+
+  const mergedObject = {
+    seats: seatsJSON,
+    client: clientObject
+  };
+
+  screeningID.value = allData.formData.screeningData._id
+  await addReservation(mergedObject)
+}
+
+const getAllDataFromStore = () => {
+  return store.getters.getAllData;
+}
+
+const URL = import.meta.env.VITE_BACKEND_URI + 'screenings/'
+
+const addReservation = async (object) => {
+  try {
+    const NEW_URL = URL + screeningID.value + '/reservations'
+    const response = await axios.post(NEW_URL, object);
+    alertService.addAlert("Kupiono bilety.", "success", "/repertuar/podsumowanie");
+  } catch (error) {
+    alertService.addAlert(error, "error")
+    handleErrors(error, fetchError);
+  }
+};
+
+
+function createSeatsJSON(formData, selectedSeats) {
+  const seatsJSON = [];
+
+  for (const seatIndex in selectedSeats) {
+    const seatNumber = selectedSeats[seatIndex];
+    const seatType = findSeatType(formData, seatNumber);
+
+    seatsJSON.push({
+      "seatNumber": seatNumber,
+      "typeOfSeat": seatType,
+    });
+  }
+
+  return seatsJSON;
+}
+
+function findSeatType(formData, seatNumber) {
+  const ulgowyCount = formData.ulgowy || 0;
+  const normalnyCount = formData.normalny || 0;
+
+  if (ulgowyCount > 0) {
+    formData.ulgowy -= 1;
+    return "ulgowy";
+  } else if (normalnyCount > 0) {
+    formData.normalny -= 1;
+    return "normalny";
+  } else {
+    // In case there are no more available seats of either type
+    return null;
+  }
 }
 
 const checkCardDetailsAndSuccess = () => {
@@ -405,7 +456,7 @@ onMounted(getData)
                   </div>
                 </div>
               </div>
-              <button type="submit" class="btn-action">PODSUMOWANIE ></button>
+              <button type="submit" class="btn-action">ZAPŁAĆ ></button>
               <!-- @TODO Walidacja danych czy niepuste itp... -->
             </form>
           </div>
