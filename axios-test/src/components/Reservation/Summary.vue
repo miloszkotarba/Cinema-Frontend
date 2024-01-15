@@ -217,7 +217,7 @@ main .title {
   display: flex;
   font-size: 36px;
   font-weight: 600;
-  margin-top: 200px;
+  margin-top: 150px;
   padding: 30px 0;
   align-content: center;
 }
