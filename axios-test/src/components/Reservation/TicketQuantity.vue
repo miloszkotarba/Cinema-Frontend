@@ -8,6 +8,7 @@ import { createCustomError, handleErrors } from "../../..//errors/ErrorHandler.j
 import { useRoute, useRouter } from "vue-router";
 
 const URL = import.meta.env.VITE_BACKEND_URI + "screenings";
+const URL_TICKETS = import.meta.env.VITE_BACKEND_URI + "tickets";
 
 const steps = ref([
   { number: 1, description: 'WYBIERZ BILETY', active: true, done: false },
@@ -26,6 +27,7 @@ const screeningID = router.params.id;
 const loading = ref(true);
 
 const screening = ref(null)
+const tickets = ref(null)
 
 import { format, parseISO } from 'date-fns';
 import { pl } from 'date-fns/locale';
@@ -38,6 +40,8 @@ function formatDate(inputDate) {
 
 const ulgowyQuantity = ref(null);
 const normalnyQuantity = ref(null);
+const ulgowyPrice = ref(null)
+const normalnyPrice = ref(null)
 
 const store = inject('store');
 
@@ -57,6 +61,20 @@ const fetchScreeningData = async () => {
     store.dispatch('reset');
   }
 };
+const fetchTicketsData = async () => {
+  try {
+    const response = await axios.get(URL_TICKETS);
+    const ulgowyPrice = response.data.tickets.find(ticket => ticket.name === 'ulgowy').price;
+    const normalnyPrice = response.data.tickets.find(ticket => ticket.name === 'normalny').price;
+
+    return { ulgowyPrice, normalnyPrice };
+  } catch (error) {
+    handleErrors(error, fetchError);
+    return { ulgowyPrice: 0, normalnyPrice: 0 }; // Domyślne wartości w przypadku błędu
+  } finally {
+    loading.value = false;
+  }
+};
 
 const handleButtonClick = () => {
   const ulgowy = ulgowyQuantity.value;
@@ -74,7 +92,14 @@ const handleButtonClick = () => {
   Router.push({ path: '/repertuar/miejsca' });
 };
 
-onMounted(fetchScreeningData)
+const fetchData = async () => {
+  await fetchScreeningData();
+  const { ulgowyPrice: fetchedUlgowyPrice, normalnyPrice: fetchedNormalnyPrice } = await fetchTicketsData();
+  ulgowyPrice.value = fetchedUlgowyPrice;
+  normalnyPrice.value = fetchedNormalnyPrice;
+};
+
+onMounted(fetchData)
 </script>
 
 <template>
@@ -122,12 +147,12 @@ onMounted(fetchScreeningData)
                 </div>
                 <div class="row">
                   <div class="ticket-type">bilet ulgowy</div>
-                  <div class="ticket-price">20zł</div>
+                  <div class="ticket-price">{{ ulgowyPrice }} zł</div>
                   <div class="ticket-quantity"><input v-model="ulgowyQuantity" type="number" required></div>
                 </div>
                 <div class="row">
                   <div class="ticket-type">bilet normalny</div>
-                  <div class="ticket-price">10zł</div>
+                  <div class="ticket-price">{{ normalnyPrice }} zł</div>
                   <div class="ticket-quantity"><input v-model="normalnyQuantity" type="number" required></div>
                 </div>
               </div>
