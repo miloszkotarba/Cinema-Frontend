@@ -207,7 +207,6 @@ main .title {
   animation-delay: 0.6s;
 }
 .content{
-  height: 100vh;
   display: flex;
   flex-direction: column;
   text-align: center;
