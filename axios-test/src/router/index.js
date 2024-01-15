@@ -30,6 +30,11 @@ const router = createRouter({
       component: () => import('../views/MovieDetailsView.vue')
     },
     {
+      path: '/rezerwacja/:id',
+      name: 'rezerwacjaId',
+      component: () => import('../views/Reservation/ReservationEditView.vue')
+    },
+    {
       path: '/repertuar/miejsca',
       name: 'Seats',
       component: () => import('../views/Reservation/SeatsView.vue')
