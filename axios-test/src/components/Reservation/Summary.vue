@@ -96,11 +96,20 @@ onMounted(() => getData());
             <div class="two"></div>
             <div class="three"></div>
           </div>
-          <div v-else style="padding-top: 2.5rem">
-            <form @submit.prevent="handleButtonClick()">
-
-              <button class="btn-action" type="submit">ZAPŁAĆ I ZAKOŃCZ ></button>
-            </form>
+          <div class="content">
+            <div class="text">
+              <div>Płatność przebiegła pomyślnie</div>
+              <img src="../../assets/img/confirm.svg" alt="confirmIcon">
+            </div>
+            <div class="text2">
+              Potwierdzenie płatności wraz z biletem zostało wysłane na adres e-mail.
+            </div>
+            <div class="text2">
+              Dziękujemy za wybór naszego kina i życzymy udanego seansu.
+            </div>
+            <RouterLink :to="{ name: 'repertuar'}" class="btn-action" style="text-decoration: none">
+              POWRÓT DO REPERTUARU
+            </RouterLink>
           </div>
         </div>
       </div>
@@ -196,6 +205,30 @@ main .title {
 
 .load .three {
   animation-delay: 0.6s;
+}
+.content{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+}
+.text{
+  display: flex;
+  font-size: 36px;
+  font-weight: 600;
+  margin-top: 200px;
+  padding: 30px 0;
+  align-content: center;
+}
+.text img{
+  width: 45px;
+  margin-left: 12px;
+}
+.text2{
+  padding: 8px 0;
+  font-size: 24px;
+  font-weight: 300;
 }
 
 @keyframes up-and-down {
