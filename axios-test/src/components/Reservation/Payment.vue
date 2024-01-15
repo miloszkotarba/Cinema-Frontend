@@ -1,7 +1,7 @@
 <script setup>
 import AlertDisplay from "@/components/alerts/AlertDisplay.vue";
 import ProgressBar from "@/components/ProgressBar.vue";
-import { ref, onMounted, inject } from 'vue';
+import {ref, onMounted, inject, computed} from 'vue';
 import { watch } from "vue";
 import axios from 'axios';
 
@@ -202,6 +202,40 @@ const getAllDataFromStore = () => {
 
 const URL = import.meta.env.VITE_BACKEND_URI + 'screenings/'
 
+const formData = computed(() => store.getters.getFormData);
+
+const ulgowyQuantity = ref(0);
+const normalnyQuantity = ref(0);
+const ulgowyPrice = ref(null);
+const normalnyPrice = ref(null)
+
+const URL_TICKETS = import.meta.env.VITE_BACKEND_URI + "tickets";
+const fetchTicketsData = async () => {
+  try {
+    const response = await axios.get(URL_TICKETS);
+    const fetchedUlgowyPrice = response.data.tickets.find(ticket => ticket.name === 'ulgowy').price;
+    const fetchedNormalnyPrice = response.data.tickets.find(ticket => ticket.name === 'normalny').price;
+
+    ulgowyPrice.value = fetchedUlgowyPrice;
+    normalnyPrice.value = fetchedNormalnyPrice;
+  } catch (error) {
+    handleErrors(error, fetchError);
+    ulgowyPrice.value = 0;
+    normalnyPrice.value = 0;
+  } finally {
+    loading.value = false;
+  }
+};
+
+if (formData.value) {
+  ulgowyQuantity.value = formData.value.ulgowy || 0;
+  normalnyQuantity.value = formData.value.normalny || 0;
+}
+const calculateTotalAmount = () => {
+  const totalAmount = (ulgowyQuantity.value * ulgowyPrice.value) + (normalnyQuantity.value * normalnyPrice.value);
+  return totalAmount;
+};
+
 const addReservation = async (object) => {
   try {
     const NEW_URL = URL + screeningID.value + '/reservations'
@@ -274,7 +308,14 @@ const checkCardDetailsAndSuccess = () => {
   CardSuccess();
 };
 
-onMounted(getData)
+const getAllData = async () => {
+  getData();
+  const { ulgowyPrice: fetchedUlgowyPrice, normalnyPrice: fetchedNormalnyPrice } = await fetchTicketsData();
+  ulgowyPrice.value = fetchedUlgowyPrice;
+  normalnyPrice.value = fetchedNormalnyPrice;
+};
+
+onMounted(getAllData)
 </script>
 
 <template>
@@ -321,6 +362,7 @@ onMounted(getData)
           <div v-else style="padding-top: 2.5rem">
             <form @submit.prevent="handleButtonClick()">
               <h1>Proces płatności</h1>
+              <div style="font-size: 24px; margin-top: 10px; font-weight: 300" >Łączna kwota do zapłaty: {{ calculateTotalAmount() }} zł</div>
               <div class="payment-table-container">
                 <div class="container-card preload">
                   <div class="creditcard">
