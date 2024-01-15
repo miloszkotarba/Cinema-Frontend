@@ -302,7 +302,7 @@ onMounted(getData)
               }}/2D</span>
           </div>
           <div class="right">
-            <span style="font-size: 2rem; font-weight: 500">Sala: {{
+            <span style="font-size: 2rem; font-weight: 300">Sala: {{
                 dataFromStore && dataFromStore.screeningData && dataFromStore.screeningData.room
                     ? dataFromStore.screeningData.room.name : ''
               }}</span>

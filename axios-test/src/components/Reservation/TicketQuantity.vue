@@ -121,7 +121,7 @@ onMounted(fetchData)
             <span class="title">{{ screening && screening.movie ? screening.movie.title : '' }}/2D</span>
           </div>
           <div class="right">
-            <span style="font-size: 2rem; font-weight: 500">Sala: {{
+            <span style="font-size: 2rem; font-weight: 300">Sala: {{
                 screening && screening.room ? screening.room.name : ''
               }}</span>
           </div>
