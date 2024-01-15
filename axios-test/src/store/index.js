@@ -38,5 +38,10 @@ export default createStore({
         getFormData: (state) => state.formData,
         getSelectedSeats: (state) => state.selectedSeats,
         getPersonalData: (state) => state.personalData,
+        getAllData: (state) => ({
+            formData: state.formData,
+            selectedSeats: state.selectedSeats,
+            personalData: state.personalData,
+        }),
     },
 });
