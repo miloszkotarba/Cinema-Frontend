@@ -117,7 +117,7 @@ onMounted(() => getData());
   </main>
 </template>
 
-<style>
+<style scoped>
 .alert {
   top: 100px !important;
 }
