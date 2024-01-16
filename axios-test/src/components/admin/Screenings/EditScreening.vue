@@ -12,7 +12,6 @@
               <input
                   type="datetime-local"
                   v-model="editedScreening.date"
-                  :min="getCurrentDateTime()"
                   required
               />
             </div>
@@ -116,8 +115,8 @@ const updateScreening = async () => {
       return alertService.addAlert("Nieprawidłowa długość reklam", "error");
     }
 
-    const selectedMovieId = editedScreening.value.movie;
-    const selectedRoomId = editedScreening.value.room;
+    const selectedMovieId = editedScreening.value.movie._id;
+    const selectedRoomId = editedScreening.value.room._id;
 
     editedScreening.value.movie = {_id: selectedMovieId};
     editedScreening.value.room = {_id: selectedRoomId};

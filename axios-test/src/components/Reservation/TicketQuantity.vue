@@ -34,7 +34,7 @@ import { pl } from 'date-fns/locale';
 
 function formatDate(inputDate) {
   const parsedDate = parseISO(inputDate);
-  const formattedDate = format(parsedDate, "EEEE MM/dd/yyyy, HH:mm", { locale: pl });
+  const formattedDate = format(parsedDate, "EEEE dd/MM/yyyy, HH:mm", { locale: pl });
   return formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
 }
 
@@ -140,7 +140,7 @@ onMounted(fetchData)
             <form @submit.prevent="handleButtonClick()">
               <h1>Wybierz bilety</h1>
               <div class="table-ticket">
-                <div class="row">
+                <div class="row header">
                   <div class="ticket-type">Rodzaj biletu</div>
                   <div class="ticket-price">Cena</div>
                   <div class="ticket-quantity">Ilość</div>
@@ -194,17 +194,26 @@ main .title {
 }
 
 .table-ticket {
-  border: 1px solid #555;
-  margin-top: 2rem;
+  border: 1px solid #bbb;
+  margin-top: 3rem;
+  margin-bottom: 2.5rem;
 }
 
 .table-ticket .row {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  border-bottom: 1px solid #555;
+  border-bottom: 1px solid #bbb;
   padding: 10px 5%;
   padding-right: 7%;
+  font-size: 1.2rem;
+  font-weight: 300;
+  background: #fff;
+}
+
+.table-ticket .row.header {
+  background: #dedede;
+  font-weight: 400;
 }
 
 .table-ticket .row .ticket-quantity input {

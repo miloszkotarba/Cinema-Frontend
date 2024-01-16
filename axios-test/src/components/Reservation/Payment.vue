@@ -1,12 +1,13 @@
 <script setup>
 import AlertDisplay from "@/components/alerts/AlertDisplay.vue";
-import ProgressBar from "@/components/ProgressBar.vue";
-import {ref, onMounted, inject, computed} from 'vue';
-import { watch } from "vue";
+import { computed, inject, onMounted, ref, watch } from 'vue';
 import axios from 'axios';
 
-import { createCustomError, handleErrors } from "../../..//errors/ErrorHandler.js";
+import { handleErrors } from "../../..//errors/ErrorHandler.js";
 import { useRoute, useRouter } from "vue-router";
+import { format, parseISO } from 'date-fns';
+import { pl } from 'date-fns/locale';
+import alertService from "@/components/alerts/AlertService.js";
 
 const steps = ref([
   { number: 1, description: 'WYBIERZ BILETY', active: false, done: true },
@@ -22,13 +23,9 @@ const router = useRoute();
 const Router = useRouter();
 const loading = ref(true);
 
-import { format, parseISO } from 'date-fns';
-import { pl } from 'date-fns/locale';
-import alertService from "@/components/alerts/AlertService.js";
-
 function formatDate(inputDate) {
   const parsedDate = parseISO(inputDate);
-  const formattedDate = format(parsedDate, "EEEE MM/dd/yyyy, HH:mm", { locale: pl });
+  const formattedDate = format(parsedDate, "EEEE dd/MM/yyyy, HH:mm", { locale: pl });
   return formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
 }
 
@@ -206,8 +203,8 @@ const formData = computed(() => store.getters.getFormData);
 
 const ulgowyQuantity = ref(0);
 const normalnyQuantity = ref(0);
-const ulgowyPrice = ref(null);
-const normalnyPrice = ref(null)
+const ulgowyPrice = ref(0);
+const normalnyPrice = ref(0)
 
 const URL_TICKETS = import.meta.env.VITE_BACKEND_URI + "tickets";
 const fetchTicketsData = async () => {
@@ -220,10 +217,6 @@ const fetchTicketsData = async () => {
     normalnyPrice.value = fetchedNormalnyPrice;
   } catch (error) {
     handleErrors(error, fetchError);
-    ulgowyPrice.value = 0;
-    normalnyPrice.value = 0;
-  } finally {
-    loading.value = false;
   }
 };
 
@@ -232,15 +225,14 @@ if (formData.value) {
   normalnyQuantity.value = formData.value.normalny || 0;
 }
 const calculateTotalAmount = () => {
-  const totalAmount = (ulgowyQuantity.value * ulgowyPrice.value) + (normalnyQuantity.value * normalnyPrice.value);
-  return totalAmount;
+  return (ulgowyQuantity.value * ulgowyPrice.value) + (normalnyQuantity.value * normalnyPrice.value);
 };
 
 const addReservation = async (object) => {
   try {
     const NEW_URL = URL + screeningID.value + '/reservations'
     const response = await axios.post(NEW_URL, object);
-    alertService.addAlert("Kupiono bilety.", "success", "/repertuar/podsumowanie");
+    await Router.push({ path: '/repertuar/podsumowanie' });
   } catch (error) {
     alertService.addAlert(error, "error")
     handleErrors(error, fetchError);
@@ -309,10 +301,8 @@ const checkCardDetailsAndSuccess = () => {
 };
 
 const getAllData = async () => {
-  getData();
-  const { ulgowyPrice: fetchedUlgowyPrice, normalnyPrice: fetchedNormalnyPrice } = await fetchTicketsData();
-  ulgowyPrice.value = fetchedUlgowyPrice;
-  normalnyPrice.value = fetchedNormalnyPrice;
+  await getData();
+  await fetchTicketsData();
 };
 
 onMounted(getAllData)

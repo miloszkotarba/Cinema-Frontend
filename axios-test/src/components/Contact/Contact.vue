@@ -14,7 +14,7 @@
       </div>
       <div class="description">
         <div class="text">
-          Kino Screenix zlokalizowane jest w Manufakturze w Łodzi. Posiada 10 klimatyzowanych sal wyposażonych w wysokiej klasy sprzęt nagłaśniający, dźwięk cyfrowy Dolby ATMOS oraz DOLBY 7.1, a także srebrne ekrany najwyższej światowej jakości 4K. Wyróżniające się nowoczesnym designem, wyposażone w wygodne, skórzane fotele z regulacją siedzeń, system dźwięku Dolby Atmos i obraz w rozdzielczości 4K sale, wyznaczają nowe standardy odbioru filmu w kinie.
+          Kino Screenix zlokalizowane jest w Manufakturze w Łodzi. Posiada 10 klimatyzowanych sal wyposażonych w wysokiej klasy sprzęt nagłaśniający, dźwięk cyfrowy <b style="font-weight: 500">Dolby ATMOS</b> oraz <b style="font-weight: 500">DOLBY 7.1</b>, a także srebrne ekrany najwyższej światowej jakości 4K. Wyróżniające się nowoczesnym designem, wyposażone w wygodne, skórzane fotele z regulacją siedzeń, system dźwięku Dolby Atmos i obraz w rozdzielczości 4K sale, wyznaczają nowe standardy odbioru filmu w kinie.
           Poza regularnym repertuarem, w którym prezentowane są największe hity światowej kinematografii, Screenix oferuje Widzom także seanse specjalne takie jak: Nocne Maratony Filmowe i Screenix dla Dzieci.
           <br><br>
           W kinie funkcjonuje także Screenix Café, w której można napić się aromatycznej kawy w wielu smakach oraz bar kinowy, który oferuje Widzom świeży popcorn, napoje oraz duży wybór słodyczy.
@@ -74,6 +74,7 @@ main .title h1 {
    font-size: 18px;
    max-width: 750px;
    text-align: justify;
+   line-height: 30px;
  }
 
  .description{
@@ -92,12 +93,12 @@ main .title h1 {
  .contact{
    display: flex;
    align-items: center;
-   margin-top: 10px;
-   margin-bottom: 8px;
+   margin-top: 12px;
+   margin-bottom: 12px;
    font-size: 18px;
  }
  .contact img{
-   margin-right: 5px;
+   margin-right: 12px;
    width: 25px;
    filter: invert(9%) sepia(82%) saturate(3259%) hue-rotate(260deg) brightness(119%) contrast(100%);
 

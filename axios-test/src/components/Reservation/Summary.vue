@@ -27,7 +27,7 @@ const URL = import.meta.env.VITE_BACKEND_URI + "screenings";
 
 function formatDate(inputDate) {
   const parsedDate = parseISO(inputDate);
-  const formattedDate = format(parsedDate, "EEEE MM/dd/yyyy, HH:mm", { locale: pl });
+  const formattedDate = format(parsedDate, "EEEE dd/MM/yyyy, HH:mm", { locale: pl });
   return formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
 }
 
@@ -102,7 +102,7 @@ onMounted(() => getData());
               <img src="../../assets/img/confirm.svg" alt="confirmIcon">
             </div>
             <div class="text2">
-              Potwierdzenie płatności wraz z biletem zostało wysłane na adres e-mail.
+              Potwierdzenie płatności zostało wysłane na adres e-mail.
             </div>
             <div class="text2">
               Dziękujemy za wybór naszego kina i życzymy udanego seansu.

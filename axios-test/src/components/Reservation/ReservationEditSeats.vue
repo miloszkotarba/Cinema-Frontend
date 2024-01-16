@@ -1,29 +1,27 @@
 <script setup>
 import AlertDisplay from "@/components/alerts/AlertDisplay.vue";
-import { computed, inject, onMounted, ref } from 'vue';
 import axios from 'axios';
-
-import { handleErrors } from "../../..//errors/ErrorHandler.js";
-import { useRouter } from "vue-router";
+import { handleErrors } from "../../../errors/ErrorHandler.js";
+import { ref } from 'vue';
+import { onMounted } from "vue";
 import { format, parseISO } from 'date-fns';
 import { pl } from 'date-fns/locale';
+import store from "@/store/index.js";
 import alertService from "@/components/alerts/AlertService.js";
-
-const steps = ref([
-  { number: 1, description: 'WYBIERZ BILETY', active: false, done: true },
-  { number: 2, description: 'WYBIERZ MIEJSCA', active: true, done: false },
-  { number: 3, description: 'DANE OSOBOWE', active: true, done: false },
-  { number: 3, description: 'PŁATNOŚĆ', active: true, done: false },
-  { number: 4, description: 'PODSUMOWANIE', active: true, done: false },
-]);
-
-const fetchError = ref(null);
-
-const Router = useRouter();
+import { useRouter } from "vue-router";
 
 const loading = ref(true);
-
-const URL = import.meta.env.VITE_BACKEND_URI + "screenings";
+const fetchError = ref(null);
+const screening = ref(null);
+const reservation = ref(null);
+const totalSeats = ref(1);
+const seatsPerRow = ref(10);
+const reservedSeats = ref([]);
+const selectedSeats = ref([]);
+const definedTicketQuantity = ref(0)
+const selectedTicketsQuantity = ref(0);
+const URL = import.meta.env.VITE_BACKEND_URI + "screenings/";
+const Router = useRouter();
 
 function formatDate(inputDate) {
   const parsedDate = parseISO(inputDate);
@@ -31,62 +29,51 @@ function formatDate(inputDate) {
   return formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
 }
 
-const store = inject('store');
-const dataFromStore = ref(null)
-
-const totalSeats = ref(7);
-const seatsPerRow = ref(10);
-
 const getData = async () => {
   try {
-    dataFromStore.value = store.getters.getFormData;
-    if (dataFromStore.value?.screeningData?.room?.numberOfSeats) {
-      totalSeats.value = dataFromStore.value.screeningData.room.numberOfSeats
+    screening.value = store.getters.getScreeningData;
+    reservation.value = store.getters.getReservationData;
+
+    if (!screening.value || !reservation.value) {
+      await Router.push({ path: '/repertuar' });
     }
 
-    if (!dataFromStore.value) {
-      await Router.push({ path: '/repertuar' });
-      return
-    }
+    totalSeats.value = screening.value.room.numberOfSeats
 
     await getAllReservedSeats()
   } catch (error) {
     handleErrors(error, fetchError)
   } finally {
+    initSelectedSeats()
     loading.value = false
   }
 }
 
-const reservedSeats = ref([]);
+const seatsToDelete = ref(null)
 const getAllReservedSeats = async () => {
   try {
-    let screeningID = "";
-    if (dataFromStore.value?.screeningData?._id) {
-      screeningID = dataFromStore.value?.screeningData?._id;
-    }
+    const reservations = screening.value.reservations
 
-    const response = await axios.get(URL + `/${screeningID}/reservations`);
+    seatsToDelete.value = reservation.value.seats.map(seat => seat.seatNumber);
 
-    const { reservations } = response.data;
     if (reservations) {
       reservedSeats.value = reservations
           .flatMap(reservation => {
             const { seats } = reservation;
             return seats ? seats.map(seat => seat.seatNumber) : [];
           })
-          .sort((a, b) => a - b);
+          .sort((a, b) => a - b)
+          .filter(seatNumber => !seatsToDelete.value.includes(seatNumber));
     }
   } catch (error) {
     handleErrors(error, fetchError);
   }
 };
 
-const selectedSeats = ref([]);
-const selectedTicketsQuantity = ref(0);
-const definedTicketQuantity = ref(0)
-
 const toggleSeatSelection = (seatNumber) => {
-  definedTicketQuantity.value = dataFromStore.value?.normalny + dataFromStore.value?.ulgowy
+  let seatsFromReservationPrimary = reservation.value.seats.map(seat => seat.seatNumber);
+  definedTicketQuantity.value = seatsFromReservationPrimary.length
+
   if (reservedSeats.value.includes(seatNumber)) {
     return
   }
@@ -100,20 +87,52 @@ const toggleSeatSelection = (seatNumber) => {
   selectedTicketsQuantity.value = selectedSeats.value.length;
 };
 
-const test = ref(null)
-const handleButtonClick = () => {
-  definedTicketQuantity.value = dataFromStore.value?.normalny + dataFromStore.value?.ulgowy
+const handleButtonClick = async () => {
+  definedTicketQuantity.value = seatsToDelete.value.length
+
+  if (selectedTicketsQuantity.value === undefined) {
+    alertService.addAlert("Musisz dokonać zmiany.", "error")
+    return
+  }
+
   if (selectedTicketsQuantity.value !== definedTicketQuantity.value) {
     alertService.addAlert(`Zaznaczono za mało miejsc. Wybrano ${selectedTicketsQuantity.value}/${definedTicketQuantity.value}.`, "error")
     return
   }
 
-  store.dispatch('updateSelectedSeats', selectedSeats.value);
+  //editing Screening
+  let seats = reservation.value.seats
+  let seatsToReplace = selectedSeats.value
 
-  Router.push({ path: '/repertuar/dane' });
+  seats = seats.map((seat, index) => {
+    seat.seatNumber = seatsToReplace[index];
+    return seat;
+  });
+
+  let seatsObject = { seats };
+
+  await updateReservationAndChangeView(seatsObject)
 }
 
-onMounted(() => getData());
+const updateReservationAndChangeView = async (seats) => {
+  try {
+    const screeningID = screening.value._id
+    const reservationID = reservation.value._id
+
+    await axios.patch(URL + `${screeningID}/reservations/` + `${reservationID}`, seats)
+
+    await Router.push({ path: "/rezerwacja/podsumowanie" })
+  } catch (error) {
+    handleErrors(error, fetchError);
+  }
+}
+
+const initSelectedSeats = () => {
+  selectedSeats.value = seatsToDelete.value
+  selectedTicketsQuantity.value = seatsToDelete.length
+}
+
+onMounted(getData)
 </script>
 
 <template>
@@ -121,25 +140,19 @@ onMounted(() => getData());
     <AlertDisplay/>
     <div class="booking-box-top">
       <div class="container">
-        <div id="steps">
-          <div v-for="(step, index) in steps" :key="index"
-               :class="{ 'step': true, 'active': step.active, 'done': step.done }" :data-desc="step.description">
-            {{ step.number }}
-          </div>
-        </div>
         <div class="info-wrapper">
           <div class="left">
             <span style="display: block; font-weight: 300; font-size: 1.5rem">{{
-                dataFromStore && formatDate(dataFromStore.screeningData.date)
+                screening && formatDate(screening.date)
               }}</span>
             <span class="title">{{
-                dataFromStore && dataFromStore.screeningData ? dataFromStore.screeningData.movie.title : ''
+                screening && screening.movie ? screening.movie.title : ''
               }}/2D</span>
 
           </div>
           <div class="right">
             <span style="font-size: 2rem; font-weight: 300">Sala: {{
-                dataFromStore && dataFromStore.screeningData.room ? dataFromStore.screeningData.room.name : ''
+                screening && screening.room ? screening.room.name : ''
               }}</span>
           </div>
         </div>
@@ -161,7 +174,7 @@ onMounted(() => getData());
                   <div class="seat-row-number">{{ rowIndex }}</div>
                   <div v-for="seatIndex in Math.min(seatsPerRow, totalSeats - (rowIndex - 1) * seatsPerRow)"
                        :key="seatIndex + (rowIndex - 1) * seatsPerRow" class="seat-container"
-                       :class="{ 'booked': reservedSeats.includes(seatIndex + (rowIndex - 1) * seatsPerRow), 'selected': selectedSeats.includes(seatIndex + (rowIndex - 1) * seatsPerRow) }"
+                       :class="{ 'booked': reservedSeats.includes(seatIndex + (rowIndex - 1) * seatsPerRow), 'selected': selectedSeats.includes(seatIndex + (rowIndex - 1) * seatsPerRow)}"
                        @click="toggleSeatSelection(seatIndex + (rowIndex - 1) * seatsPerRow)">
                     <div class="seat-number">
                       {{ seatIndex + (rowIndex - 1) * seatsPerRow }}
@@ -177,7 +190,7 @@ onMounted(() => getData());
                   <div class="seat-row-number">{{ rowIndex }}</div>
                 </div>
               </div>
-              <button class="btn-action" type="submit">PODAJ DANE OSOBOWE ></button>
+              <button class="btn-action" type="submit">ZATWIERDŹ ZMIANY ></button>
             </form>
           </div>
         </div>
@@ -188,7 +201,7 @@ onMounted(() => getData());
 
 <style>
 .alert {
-  top: 100px !important;
+  top: 100px !important
 }
 
 main {

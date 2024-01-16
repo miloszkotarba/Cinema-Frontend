@@ -1,26 +1,18 @@
 <script setup>
 import { onMounted, ref } from 'vue';
-import axios from 'axios';
 
 import { handleErrors } from "../../..//errors/ErrorHandler.js";
 import { format, parseISO } from 'date-fns';
 import { pl } from 'date-fns/locale';
 import alertService from "@/components/alerts/AlertService.js";
-import { useRoute, useRouter } from "vue-router";
 import AlertDisplay from "@/components/alerts/AlertDisplay.vue";
 import store from "@/store/index.js";
+import { useRouter } from "vue-router";
 
-const URL = import.meta.env.VITE_BACKEND_URI + "screenings";
-const router = useRoute();
-const Router = useRouter();
-const reservationID = router.params.id;
 
-const fetchError = ref(null);
-const isLoading = ref(true);
-const screening = ref(null)
+const fetchError = ref(null)
 const reservation = ref(null)
-const reservationDeleted = ref(false)
-const notFound = ref(false)
+const Router = useRouter();
 
 function formatDate(inputDate) {
   const parsedDate = parseISO(inputDate);
@@ -28,55 +20,19 @@ function formatDate(inputDate) {
   return formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
 }
 
-const getData = async () => {
+const getData = () => {
   try {
-    const response = await axios.get(URL);
-    const screenings = response.data.screenings
-    screening.value = reservationExists(screenings, reservationID)
-    reservation.value = getReservation(screening.value, reservationID)
+    const data = store.getters.getReservationData
+    reservation.value = data._id
     if (reservation.value === null) {
-      notFound.value = true
+      Router.push({ path: '/repertuar' });
     }
   } catch (error) {
     handleErrors(error, fetchError)
     alertService.addAlert(error, "error")
-  } finally {
-    isLoading.value = false
   }
 }
 
-const reservationExists = (screenings, reservationID) => {
-  return screenings.find(screening => {
-    return screening.reservations.some(reservation => reservation._id === reservationID);
-  });
-}
-
-const getReservation = (screening, reservationID) => {
-  if (screening && screening.reservations) {
-    return screening.reservations.find(reservation => reservation._id === reservationID);
-  }
-  return null;
-};
-
-const deleteReservation = async () => {
-  try {
-    const screeningID = screening.value._id
-    const DELETE_URL = URL + `/${screeningID}/reservations/${reservationID}`
-
-    const response = await axios.delete(DELETE_URL)
-
-    reservationDeleted.value = true
-  } catch (error) {
-    handleErrors(error, fetchError)
-    alertService.addAlert(error, "error")
-  }
-}
-
-const editReservation = () => {
-  store.dispatch('updateScreeningData', screening.value)
-  store.dispatch('updateReservationData', reservation.value)
-  Router.push({ path: '/rezerwacja/edycja' });
-}
 
 onMounted(getData)
 </script>
@@ -86,55 +42,23 @@ onMounted(getData)
   <main>
     <div class="wrapper">
       <div class="main-title">
-        <div class="left">ID rezerwacji: {{ reservationID }}</div>
+        <div class="left">ID rezerwacji: {{ reservation }}</div>
         <div class="right"><img src="../../assets/img/appointment.svg" alt="Appointment"></div>
       </div>
-      <div v-if="isLoading" class="load">
-        <div class="one"></div>
-        <div class="two"></div>
-        <div class="three"></div>
-      </div>
-      <div v-else-if="notFound" class="not-found">
-        <div class="title">Nie ma rezerwacji o takim ID.</div>
-      </div>
-      <div v-else-if="reservationDeleted">
+      <div>
         <div class="alert-box">
           <div class="content">
             <div class="text">
-              <div>Rezerwacja została anulowana</div>
+              <div>Rezerwacja została zmodyfikowana</div>
               <img src="../../assets/img/confirm.svg" alt="confirmIcon">
+            </div>
+            <div class="text2">
+              Pomyślnie zmieniono miejsca zajmowane podczas seansu.
             </div>
             <div class="text2">
               Potwierdzenie tej operacji zostało wysłane na adres e-mail.
             </div>
-            <div class="text2">
-              Zwrot kosztów zakupu biletów nastąpi w ciągu 48h.
-            </div>
           </div>
-        </div>
-      </div>
-      <div v-else>
-        <div class="container">
-          <div class="left">
-            <div class="title">Dane klienta:</div>
-            <div class="content">
-              <span><b>imię i nazwisko:</b> {{ reservation.client.firstName }} {{ reservation.client.lastName }}</span>
-              <span><b>email:</b> {{ reservation.client.email }}</span>
-            </div>
-          </div>
-
-          <div class="right">
-            <div class="title">Dane rezerwacji:</div>
-            <div class="content">
-              <span><b>film:</b> {{ screening.movie.title }}</span>
-              <span><b>data:</b> {{ formatDate(screening.date) }}</span>
-              <span><b>sala:</b> {{ screening.room.name }}</span>
-            </div>
-          </div>
-        </div>
-        <div class="buttons">
-          <button @click="deleteReservation">Anuluj rezerwację</button>
-          <button @click="editReservation">Zmień miejsca</button>
         </div>
       </div>
     </div>

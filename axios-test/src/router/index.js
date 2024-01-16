@@ -35,6 +35,16 @@ const router = createRouter({
       component: () => import('../views/Reservation/ReservationEditView.vue')
     },
     {
+      path: '/rezerwacja/edycja',
+      name: 'rezerwacjaEdit',
+      component: () => import('../views/Reservation/ReservationEditSeatsView.vue')
+    },
+    {
+      path: '/rezerwacja/podsumowanie',
+      name: 'rezerwacjaSummary',
+      component: () => import('../views/Reservation/ReservationEditSummaryView.vue')
+    },
+    {
       path: '/repertuar/miejsca',
       name: 'Seats',
       component: () => import('../views/Reservation/SeatsView.vue')

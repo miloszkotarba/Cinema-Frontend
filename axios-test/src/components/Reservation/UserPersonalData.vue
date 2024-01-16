@@ -27,7 +27,7 @@ import alertService from "@/components/alerts/AlertService.js";
 
 function formatDate(inputDate) {
   const parsedDate = parseISO(inputDate);
-  const formattedDate = format(parsedDate, "EEEE MM/dd/yyyy, HH:mm", { locale: pl });
+  const formattedDate = format(parsedDate, "EEEE dd/MM/yyyy, HH:mm", { locale: pl });
   return formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
 }
 

@@ -5,6 +5,8 @@ export default createStore({
         formData: null,
         selectedSeats: [],
         personalData: null,
+        screening: null,
+        reservation: null,
     },
     mutations: {
         setFormData(state, formData) {
@@ -19,6 +21,12 @@ export default createStore({
         setSelectedSeats(state, seats) {
             state.selectedSeats = seats;
         },
+        setScreeningData(state, screening) {
+            state.screening = screening
+        },
+        setReservationData(state, reservation) {
+            state.reservation = reservation
+        }
     },
     actions: {
         updateFormData({ commit }, formData) {
@@ -33,6 +41,12 @@ export default createStore({
         updatePersonalData({ commit }, personalData) {
             commit('setPersonalData', personalData);
         },
+        updateScreeningData({ commit }, screening) {
+            commit('setScreeningData', screening)
+        },
+        updateReservationData({ commit }, reservation) {
+            commit('setReservationData', reservation)
+        }
     },
     getters: {
         getFormData: (state) => state.formData,
@@ -43,5 +57,7 @@ export default createStore({
             selectedSeats: state.selectedSeats,
             personalData: state.personalData,
         }),
+        getScreeningData: (state) => state.screening,
+        getReservationData: (state) => state.reservation,
     },
 });

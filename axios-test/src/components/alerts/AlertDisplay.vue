@@ -43,7 +43,7 @@ const getAlertTitle = (type) => {
 
 .success {
   border-right: 4px solid #2ec946;
-  background-color: rgba(46, 201, 70, 0.05);
+  background-color: rgb(235, 250, 238);
   box-shadow: 0 0 1px 0.4px #65c574;
 }
 
@@ -53,7 +53,7 @@ const getAlertTitle = (type) => {
 
 .error {
   border: 1px solid #ffb8b8;
-  background-color: rgba(255, 56, 56, 0.05);
+  background-color: #faeeee;
 }
 
 .error .alert-title {
