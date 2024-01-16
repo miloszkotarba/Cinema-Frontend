@@ -73,8 +73,8 @@ const newMovie = ref({
   },
   duration: 0,
   ageRestriction: 0,
-  cast: [],
-  genres: [],
+  cast: '',
+  genres: '',
   description: '',
   poster: null, // Nowe pole dla pliku obrazu
 });
@@ -118,8 +118,8 @@ const addMovie = async () => {
       },
       duration: 0,
       ageRestriction: 0,
-      cast: [],
-      genres: [],
+      cast: '',
+      genres: '',
       description: '',
       poster: null,
     };

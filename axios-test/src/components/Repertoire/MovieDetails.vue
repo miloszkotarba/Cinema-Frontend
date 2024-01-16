@@ -39,7 +39,15 @@ const fetchMovieData = async () => {
   isLoading.value = false;
   }
 };
-
+const removeQuotes = (str) => {
+  if (typeof str === 'string' || str instanceof String) {
+    return str.replace(/['"]+/g, '');
+  }
+  return str;
+}
+const formatDescription = (description) => {
+  return `<p>${description.replace(/\n/g, '</p><p>')}</p>`;
+}
 onMounted(fetchMovieData);
 </script>
 
@@ -55,7 +63,7 @@ onMounted(fetchMovieData);
           <div class="title">
             <h1>{{ movie.title }}</h1>
           </div>
-          <span class="light-text" style="font-size: 1.1rem">{{ movie.genres.join(', ') }}</span>
+          <span class="light-text" style="font-size: 1.1rem">{{ removeQuotes(movie.genres.join(', ')) }}</span>
           <div class="iconSection light-text">
               <div class="clock">
                 <img src="../../assets/img/clock.svg" alt="clockIcon">
@@ -69,11 +77,11 @@ onMounted(fetchMovieData);
           <div class="description light-text">
             od lat: {{movie.ageRestriction}} / Produkcja: {{movie.release.country}}<br>
             Reżyseria: {{movie.director}}<br>
-            Obsada: {{movie.cast.join(",")}}<br>
+            Obsada: {{removeQuotes(movie.cast.join(","))}}<br>
           </div>
           <div class="description light-text">
             <b>Opis filmu:</b><br>
-            {{ movie.description }}
+            <div v-html="formatDescription(movie.description)"></div>
           </div>
         </div>
         <div class="right">

@@ -18,7 +18,6 @@ const toggleSidebar = () => {
       <div class="logo-image">
         <img src="../../assets/img/logo.png" alt="Logo">
       </div>
-
       <span class="logo_name">Screenix</span>
     </div>
 

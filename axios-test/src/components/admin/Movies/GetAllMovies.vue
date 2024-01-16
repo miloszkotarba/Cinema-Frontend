@@ -21,7 +21,7 @@
               <span class="genres" v-if="movie.genres && movie.genres.length > 0" id="movieGenres">
                 <span>Gatunek: </span>
                 <span v-for="(genre, index) in movie.genres" :key="index" class="light">
-                  {{ genre }}<span v-if="index !== movie.genres.length - 1">, </span>
+                  {{ removeQuotes(genre) }}<span v-if="index !== movie.genres.length - 1">, </span>
                 </span>
               </span>
 
@@ -41,12 +41,9 @@
               </span>
 
               <span class="cast" v-if="movie.cast && movie.cast.length > 0" id="movieCast">
-                <span>Aktorzy: </span>
-                <span v-for="(actor, index) in movie.cast" :key="index" class="light">{{ actor }}<span
-                    v-if="index !== movie.cast.length - 1">, </span>
-                </span>
+                  <span>Aktorzy: </span>
+                  <span v-for="(actor, index) in movie.cast" :key="index" class="light">{{ removeQuotes(actor) }}</span>
               </span>
-
               <span class="description" v-if="movie.description">Opis: <span class="light">{{
                   movie.description
                 }}</span></span>
@@ -85,6 +82,7 @@ const URL = import.meta.env.VITE_BACKEND_URI + "movies";
 const movies = ref([]);
 const isLoading = ref(true);
 
+
 const fetchMovieData = async () => {
   try {
     const response = await axios.get(URL);
@@ -108,6 +106,12 @@ const deleteMovie = async (movieID) => {
 
 const getMovieImage = (movieID) => {
   return `${import.meta.env.BASE_URL}posters/${movieID}.jpeg`
+}
+const removeQuotes = (str) => {
+  if (typeof str === 'string' || str instanceof String) {
+    return str.replace(/['"]+/g, '');
+  }
+  return str;
 }
 
 onMounted(fetchMovieData);
