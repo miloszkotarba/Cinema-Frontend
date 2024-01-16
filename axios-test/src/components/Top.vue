@@ -6,7 +6,9 @@
   <nav>
     <div class="nav-wrapper">
       <div class="logo">
-        <div class="name">Screenix</div>
+        <RouterLink :to="{ name: 'home'}" class="name" style="text-decoration: none; color: #FFFFFF">
+          Screenix
+        </RouterLink>
         <div class="svg">
           <!--?xml version="1.0" ?-->
           <svg
@@ -30,9 +32,21 @@
       </div>
       <div class="links">
         <ul>
-          <li><a href="/repertuar">Repertuar</a></li>
-          <li><a href="/cennik">Cennik</a></li>
-          <li><a href="/kontakt">Kontakt</a></li>
+          <li>
+            <RouterLink :to="{ name: 'repertuar'}" class="a">
+            Repertuar
+            </RouterLink>
+          </li>
+          <li>
+            <RouterLink :to="{ name: 'cennik'}" class="a">
+              Cennik
+            </RouterLink>
+          </li>
+          <li>
+            <RouterLink :to="{ name: 'kontakt'}" class="a">
+              Kontakt
+            </RouterLink>
+          </li>
         </ul>
       </div>
     </div>

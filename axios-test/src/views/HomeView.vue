@@ -41,7 +41,9 @@
       <div class="left">
         <h1>Kino Screenix</h1>
         <div class="brand">Gdzie Każdy Kadr Jest Doskonały</div>
-        <a href="/repertuar"><button>kup bilet </button></a>
+        <RouterLink :to="{ name: 'repertuar'}" class="a">
+          <button>kup bilet </button>
+        </RouterLink>
       </div>
       <div class="right">
         <img src="../assets/img/19198445-removebg.png" alt="Cinema Background"/>

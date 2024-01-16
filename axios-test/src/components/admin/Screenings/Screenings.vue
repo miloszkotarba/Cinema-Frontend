@@ -7,11 +7,10 @@
     </header>
 
     <div class="indent">
-      <div class="btn-add">
-        <a href="/admin/seanse/create">
-          <img src="../../../assets/img/add.svg" alt="Button add">
-        </a>
-      </div>
+      <RouterLink :to="{ name: 'adminSeanseCreate'}" class="btn-add"
+                  style="text-decoration: none">
+        <img src="../../../assets/img/add.svg" alt="Button add">
+      </RouterLink>
 
       <div v-if="fetchError">{{ fetchError }}</div>
       <div v-if="isLoading">Loading...</div>

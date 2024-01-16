@@ -6,7 +6,9 @@
   <nav>
     <div class="nav-wrapper">
       <div class="logo">
-        <div class="name">Screenix</div>
+        <RouterLink :to="{ name: 'repertuar'}" class="name" style="text-decoration: none; color: #FFFFFF">
+          Screenix
+        </RouterLink>
         <div class="svg">
           <!--?xml version="1.0" ?-->
           <svg
