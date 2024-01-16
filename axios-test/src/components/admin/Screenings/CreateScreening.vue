@@ -32,7 +32,7 @@
             <label for="room">Wybierz salę</label>
             <select v-model="newScreening.room">
               <option v-for="room in rooms" :key="room._id" :value="room._id">
-                {{ room.name }}
+                {{ room.name }} [{{ room.numberOfSeats}}]
               </option>
             </select>
           </div>
